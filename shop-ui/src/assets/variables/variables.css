@@ -1,0 +1,17 @@
+:root{
+    --color-white: #fff;
+
+    --color-background-light: #F1F1F1;
+    --color-background: rgba(175, 175, 175, 0.5);
+    --color-background-dark: rgba(0, 0, 0, 0.5);
+
+    --color-main:#56BABC;
+    --color-main-light: #AFDDDB;
+
+    --color-secondary-alfa:#EE6881;
+    --color-secondary-alfa-ligt: #FEF8F8;
+
+    --color-secondary-bravo:#FCCF02;
+    --color-secondary-bravo-light: #f3da95;
+}
+
