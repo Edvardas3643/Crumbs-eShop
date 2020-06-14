@@ -30,3 +30,34 @@ code {
   width: 100%;
   background-color: var(--color-background-light);
 }
+
+.grid-container,
+.grid-container > *{
+  cursor: pointer;
+  user-select: none;
+}
+
+.grid-container{
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: margin-bottom ease-out .2s;
+}
+
+.grid-container:hover .grid_container__description{
+  transition: margin-bottom linear 0.2s;
+  margin-bottom: 0;
+}
+
+.grid_container__description{
+  text-shadow: 1px 1px var(--color-background-dark);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: -1rem;
+  transition: margin-bottom ease-out .2s;
+}
+
+.flex{
+  display: flex;
+}
