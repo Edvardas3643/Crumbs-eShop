@@ -5,7 +5,7 @@ import NavigationToggleBtn from "../Navigation/NavigationToggleBtn";
 
 export default (props) => (
     <section className="background--main-light">
-        <div className="header">
+        <div className="header container-wide">
             <NavigationToggleBtn click={props.navigationClickHandler}/>
             <img
                 srcSet="https://cdn.shopify.com/s/files/1/0015/1185/0042/t/10/assets/logo.svg?v=2033538501994009811"

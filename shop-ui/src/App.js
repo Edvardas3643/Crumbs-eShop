@@ -3,6 +3,7 @@ import Header from './components/Header/Header';
 import Navigation from "./components/Navigation/Navigation";
 import Cart from "./components/Cart/Cart";
 import Backdrop from "./components/Backdrop/Backdrop"
+import Content from "./pages/content/Content";
 
 class App extends Component {
 
@@ -44,6 +45,7 @@ class App extends Component {
                         navigationClickHandler={this.navigationToggleClickHandler}
                         cartClickHandler={this.cartToggleClickHandler}
                     />
+                    <Content />
                 </div>
                 <Cart cartClickHandler={this.backdropClickHandler} show={this.state.cartOpen}/>
             </div>
