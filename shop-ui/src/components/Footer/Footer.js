@@ -1,5 +1,6 @@
 import React from "react";
 import './Footer.css';
+import ToTheTopBtn from "./ToTheTopBtn";
 
 export default () => (
     <footer>
@@ -37,7 +38,7 @@ export default () => (
             </div>
             <div className="footer__back-btn-container">
                 <div className="container__divider"/>
-                <h3 className="back-btn-container__back-btn">TO THE TOP</h3>
+               <ToTheTopBtn/>
                 <div className="container__divider"/>
             </div>
         </section>

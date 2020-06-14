@@ -32,11 +32,13 @@
 }
 
 .search-bar > input{
+    text-align: center;
     line-height: 1.1rem;
     width: 30vw;
     border-radius: 1rem;
-    border: .4rem solid #FFF;
+    border: .4rem solid var(--color-background-light);
     box-sizing: border-box;
+    background-color: var(--color-background-light);
 }
 
 .search-bar > input:focus{

@@ -40,6 +40,10 @@
     list-style: none;
 }
 
+.footer-info > div > ul > li:hover{
+    text-decoration: underline;
+}
+
 .footer-info__contacts div i{
     margin: .4rem;
     color: var(--color-dark-grey);
