@@ -5,12 +5,14 @@ import Cart from "./components/Cart/Cart";
 import Backdrop from "./components/Backdrop/Backdrop"
 import Content from "./pages/content/Content";
 import Footer from "./components/Footer/Footer";
+import Search from "./components/Search/Search";
 
 class App extends Component {
 
     state = {
         cartOpen: false,
-        navigationOpen: false
+        navigationOpen: false,
+        searchOpen: false
     }
 
     navigationToggleClickHandler = () => {
@@ -20,34 +22,41 @@ class App extends Component {
     }
 
     cartToggleClickHandler = () => {
-        this.setState( (prevState) => {
-            console.log(this.state.cartOpen)
+        this.setState((prevState) => {
             return {cartOpen: !prevState.cartOpen}
         })
     }
 
+    searchToggleHandler = () => {
+        this.setState((prevState) => {
+            return {searchOpen: !prevState.searchOpen}
+        })
+    }
+
     backdropClickHandler = () => (
-        this.setState({navigationOpen: false, cartOpen: false})
+        this.setState({navigationOpen: false, cartOpen: false, searchOpen: false})
     )
 
     render() {
         let backdrop;
 
-        if (this.state.navigationOpen || this.state.cartOpen) {
-            backdrop = <Backdrop click = {this.backdropClickHandler}/>
+        if (this.state.navigationOpen || this.state.cartOpen || this.state.searchOpen) {
+            backdrop = <Backdrop click={this.backdropClickHandler}/>
         }
 
         return (
             <div className="App">
-                <Navigation navigationClickHandler={this.backdropClickHandler} show={this.state.navigationOpen} />
+                <Navigation navigationClickHandler={this.backdropClickHandler} show={this.state.navigationOpen}/>
                 {backdrop}
                 <div className="main">
                     <Header
                         navigationClickHandler={this.navigationToggleClickHandler}
                         cartClickHandler={this.cartToggleClickHandler}
+                        searchClickHandler={this.searchToggleHandler}
                     />
-                    <Content />
-                    <Footer />
+                    <Search show={this.state.searchOpen}/>
+                    <Content/>
+                    <Footer/>
                 </div>
                 <Cart cartClickHandler={this.backdropClickHandler} show={this.state.cartOpen}/>
             </div>

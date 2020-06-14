@@ -4,7 +4,7 @@
     height: 100vh;
     position: fixed;
     background-color: var(--color-secondary-alfa-ligt);
-    width: 400px;
+    width: 450px;
     box-shadow: 2px 0 5px var(--color-background-dark);
     z-index: 200;
     transform: translateX(100%);

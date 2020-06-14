@@ -27,8 +27,10 @@ code {
 }
 
 .background--main-light{
+  position: relative;
   width: 100%;
   background-color: var(--color-background-light);
+  z-index: 175;
 }
 
 .grid-container,
@@ -51,6 +53,7 @@ code {
 }
 
 .grid_container__description{
+  color: var(--color-dark-grey);
   text-shadow: 1px 1px var(--color-background-dark);
   font-size: 2rem;
   font-weight: 600;
