@@ -1,6 +1,7 @@
 import React from "react";
 import './Navigation.css'
 import '../../assets/img/navigation_background.PNG'
+import {BrowserRouter, NavLink} from "react-router-dom";
 
 export default (props) => {
 
@@ -21,13 +22,13 @@ export default (props) => {
                 <li>Cakes<i className="fas fa-arrow-right"/></li>
                 <li>Brownies<i className="fas fa-arrow-right"/></li>
                 <li>Cookies<i className="fas fa-arrow-right"/></li>
-                <li>Visit Us<i className="fas fa-arrow-right"/></li>
             </ul>
-            <ul className="navigation-bar__secondary">
-                <li>Login/Register</li>
-                <li>Contact Us</li>
-                <li>About Us</li>
-            </ul>
+            <div className="navigation-bar__secondary">
+                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/login">Login/Register</NavLink>
+                <NavLink to="/contacts">Contact Us</NavLink>
+                <NavLink to="/about">About Us</NavLink>
+            </div>
         </nav>
     )
 }

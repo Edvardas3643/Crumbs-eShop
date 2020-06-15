@@ -16,6 +16,7 @@
 }
 
 .grid{
+    margin-top: -3rem;
     box-sizing: border-box;
     padding: 3rem 0;
     height: calc(100vh - 80px);

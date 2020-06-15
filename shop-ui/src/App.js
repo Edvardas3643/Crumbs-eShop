@@ -6,6 +6,7 @@ import Backdrop from "./components/Backdrop/Backdrop"
 import Content from "./pages/content/Content";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
+import {BrowserRouter} from "react-router-dom";
 
 class App extends Component {
 
@@ -27,7 +28,7 @@ class App extends Component {
         })
     }
 
-    searchToggleHandler = () => {
+    searchToggleClickHandler = () => {
         this.setState((prevState) => {
             return {searchOpen: !prevState.searchOpen}
         })
@@ -45,6 +46,7 @@ class App extends Component {
         }
 
         return (
+            <BrowserRouter>
             <div className="App">
                 <Navigation navigationClickHandler={this.backdropClickHandler} show={this.state.navigationOpen}/>
                 {backdrop}
@@ -52,7 +54,7 @@ class App extends Component {
                     <Header
                         navigationClickHandler={this.navigationToggleClickHandler}
                         cartClickHandler={this.cartToggleClickHandler}
-                        searchClickHandler={this.searchToggleHandler}
+                        searchClickHandler={this.searchToggleClickHandler}
                     />
                     <Search show={this.state.searchOpen}/>
                     <Content/>
@@ -60,6 +62,7 @@ class App extends Component {
                 </div>
                 <Cart cartClickHandler={this.backdropClickHandler} show={this.state.cartOpen}/>
             </div>
+            </BrowserRouter>
         );
     }
 }
