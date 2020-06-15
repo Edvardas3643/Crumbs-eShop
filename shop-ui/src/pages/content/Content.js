@@ -1,8 +1,9 @@
 import React from "react";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import Home from "../home/Home";
+import Storefront from "../storefront/Storefront";
 
-export default () => (
+export default (props) => (
         <Switch>
             <Route exact path="/home">
                 <Home />
@@ -29,7 +30,7 @@ export default () => (
             </Route>
 
             <Route exact path="/shopfront">
-                <h1>Shopfront</h1>
+                <Storefront tags={props.tags}/>
             </Route>
 
             <Redirect to="/home"/>

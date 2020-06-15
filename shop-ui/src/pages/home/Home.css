@@ -1,5 +1,5 @@
 .grid-container{
-    height: 50%;
+    height: 50vh;
     width: 100%;
 }
 
@@ -9,10 +9,6 @@
 
 .grid-container.second{
     margin: auto;
-}
-
-.grid-container.third{
-
 }
 
 .grid{

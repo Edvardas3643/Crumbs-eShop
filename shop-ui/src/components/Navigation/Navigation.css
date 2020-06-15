@@ -56,13 +56,15 @@
     user-select: none;
 }
 
-.navigation-bar__main > li{
+.navigation-bar__main > li > a,
+.navigation-bar__main > *{
     color: var(--color-white);
     list-style: none;
     margin: .2rem 0;
     padding:1rem 0;
     font-size: 1.5rem;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .navigation-bar__main > li:not(:first-child){

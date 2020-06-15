@@ -11,6 +11,7 @@ import {BrowserRouter} from "react-router-dom";
 class App extends Component {
 
     state = {
+        tags: [],
         cartOpen: false,
         navigationOpen: false,
         searchOpen: false
@@ -38,6 +39,10 @@ class App extends Component {
         this.setState({navigationOpen: false, cartOpen: false, searchOpen: false})
     )
 
+    setTags = () => {
+
+    }
+
     render() {
         let backdrop;
 
@@ -57,7 +62,7 @@ class App extends Component {
                         searchClickHandler={this.searchToggleClickHandler}
                     />
                     <Search show={this.state.searchOpen}/>
-                    <Content/>
+                    <Content tag={this.state.tags}/>
                     <Footer/>
                 </div>
                 <Cart cartClickHandler={this.backdropClickHandler} show={this.state.cartOpen}/>

@@ -1,7 +1,8 @@
 import React from "react";
 import './Navigation.css'
 import '../../assets/img/navigation_background.PNG'
-import {BrowserRouter, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+
 
 export default (props) => {
 
@@ -18,10 +19,10 @@ export default (props) => {
             </div>
             <ul className="navigation-bar__main">
                 <li>Shop By</li>
-                <li>Cupcakes<i className="fas fa-arrow-right"/></li>
-                <li>Cakes<i className="fas fa-arrow-right"/></li>
-                <li>Brownies<i className="fas fa-arrow-right"/></li>
-                <li>Cookies<i className="fas fa-arrow-right"/></li>
+                <li><NavLink to="/shopfront">Cupcakes<i className="fas fa-arrow-right"/></NavLink></li>
+                <li><NavLink to="/shopfront">Cakes<i className="fas fa-arrow-right"/></NavLink></li>
+                <li><NavLink to="/shopfront">Brownies<i className="fas fa-arrow-right"/></NavLink></li>
+                <li><NavLink to="/shopfront">Cookies<i className="fas fa-arrow-right"/></NavLink></li>
             </ul>
             <div className="navigation-bar__secondary">
                 <NavLink to="/home">Home</NavLink>
