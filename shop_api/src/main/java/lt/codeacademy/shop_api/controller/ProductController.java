@@ -17,14 +17,14 @@ public class ProductController {
         this.productService = productService;
     }
 
-//    @GetMapping("/shopfront")
-//    private List<Product> getProductsByKeyword(@RequestParam String tag){
-//        return productService.findAllByTagIsContaining(tag);
-//    }
-
     @GetMapping("/shopfront")
-    private List<Product> getAll(@RequestParam String tag){
-        return productService.findAll();
+    private List<Product> getProductsByKeyword(@RequestParam String tag){
+        return productService.findAllByTagIsContaining(tag);
     }
+
+//    @GetMapping("/shopfront")
+//    private List<Product> getAll(@RequestParam String tag){
+//        return productService.findAll();
+//    }
 
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect, Route, Switch} from "react-router-dom";
-import Home from "../home/Home";
-import Storefront from "../storefront/Storefront";
+import Home from "../Home/Home";
+import Shopfront from "../Shopfront/Shopfront";
 
 export default (props) => (
         <Switch>
@@ -30,7 +30,7 @@ export default (props) => (
             </Route>
 
             <Route exact path="/shopfront">
-                <Storefront tags={props.tags}/>
+                <Shopfront tag={props.tag}/>
             </Route>
 
             <Redirect to="/home"/>

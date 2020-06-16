@@ -1,14 +1,11 @@
 package lt.codeacademy.shop_api.repository;
 
-import lt.codeacademy.shop_api.entities.Product;
 import lt.codeacademy.shop_api.entities.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-
-    List<Product> findAllByTag(Tag tag);
+public interface TagRepository extends JpaRepository<Tag, Long> {
+    Tag findTagByValueIsContaining(String value);
 }

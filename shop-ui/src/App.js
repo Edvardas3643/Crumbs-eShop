@@ -3,15 +3,16 @@ import Header from './components/Header/Header';
 import Navigation from "./components/Navigation/Navigation";
 import Cart from "./components/Cart/Cart";
 import Backdrop from "./components/Backdrop/Backdrop"
-import Content from "./pages/content/Content";
+import Content from "./pages/Content/Content";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
+import history from './history'
 import {BrowserRouter} from "react-router-dom";
 
 class App extends Component {
 
     state = {
-        tags: [],
+        tag: "",
         cartOpen: false,
         navigationOpen: false,
         searchOpen: false
@@ -39,8 +40,8 @@ class App extends Component {
         this.setState({navigationOpen: false, cartOpen: false, searchOpen: false})
     )
 
-    setTags = () => {
-
+    setTagHandler = (tag) => {
+        this.setState({tag: tag})
     }
 
     render() {
@@ -51,22 +52,34 @@ class App extends Component {
         }
 
         return (
-            <BrowserRouter>
-            <div className="App">
-                <Navigation navigationClickHandler={this.backdropClickHandler} show={this.state.navigationOpen}/>
-                {backdrop}
-                <div className="main">
-                    <Header
-                        navigationClickHandler={this.navigationToggleClickHandler}
-                        cartClickHandler={this.cartToggleClickHandler}
-                        searchClickHandler={this.searchToggleClickHandler}
+            <BrowserRouter history={history}>
+                <div className="App">
+                    <Navigation
+                        onClickSetTag={this.setTagHandler}
+                        navigationClickHandler={this.backdropClickHandler}
+                        show={this.state.navigationOpen}
                     />
-                    <Search show={this.state.searchOpen}/>
-                    <Content tag={this.state.tags}/>
-                    <Footer/>
+                    {backdrop}
+                    <div className="main">
+                        <Header
+                            navigationClickHandler={this.navigationToggleClickHandler}
+                            cartClickHandler={this.cartToggleClickHandler}
+                            searchClickHandler={this.searchToggleClickHandler}
+                        />
+                        <Search
+                            onClickSetTag={this.setTagHandler}
+                            show={this.state.searchOpen}
+                        />
+                        <Content
+                            tag={this.state.tag}
+                        />
+                        <Footer/>
+                    </div>
+                    <Cart
+                        cartClickHandler={this.backdropClickHandler}
+                        show={this.state.cartOpen}
+                    />
                 </div>
-                <Cart cartClickHandler={this.backdropClickHandler} show={this.state.cartOpen}/>
-            </div>
             </BrowserRouter>
         );
     }
