@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from "react";
 import productApi from "../../api/productsApi";
+import { useParams } from "react-router-dom";
 
-export default ({tag}) => {
+export default () => {
+
+    const {tag} = useParams()
 
     const [products, setProducts] = useState([])
 
@@ -10,7 +13,7 @@ export default ({tag}) => {
             .then(response => setProducts(response.data))
     }, [tag])
 
-    return(
+    return (
         <div>
             <h1>{JSON.stringify(products)}</h1>
         </div>

@@ -29,9 +29,7 @@ export default (props) => (
                <h1>About</h1>
             </Route>
 
-            <Route exact path="/shopfront">
-                <Shopfront tag={props.tag}/>
-            </Route>
+            <Route path="/shopfront/:tag" component={Shopfront}/>
 
             <Redirect to="/home"/>
         </Switch>

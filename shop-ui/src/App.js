@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import Header from './components/Header/Header';
 import Navigation from "./components/Navigation/Navigation";
 import Cart from "./components/Cart/Cart";
@@ -9,80 +9,62 @@ import Search from "./components/Search/Search";
 import history from './history'
 import {BrowserRouter} from "react-router-dom";
 
-class App extends Component {
+export default () => {
 
-    state = {
-        tag: "",
-        cartOpen: false,
-        navigationOpen: false,
-        searchOpen: false
+    const [cartOpen, setCartOpen] = useState(false);
+    const [navigationOpen, setNavigationOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+
+    const navigationToggleClickHandler = () => {
+        setNavigationOpen(!navigationOpen)
     }
 
-    navigationToggleClickHandler = () => {
-        this.setState((prevState) => {
-            return {navigationOpen: !prevState.navigationOpen}
-        })
+    const cartToggleClickHandler = () => {
+        setCartOpen(!cartOpen)
     }
 
-    cartToggleClickHandler = () => {
-        this.setState((prevState) => {
-            return {cartOpen: !prevState.cartOpen}
-        })
+    const searchToggleClickHandler = () => {
+        setSearchOpen(!searchOpen)
     }
 
-    searchToggleClickHandler = () => {
-        this.setState((prevState) => {
-            return {searchOpen: !prevState.searchOpen}
-        })
+    const backdropClickHandler = () => {
+        setCartOpen(false);
+        setNavigationOpen(false);
+        setSearchOpen(false);
     }
 
-    backdropClickHandler = () => (
-        this.setState({navigationOpen: false, cartOpen: false, searchOpen: false})
-    )
+    let backdrop;
 
-    setTagHandler = (tag) => {
-        this.setState({tag: tag})
+    if (navigationOpen || cartOpen || searchOpen) {
+        backdrop = <Backdrop click={backdropClickHandler}/>
     }
 
-    render() {
-        let backdrop;
-
-        if (this.state.navigationOpen || this.state.cartOpen || this.state.searchOpen) {
-            backdrop = <Backdrop click={this.backdropClickHandler}/>
-        }
-
-        return (
-            <BrowserRouter history={history}>
-                <div className="App">
-                    <Navigation
-                        onClickSetTag={this.setTagHandler}
-                        navigationClickHandler={this.backdropClickHandler}
-                        show={this.state.navigationOpen}
+    return (
+        <BrowserRouter history={history}>
+            <div className="App">
+                <Navigation
+                    navigationClickHandler={backdropClickHandler}
+                    show={navigationOpen}
+                />
+                {backdrop}
+                <div className="main">
+                    <Header
+                        navigationClickHandler={navigationToggleClickHandler}
+                        cartClickHandler={cartToggleClickHandler}
+                        searchClickHandler={searchToggleClickHandler}
                     />
-                    {backdrop}
-                    <div className="main">
-                        <Header
-                            navigationClickHandler={this.navigationToggleClickHandler}
-                            cartClickHandler={this.cartToggleClickHandler}
-                            searchClickHandler={this.searchToggleClickHandler}
-                        />
-                        <Search
-                            onClickSetTag={this.setTagHandler}
-                            show={this.state.searchOpen}
-                        />
-                        <Content
-                            tag={this.state.tag}
-                        />
-                        <Footer/>
-                    </div>
-                    <Cart
-                        cartClickHandler={this.backdropClickHandler}
-                        show={this.state.cartOpen}
+                    <Search
+                        show={searchOpen}
                     />
+                    <Content
+                    />
+                    <Footer/>
                 </div>
-            </BrowserRouter>
-        );
-    }
+                <Cart
+                    cartClickHandler={backdropClickHandler}
+                    show={cartOpen}
+                />
+            </div>
+        </BrowserRouter>
+    );
 }
-
-export default App;

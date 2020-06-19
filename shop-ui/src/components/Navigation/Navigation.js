@@ -20,24 +20,16 @@ export default (props) => {
             <ul className="navigation-bar__main">
                 <li>Shop By</li>
                 <li>
-                    <NavLink onClick={() => props.onClickSetTag("muffins")} to="/shopfront">
-                        Muffins<i className="fas fa-arrow-right"/>
-                    </NavLink>
+                    <NavLink to="/shopfront/muffins">Muffins<i className="fas fa-arrow-right"/></NavLink>
                 </li>
                 <li>
-                    <NavLink onClick={() => props.onClickSetTag("cakes")} to="/shopfront">
-                        Cakes<i className="fas fa-arrow-right"/>
-                    </NavLink>
+                    <NavLink to="/shopfront/cakes">Cakes<i className="fas fa-arrow-right"/></NavLink>
                 </li>
                 <li>
-                    <NavLink onClick={() => props.onClickSetTag("brownies")} to="/shopfront">
-                        Brownies<i className="fas fa-arrow-right"/>
-                    </NavLink>
+                    <NavLink to="/shopfront/brownies">Brownies<i className="fas fa-arrow-right"/></NavLink>
                 </li>
                 <li>
-                    <NavLink onClick={() => props.onClickSetTag("cookies")} value="cookies" to="/shopfront">
-                        Cookies<i className="fas fa-arrow-right"/>
-                    </NavLink>
+                    <NavLink value="cookies" to="/shopfront/cookies">Cookies<i className="fas fa-arrow-right"/></NavLink>
                 </li>
             </ul>
             <div className="navigation-bar__secondary">

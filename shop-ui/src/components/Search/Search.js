@@ -2,11 +2,11 @@ import React from "react";
 import './Search.css'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 export default (props) => {
 
-    let history = useHistory();
+    const history = useHistory();
 
     let searchClasses = "search-bar";
 
@@ -22,8 +22,7 @@ export default (props) => {
                     tag: Yup.string()
                 })}
                 onSubmit={values => {
-                    props.onClickSetTag(values.tag)
-                    history.push("/shopfront");
+                    history.push("/shopfront/" + values.tag);
                 }}
             >{() => (
                 <Form>
