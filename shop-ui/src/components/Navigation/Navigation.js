@@ -1,6 +1,5 @@
 import React from "react";
 import './Navigation.css'
-import '../../assets/img/navigation_background.PNG'
 import {NavLink} from "react-router-dom";
 
 

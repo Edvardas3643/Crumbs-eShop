@@ -34,7 +34,6 @@ code {
     z-index: 175;
 }
 
-
 .grid-container,
 .grid-container > * {
     cursor: pointer;
@@ -42,6 +41,7 @@ code {
 }
 
 .grid-container {
+    color: var(--color-background-dark);
     height: 400px;
     width: 100%;
 }

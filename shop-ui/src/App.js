@@ -56,8 +56,7 @@ export default () => {
                     <Search
                         show={searchOpen}
                     />
-                    <Content
-                    />
+                    <Content/>
                     <Footer/>
                 </div>
                 <Cart
