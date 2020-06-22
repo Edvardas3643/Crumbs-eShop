@@ -26,10 +26,7 @@ export default (props) => {
                     <NavLink to="/shopfront/cakes">Cakes<i className="fas fa-arrow-right"/></NavLink>
                 </li>
                 <li>
-                    <NavLink to="/shopfront/brownies">Brownies<i className="fas fa-arrow-right"/></NavLink>
-                </li>
-                <li>
-                    <NavLink value="cookies" to="/shopfront/cookies">Cookies<i className="fas fa-arrow-right"/></NavLink>
+                    <NavLink to="/shopfront/kits">Baking Kits<i className="fas fa-arrow-right"/></NavLink>
                 </li>
             </ul>
             <div className="navigation-bar__secondary">

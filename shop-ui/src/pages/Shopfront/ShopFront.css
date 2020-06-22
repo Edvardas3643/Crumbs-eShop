@@ -1,0 +1,30 @@
+.grid-container:hover .grid-container__info .info__title{
+    transition: ease-out 0.2s;
+    transform: translateY(0);
+}
+
+.grid-container:hover .grid-container__info .info__price{
+    transition: ease-out 0.3s;
+    transform: translateY(0);
+}
+
+.grid-container__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info__title{
+    transform: translateY(2rem);
+}
+
+.info__price{
+    margin-top: 1rem;
+    transform: translateY(1.2rem);
+}
+
+.info__title,
+.info__price{
+    transition: ease-out .2s;
+}

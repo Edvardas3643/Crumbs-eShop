@@ -1,66 +1,62 @@
 *:before,
 *:after,
-*{
-  margin: 0;
-  padding: 0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.container-wide{
-  width: 1200px;
-  margin: auto;
+.container-wide {
+    width: 1200px;
+    margin: auto;
 }
 
-.background--main-light{
-  position: relative;
-  width: 100%;
-  background-color: var(--color-background-light);
-  z-index: 175;
+.background--main-light {
+    position: relative;
+    width: 100%;
+    background-color: var(--color-background-light);
+    z-index: 175;
 }
+
 
 .grid-container,
-.grid-container > *{
-  cursor: pointer;
-  user-select: none;
+.grid-container > * {
+    cursor: pointer;
+    user-select: none;
 }
 
-.grid-container{
-  background-size: 100% 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  transition: margin-bottom ease-out .2s;
+.grid-container {
+    height: 400px;
+    width: 100%;
 }
 
-.grid-container:hover .grid_container__description{
-  transition: margin-bottom linear 0.2s;
-  margin-bottom: 0;
+.grid-container {
+    margin-bottom: 2rem;
+    background-color: var(--color-background-light);
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: ease-out .2s;
+    text-decoration: none;
 }
 
-.grid_container__description{
-  color: var(--color-dark-grey);
-  text-shadow: 1px 1px var(--color-background-dark);
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: -1rem;
-  transition: margin-bottom ease-out .2s;
-}
-
-.flex{
-  display: flex;
+.flex {
+    display: flex;
 }
