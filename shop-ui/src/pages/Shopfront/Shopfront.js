@@ -19,7 +19,7 @@ export default () => {
         <div className="grid container-wide">
             {products.map(product => (
                 <NavLink to={"/product/" + product.id} className="grid-container" key={product.id}
-                         style={{backgroundImage: "url(../../assets/img/" + product.img + ")"}}>
+                         style={{backgroundImage: `url(http://localhost:8080/files/${product.img})`}}>
                     <div className="grid-container__info">
                         <h3 className="info__title">{product.title}</h3>
                         <p className="info__price">{product.price}</p>
