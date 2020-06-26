@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 
 @Service
 public class FileService {
@@ -28,7 +29,7 @@ public class FileService {
     }
 
     public void saveOrUpdateFile(MultipartFile file) {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path targetLocation = this.storageLocation.resolve(fileName);
         try {
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);

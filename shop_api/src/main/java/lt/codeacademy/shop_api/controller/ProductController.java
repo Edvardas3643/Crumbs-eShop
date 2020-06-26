@@ -1,7 +1,9 @@
 package lt.codeacademy.shop_api.controller;
 
 import lt.codeacademy.shop_api.entities.Product;
+import lt.codeacademy.shop_api.entities.ProductHistory;
 import lt.codeacademy.shop_api.entities.Tag;
+import lt.codeacademy.shop_api.service.ProductHistoryService;
 import lt.codeacademy.shop_api.service.ProductService;
 import lt.codeacademy.shop_api.service.TagService;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +20,12 @@ public class ProductController {
 
     private final ProductService productService;
     private final TagService tagService;
+    private final ProductHistoryService productHistoryService;
 
-    public ProductController(ProductService productService, TagService tagService) {
+    public ProductController(ProductService productService, TagService tagService, ProductHistoryService productHistoryService) {
         this.productService = productService;
         this.tagService = tagService;
+        this.productHistoryService = productHistoryService;
     }
 
     @GetMapping("/shopfront")
@@ -48,11 +52,17 @@ public class ProductController {
         Product product = Product.builder()
                 .title(title)
                 .description(description)
+                .img(file.getOriginalFilename())
                 .price(price)
                 .tag(tagSet)
                 .build();
 
         return productService.saveOrUpdateProduct(product, file);
+    }
+
+    @GetMapping("/history/{id}")
+    public List<ProductHistory> findAllByProductId(@PathVariable Long id){
+        return productHistoryService.findAllByProductId(id);
     }
 
     private Set<Tag> getTags(String[] tags) {

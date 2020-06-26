@@ -1,11 +1,15 @@
 package lt.codeacademy.shop_api.entities;
 
+import jdk.internal.jline.console.history.History;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
+import sun.java2d.marlin.stats.Histogram;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,7 +19,8 @@ import java.util.Set;
 public class Product {
 
     @Tolerate
-    public Product(){}
+    public Product() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +46,16 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name = "tag_id")}
     )
     private Set<Tag> tag;
+
+    @OneToMany(
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER,
+            mappedBy = "product")
+    private List<ProductHistory> productHistories = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cart_id", nullable = false)
+    private Cart cart;
 
 }

@@ -38,4 +38,8 @@ public class ProductService {
       return productRepository.save(product);
 
     }
+
+    public Product findById(Long productId) {
+        return productRepository.getOne(productId);
+    }
 }
