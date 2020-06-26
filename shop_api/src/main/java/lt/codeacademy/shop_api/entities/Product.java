@@ -1,6 +1,8 @@
 package lt.codeacademy.shop_api.entities;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -8,8 +10,12 @@ import java.util.Set;
 
 @Data
 @Entity
+@Builder
 @Table(name = "Products")
 public class Product {
+
+    @Tolerate
+    public Product(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
