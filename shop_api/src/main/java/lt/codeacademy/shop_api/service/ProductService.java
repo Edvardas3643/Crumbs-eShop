@@ -39,7 +39,7 @@ public class ProductService {
 
     }
 
-    public Product findById(Long productId) {
-        return productRepository.getOne(productId);
+    public Product getProduct(Long id) {
+        return productRepository.findById(id).orElseThrow(() -> new ProductServiceException("Product not found"));
     }
 }

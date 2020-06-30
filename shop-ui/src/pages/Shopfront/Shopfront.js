@@ -10,10 +10,26 @@ export default () => {
 
     const [products, setProducts] = useState([])
 
+    const sessionProducts = sessionStorage.getItem(tag);
+
+    const setLocaleProducts = (value) => {
+        sessionStorage.setItem(tag, value)
+    }
+
     useEffect(() => {
-        productApi.fetchProducts(tag)
-            .then(response => setProducts(response.data))
+        if (sessionProducts != null) {
+            console.log("sessionStorage")
+            setProducts(JSON.parse(sessionProducts));
+        } else {
+            productApi.fetchProducts(tag)
+                .then(response => {
+                    console.log("Request Sent to Api")
+                    setProducts(response.data);
+                    setLocaleProducts(JSON.stringify(response.data));
+                })
+        }
     }, [tag])
+
 
     return (
         <div className="grid container-wide">
@@ -29,8 +45,4 @@ export default () => {
         </div>
     )
 }
-
-
-
-
 

@@ -1,4 +1,4 @@
-INSERT INTO Tag(value) VALUES ('cakes');
+INSERT INTO TAG(value) VALUES ('cakes');
 INSERT INTO TAG(value) VALUES ('muffins');
 INSERT INTO TAG(value) VALUES ('cookies');
 INSERT INTO TAG(value) VALUES ('brownies');

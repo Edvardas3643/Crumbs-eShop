@@ -31,9 +31,9 @@ export default () => (
 
         <Route path="/shopfront/:tag" component={Shopfront}/>
 
-        <Route exact path="/product/:id" component={Product}/>
+        <Route exact path="/product/:id" > <Product /> </Route>
 
-        <Route path="/newProduct" component={ProductForm}/>
+        <Route path="/productForm" component={ProductForm}/>
 
         <Redirect to="/home"/>
     </Switch>

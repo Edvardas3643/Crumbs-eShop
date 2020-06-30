@@ -3,6 +3,7 @@ import './Search.css'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import {useHistory} from "react-router-dom";
+import productApi from "../../api/productsApi";
 
 export default (props) => {
 
@@ -14,6 +15,7 @@ export default (props) => {
         searchClasses = "search-bar open";
     }
 
+
     return (
         <div className={searchClasses}>
             <Formik
@@ -22,6 +24,8 @@ export default (props) => {
                     tag: Yup.string()
                 })}
                 onSubmit={values => {
+                    productApi.fetchProducts(values.tag)
+                        .then(response => localStorage.setItem('searchResult', response.data))
                     history.push("/shopfront/" + values.tag);
                 }}
             >{() => (

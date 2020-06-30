@@ -93,12 +93,12 @@ export default () => {
                             </div>
                             <div className="checkbox-container__content">
                                 <label htmlFor="cookiesTag">Cookies: </label>
-                                <Field type="checkbox" name="tags" value="muffins"/>
+                                <Field type="checkbox" name="tags" value="cookies"/>
                                 <ErrorMessage name="cookiesTag"/>
                             </div>
                             <div className="checkbox-container__content">
                                 <label htmlFor="browniesTag">Brownies: </label>
-                                <Field type="checkbox" name="tags" value="muffins"/>
+                                <Field type="checkbox" name="tags" value="brownies"/>
                                 <ErrorMessage name="browniesTag"/>
                             </div>
                         </div>
