@@ -23,7 +23,7 @@ public class ProductService {
     }
 
     public List<Product> findAllByTagIsContaining(String value) {
-        Tag tag = tagRepository.findTagByValueIsContaining(value);
+        Tag tag = tagRepository.findTagByTagIsContaining(value);
         return productRepository.findAllByTag(tag);
     }
 

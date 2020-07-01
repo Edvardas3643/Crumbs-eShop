@@ -1,8 +1,8 @@
-INSERT INTO TAG(value) VALUES ('cakes');
-INSERT INTO TAG(value) VALUES ('muffins');
-INSERT INTO TAG(value) VALUES ('cookies');
-INSERT INTO TAG(value) VALUES ('brownies');
-INSERT INTO TAG(value) VALUES ('kits');
+INSERT INTO TAG(tag) VALUES ('cakes');
+INSERT INTO TAG(tag) VALUES ('muffins');
+INSERT INTO TAG(tag) VALUES ('cookies');
+INSERT INTO TAG(tag) VALUES ('brownies');
+INSERT INTO TAG(tag) VALUES ('kits');
 
 INSERT INTO Products(title, price, img) VALUES('Ferrero Rocher',15.99, 'ferrero-rocher.jpg');
 INSERT INTO Products(title, price, img) VALUES('Pretty In Pink', 12.99, 'pretty-in-pink.jpg');
@@ -36,3 +36,14 @@ INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 11);
 INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 12);
 INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 13);
 INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 14);
+
+INSERT INTO Users(user_id, username, password, name, last_name)
+    VALUES(1, 'user', '{bcrypt}$2y$12$A7x.2lPxE6YdV8ed6OYbDucRiod32wqMF9JNerE.wq4glQWaIjRnO', 'John', 'Doe');
+INSERT INTO Users(user_id, username, password, name, last_name)
+    VALUES(2, 'admin', '{bcrypt}$2y$12$A7x.2lPxE6YdV8ed6OYbDucRiod32wqMF9JNerE.wq4glQWaIjRnO', 'Jack', 'Sparrow');
+
+INSERT INTO Roles(role_id, role) VALUES(1, 'CUSTOMER');
+INSERT INTO Roles(role_id, role) VALUES(2, 'ADMIN');
+
+INSERT INTO Users_Roles(user_id, role_id) VALUES(1, 1);
+INSERT INTO Users_Roles(user_id, role_id) VALUES(2, 2);

@@ -1,8 +1,8 @@
-import axios from 'axios'
+import HTTP from '.';
 
 export default {
     fetchProducts(tag) {
-        return axios.get(`http://localhost:8080/shopfront?tag=` + tag)
+        return HTTP.get(`/shopfront?tag=` + tag)
     },
 
     createProduct(values, file) {
@@ -12,11 +12,11 @@ export default {
         data.append("price", values.price);
         data.append("description", values.description);
         data.append("tags", values.tags);
-        return axios.post('http://localhost:8080/saveProduct', data);
+        return HTTP.post('/saveProduct', data);
     },
 
     getProduct(id) {
-        return axios.get(`http://localhost:8080/product/` + id)
+        return HTTP.get(`/product/` + id)
     }
 
 }

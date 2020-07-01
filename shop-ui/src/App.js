@@ -11,9 +11,14 @@ import {BrowserRouter} from "react-router-dom";
 
 export default () => {
 
+    const AppContext = React.createContext(null)
+    const UserContext = React.createContext(null)
+
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [userLoggedIn, setUserLoggedIn] = useState(false)
+    const [userData, setUserData] = useState(null)
 
     const navigationToggleClickHandler = () => {
         setNavigationOpen(!navigationOpen)
@@ -39,31 +44,39 @@ export default () => {
         backdrop = <Backdrop click={backdropClickHandler}/>
     }
 
+
     return (
-        <BrowserRouter history={history}>
-            <div className="App">
-                <Navigation
-                    navigationClickHandler={backdropClickHandler}
-                    show={navigationOpen}
-                />
-                {backdrop}
-                <div className="main">
-                    <Header
-                        navigationClickHandler={navigationToggleClickHandler}
-                        cartClickHandler={cartToggleClickHandler}
-                        searchClickHandler={searchToggleClickHandler}
+        <UserContext value={{
+            userLoggedIn,
+            changeUser: () => setUserLoggedIn(!userLoggedIn),
+            setUserData,
+            userData
+        }}>
+            <BrowserRouter history={history}>
+                <div className="App">
+                    <Navigation
+                        navigationClickHandler={backdropClickHandler}
+                        show={navigationOpen}
                     />
-                    <Search
-                        show={searchOpen}
+                    {backdrop}
+                    <div className="main">
+                        <Header
+                            navigationClickHandler={navigationToggleClickHandler}
+                            cartClickHandler={cartToggleClickHandler}
+                            searchClickHandler={searchToggleClickHandler}
+                        />
+                        <Search
+                            show={searchOpen}
+                        />
+                        <Content/>
+                        <Footer/>
+                    </div>
+                    <Cart
+                        cartClickHandler={backdropClickHandler}
+                        show={cartOpen}
                     />
-                    <Content/>
-                    <Footer/>
                 </div>
-                <Cart
-                    cartClickHandler={backdropClickHandler}
-                    show={cartOpen}
-                />
-            </div>
-        </BrowserRouter>
+            </BrowserRouter>
+        </UserContext>
     );
 }

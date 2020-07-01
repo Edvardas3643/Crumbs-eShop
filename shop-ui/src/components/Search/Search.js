@@ -27,6 +27,7 @@ export default (props) => {
                     productApi.fetchProducts(values.tag)
                         .then(response => localStorage.setItem('searchResult', response.data))
                     history.push("/shopfront/" + values.tag);
+
                 }}
             >{() => (
                 <Form>

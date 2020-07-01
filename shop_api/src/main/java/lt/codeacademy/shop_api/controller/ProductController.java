@@ -67,7 +67,7 @@ public class ProductController {
         Set<Tag> tagSet = new HashSet<>();
         for (Tag tag : t) {
             for (String value : tags) {
-                if (tag.getValue().contains(value)) {
+                if (tag.getTag().contains(value)) {
                     tagSet.add(tag);
                 }
             }
