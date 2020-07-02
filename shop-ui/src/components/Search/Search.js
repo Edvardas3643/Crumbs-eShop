@@ -1,23 +1,18 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import './Search.css'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import {useHistory} from "react-router-dom";
 import productApi from "../../api/productsApi";
+import {AppContext} from "../../App";
 
-export default (props) => {
+export default () => {
 
+    const {searchBlock} = useContext(AppContext)
     const history = useHistory();
 
-    let searchClasses = "search-bar";
-
-    if (props.show) {
-        searchClasses = "search-bar open";
-    }
-
-
     return (
-        <div className={searchClasses}>
+        <div className={searchBlock ? "search-bar open" : "search-bar"}>
             <Formik
                 initialValues={{tag: ''}}
                 validationSchema={Yup.object().shape({

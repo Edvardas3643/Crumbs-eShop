@@ -1,0 +1,15 @@
+.login-form-outer-container{
+    margin-top: -80px;
+    min-height: calc(100vh);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.login-form-inner-container{
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

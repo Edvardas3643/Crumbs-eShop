@@ -1,8 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import './Search.css'
+import {AppContext} from "../../App";
 
-export default (props) => (
-     <div>
-         <i onClick={props.click} className="fas fa-search fa-lg"/>
-     </div>
-)
+export default () => {
+
+    const {searchBlockHandler} = useContext(AppContext)
+
+    return (<div>
+            <i onClick={searchBlockHandler} className="fas fa-search fa-lg"/>
+        </div>
+    )
+}

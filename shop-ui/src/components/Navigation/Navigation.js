@@ -1,20 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import './Navigation.css'
 import {NavLink} from "react-router-dom";
+import {AppContext} from "../../App";
 
 
-export default (props) => {
+export default () => {
 
-    let navigationClasses = "navigation-bar"
-
-    if (props.show) {
-        navigationClasses = "navigation-bar open"
-    }
+    const {navigationBlock, navigationBlockHandler} = useContext(AppContext)
 
     return (
-        <nav className={navigationClasses}>
+        <nav className={navigationBlock ? "navigation-bar open" : "navigation-bar"}>
             <div className="navigation-bar__close-btn-container">
-                <i onClick={props.navigationClickHandler} className="navigation-bar__close-btn fas fa-times fa-2x"/>
+                <i onClick={navigationBlockHandler} className="navigation-bar__close-btn fas fa-times fa-2x"/>
             </div>
             <ul className="navigation-bar__main">
                 <li>Shop By</li>

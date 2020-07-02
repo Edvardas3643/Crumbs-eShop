@@ -4,10 +4,17 @@ import Home from "../Home/Home";
 import Shopfront from "../Shopfront/Shopfront";
 import Product from "../Product/Product";
 import ProductForm from "../ProductForm/ProductForm";
+import Login from "../Login/Login";
 
 export default () => (
     <Switch>
-        <Route exact path="/home" component={Home}/>
+        <Route exact path="/home">
+            <Home/>
+        </Route>
+
+        <Route exact path="/login">
+            <Login/>
+        </Route>
 
         <Route exact path="/cart">
             <h1>Cart</h1>
@@ -29,11 +36,17 @@ export default () => (
             <h1>About</h1>
         </Route>
 
-        <Route path="/shopfront/:tag" component={Shopfront}/>
+        <Route path="/shopfront/:tag">
+            <Shopfront/>
+        </Route>
 
-        <Route exact path="/product/:id" > <Product /> </Route>
+        <Route exact path="/product/:id">
+            <Product/>
+        </Route>
 
-        <Route path="/productForm" component={ProductForm}/>
+        <Route path="/productForm">
+            <ProductForm/>
+        </Route>
 
         <Redirect to="/home"/>
     </Switch>

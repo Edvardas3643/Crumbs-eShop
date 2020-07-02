@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-let credentials = {}
+let credentials = {
+    'password': 'anonymous',
+    'username': 'anonymous'
+}
 
 const HTTP = axios.create({
     baseURL: 'http://localhost:8080',

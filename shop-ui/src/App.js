@@ -9,10 +9,11 @@ import Search from "./components/Search/Search";
 import history from './history'
 import {BrowserRouter} from "react-router-dom";
 
-export default () => {
 
-    const AppContext = React.createContext(null)
-    const UserContext = React.createContext(null)
+const AppContext = React.createContext(null)
+const UserContext = React.createContext(null)
+
+export default () => {
 
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
@@ -20,22 +21,28 @@ export default () => {
     const [userLoggedIn, setUserLoggedIn] = useState(false)
     const [userData, setUserData] = useState(null)
 
-    const navigationToggleClickHandler = () => {
-        setNavigationOpen(!navigationOpen)
-    }
-
-    const cartToggleClickHandler = () => {
-        setCartOpen(!cartOpen)
-    }
-
-    const searchToggleClickHandler = () => {
-        setSearchOpen(!searchOpen)
-    }
-
     const backdropClickHandler = () => {
         setCartOpen(false);
         setNavigationOpen(false);
         setSearchOpen(false);
+    }
+
+    const appContext = {
+        searchBlockHandler: () => setSearchOpen(!searchOpen),
+        navigationBlockHandler: () => setNavigationOpen(!navigationOpen),
+        cartBlockHandler: () => setCartOpen(!cartOpen),
+        backdropHandler: () => backdropClickHandler(),
+
+        navigationBlock: navigationOpen,
+        cartBlock: cartOpen,
+        searchBlock: searchOpen,
+    }
+
+    const userContext = {
+        login: (user) => setUserData(user),
+        logout: () => setUserLoggedIn(!userLoggedIn),
+        userLoggedIn: () => !!userData,
+        userData
     }
 
     let backdrop;
@@ -44,39 +51,25 @@ export default () => {
         backdrop = <Backdrop click={backdropClickHandler}/>
     }
 
-
     return (
-        <UserContext value={{
-            userLoggedIn,
-            changeUser: () => setUserLoggedIn(!userLoggedIn),
-            setUserData,
-            userData
-        }}>
-            <BrowserRouter history={history}>
-                <div className="App">
-                    <Navigation
-                        navigationClickHandler={backdropClickHandler}
-                        show={navigationOpen}
-                    />
-                    {backdrop}
-                    <div className="main">
-                        <Header
-                            navigationClickHandler={navigationToggleClickHandler}
-                            cartClickHandler={cartToggleClickHandler}
-                            searchClickHandler={searchToggleClickHandler}
-                        />
-                        <Search
-                            show={searchOpen}
-                        />
-                        <Content/>
-                        <Footer/>
+        <AppContext.Provider value={appContext}>
+            <UserContext.Provider value={userContext}>
+                <BrowserRouter history={history}>
+                    <div className="App">
+                        <Navigation/>
+                        {backdrop}
+                        <div className="main">
+                            <Header/>
+                            <Search/>
+                            <Content/>
+                            <Footer/>
+                        </div>
+                        <Cart/>
                     </div>
-                    <Cart
-                        cartClickHandler={backdropClickHandler}
-                        show={cartOpen}
-                    />
-                </div>
-            </BrowserRouter>
-        </UserContext>
+                </BrowserRouter>
+            </UserContext.Provider>
+        </AppContext.Provider>
     );
 }
+
+export {UserContext, AppContext}
