@@ -29,14 +29,9 @@ export default () => {
         }
     }, [tag])
 
-
     return (
         <div className="grid container-wide">
             {products.map(product => {
-                let values;
-                productApi.getImage(product.img)
-                    .then(img => values = img.data)
-                console.log(values)
                 return (
                     <NavLink to={"/product/" + product.id} className="grid-container" key={product.id}
                              style={{backgroundImage: `url(http://localhost:8080/files/${product.img})`}}>

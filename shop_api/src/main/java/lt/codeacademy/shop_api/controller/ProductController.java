@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping
@@ -63,16 +65,9 @@ public class ProductController {
     }
 
     private Set<Tag> getTags(String[] tags) {
-        List<Tag> t = tagService.getAll();
-        Set<Tag> tagSet = new HashSet<>();
-        for (Tag tag : t) {
-            for (String value : tags) {
-                if (tag.getTag().contains(value)) {
-                    tagSet.add(tag);
-                }
-            }
-        }
-        return tagSet;
+        return Stream.of(tags)
+                .map(tagService::getByTagName)
+                .collect(Collectors.toSet());
     }
 
 }

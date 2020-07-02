@@ -11,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -23,15 +25,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .anyRequest().authenticated()
-                    .and()
+                .requestMatchers(new OrRequestMatcher(new AntPathRequestMatcher("/private/**"))).authenticated()
+//                    .anyRequest().authenticated()
+                .and()
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .httpBasic()
-                    .and()
+                .and()
                 .cors()
-                    .and()
+                .and()
                 .csrf().disable();
     }
 

@@ -4,11 +4,10 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import productsApi from '../../api/productsApi';
 import ErrorMessageTranslated from "../../components/ErrorMessageTranslated/ErrorMessageTranslated";
 import "./ProductForm.css"
-import HeroCookies from "../../assets/img/CoockiesHero.PNG";
-// import {useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 let product = {};
-// const history = useHistory();
+
 
 const initialState = {
     title: '',
@@ -32,6 +31,7 @@ const validationSchema = Yup.object().shape({
 })
 
 export default () => {
+    const history = useHistory();
     const [previewImg, setPreviewImg] = useState()
     const [file, setFile] = useState({});
     const handleFileChange = (e) => {
@@ -52,7 +52,7 @@ export default () => {
                 validationSchema={validationSchema}
                 onSubmit={values => {
                     product = productsApi.createProduct(values, file);
-                    // history.push(`/product/${product.id}`);
+                    history.push(`/product/${product.id}`);
                 }}
             >
                 {(props) => (

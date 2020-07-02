@@ -8,7 +8,9 @@ import java.util.List;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
-    Tag findTagByTagIsContaining(String tag);
+    Tag findTagByContentIsContaining(String tag);
 
     List<Tag> findAll();
+
+    Tag findByContent(String content);
 }

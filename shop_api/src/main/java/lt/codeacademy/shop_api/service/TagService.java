@@ -4,8 +4,6 @@ import lt.codeacademy.shop_api.entities.Tag;
 import lt.codeacademy.shop_api.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TagService {
 
@@ -16,7 +14,7 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
-    public List<Tag> getAll() {
-        return tagRepository.findAll();
+    public Tag getByTagName(String name){
+       return tagRepository.findByContent(name);
     }
 }

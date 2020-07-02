@@ -1,8 +1,8 @@
-INSERT INTO TAG(tag) VALUES ('cakes');
-INSERT INTO TAG(tag) VALUES ('muffins');
-INSERT INTO TAG(tag) VALUES ('cookies');
-INSERT INTO TAG(tag) VALUES ('brownies');
-INSERT INTO TAG(tag) VALUES ('kits');
+INSERT INTO TAG(content) VALUES ('cakes');
+INSERT INTO TAG(content) VALUES ('muffins');
+INSERT INTO TAG(content) VALUES ('cookies');
+INSERT INTO TAG(content) VALUES ('brownies');
+INSERT INTO TAG(content) VALUES ('kits');
 
 INSERT INTO Products(title, price, img) VALUES('Ferrero Rocher',15.99, 'ferrero-rocher.jpg');
 INSERT INTO Products(title, price, img) VALUES('Pretty In Pink', 12.99, 'pretty-in-pink.jpg');

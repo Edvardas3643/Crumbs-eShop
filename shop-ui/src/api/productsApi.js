@@ -19,8 +19,5 @@ export default {
         return HTTP.get(`/product/` + id)
     },
 
-    getImage(img) {
-        return HTTP.get(`/files/` + img)
-    }
 
 }
