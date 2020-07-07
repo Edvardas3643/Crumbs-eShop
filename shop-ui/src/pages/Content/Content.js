@@ -5,6 +5,7 @@ import Shopfront from "../Shopfront/Shopfront";
 import Product from "../Product/Product";
 import ProductForm from "../ProductForm/ProductForm";
 import Login from "../Login/Login";
+import Checkout from "../Checkout/Checkout";
 
 export default () => (
     <Switch>
@@ -16,12 +17,8 @@ export default () => (
             <Login/>
         </Route>
 
-        <Route exact path="/cart">
-            <h1>Cart</h1>
-        </Route>
-
         <Route exact path="/checkout">
-            <h1>Checkout</h1>
+            <Checkout/>
         </Route>
 
         <Route exact path="/login">

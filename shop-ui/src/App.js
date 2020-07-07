@@ -21,6 +21,8 @@ export default () => {
     const [userLoggedIn, setUserLoggedIn] = useState(false)
     const [userData, setUserData] = useState(null)
 
+    const [cart, setCart] = useState([])
+
     const backdropClickHandler = () => {
         setCartOpen(false);
         setNavigationOpen(false);
@@ -36,6 +38,10 @@ export default () => {
         navigationBlock: navigationOpen,
         cartBlock: cartOpen,
         searchBlock: searchOpen,
+
+        cart,
+        setCart,
+
     }
 
     const userContext = {

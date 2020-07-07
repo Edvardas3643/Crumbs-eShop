@@ -4,5 +4,5 @@
 
 .login-btn:hover{
     cursor: pointer;
-    color: var(--color-main);
+    color: var(--color-blue);
 }

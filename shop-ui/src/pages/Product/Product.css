@@ -52,15 +52,26 @@ div .product-price {
 }
 
 .product-btn {
+    text-decoration: none;
     text-align: center;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 1rem;
-    background-color: var(--color-secondary-bravo);
-    padding: .4rem 10%;
+    background-color: var(--color-yealow);
+    padding: .6rem 0;
     user-select: none;
     border-radius: .2rem;
+}
+
+.product-btn:hover{
+    cursor: pointer;
+    background-color: var(--color-pink);
+}
+
+.product-btn:active{
+    box-shadow: 0 1px 1px 2px var(--color-background-light);
+    background-color: var(--color-pink)
 }
 
 .product__ingredients-text,

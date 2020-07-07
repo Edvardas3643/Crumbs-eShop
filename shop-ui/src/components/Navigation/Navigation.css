@@ -27,12 +27,15 @@
 }
 
 .navigation-bar__close-btn:active{
-    color: var(--color-main-light);
+    color: var(--color-blue-light);
 }
 
 .navigation-bar__main{
     margin: 0;
     padding: 3rem;
+}
+
+.navigation-bar__main li{
 }
 
 @keyframes animatedBackground {
@@ -57,7 +60,7 @@
 }
 
 .navigation-bar__main > li > a,
-.navigation-bar__main > *{
+.navigation-bar__main > li{
     color: var(--color-white);
     list-style: none;
     margin: .2rem 0;
@@ -72,7 +75,7 @@
 }
 
 .navigation-bar__main > li:not(:first-child):active{
-    color: var(--color-main-light);
+    color: var(--color-blue-light);
 }
 
 .navigation-bar__main > li:first-child{
@@ -91,7 +94,7 @@
 }
 
 .navigation-bar__main .fa-arrow-right:active{
-    color: var(--color-main-light);
+    color: var(--color-blue-light);
 }
 
 .navigation-bar__secondary{

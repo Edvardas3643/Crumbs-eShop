@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {NavLink, useParams} from "react-router-dom";
 import productApi from "../../api/productsApi";
 import "./Product.css"
+import {AppContext} from "../../App";
 
 export default () => {
+
+    const {cart, setCart} = useContext(AppContext)
 
     const {id} = useParams()
 
@@ -23,17 +26,14 @@ export default () => {
     }, [id])
 
     const changDisplayTypeForDescription = () => {
-        console.log("click")
         if (descriptionClass.includes("active")) {
             setDescriptionClass("product__description-text")
         } else {
             setDescriptionClass("product__description-text active")
         }
-
     }
 
     const changDisplayTypeForIngredients = () => {
-        console.log(ingredientsClass)
         if (ingredientsClass.includes("active")) {
             setIngredientsClass("product__ingredients-text")
         } else {
@@ -49,6 +49,18 @@ export default () => {
         if (qty > 1) {
             setQty(qty - 1)
         }
+    }
+
+    const addToCart = () => {
+
+        let obj = {
+            product: product,
+            qty: qty
+        }
+
+        let filteredCart = cart.filter((item) => item.product.id !== product.id)
+
+        setCart(() => [...filteredCart, obj])
     }
 
     return (
@@ -71,14 +83,14 @@ export default () => {
                 <div className="product-qty-container">
                     <div>Qty</div>
                     <div className="qty-counter">
-                        <div onClick={minusFromQty} class="fas fa-minus-circle"/>
+                        <div onClick={minusFromQty} className="fas fa-minus-circle"/>
                         <div>{qty}</div>
-                        <div onClick={addToQty} class="fas fa-plus-circle"/>
+                        <div onClick={addToQty} className="fas fa-plus-circle"/>
                     </div>
                 </div>
                 <div className="product-btn-container">
-                    <div className="product-btn">Add to Cart</div>
-                    <div className="product-btn">Checkout</div>
+                    <div onClick={addToCart} className="product-btn">Add to Cart</div>
+                    <NavLink to="/checkout" className="product-btn">Checkout</NavLink>
                 </div>
 
                 <div>

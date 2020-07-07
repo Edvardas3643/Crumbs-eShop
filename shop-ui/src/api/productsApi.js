@@ -12,7 +12,7 @@ export default {
         data.append("price", values.price);
         data.append("description", values.description);
         data.append("tags", values.tags);
-        return HTTP.post('/saveProduct', data);
+        return HTTP.post('/private/saveProduct', data);
     },
 
     getProduct(id) {
@@ -20,4 +20,7 @@ export default {
     },
 
 
+    getImage(imgName) {
+        return HTTP.get('/files/' + imgName)
+    }
 }

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,7 +35,7 @@ public class ProductController {
         return productService.findAll();
     }
 
-    @PostMapping("/saveProduct")
+    @PostMapping("/private/saveProduct")
     private Product saveOrUpdateProduct(
             @RequestParam(name = "file", required = false) MultipartFile file,
             @RequestParam(name = "title") String title,

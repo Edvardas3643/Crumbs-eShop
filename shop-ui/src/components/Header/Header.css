@@ -18,11 +18,11 @@
 }
 
 .header-btn:hover{
-    color: var(--color-main)
+    color: var(--color-blue)
 }
 
 .header-btn:active{
-    color: var(--color-main-light);
+    color: var(--color-blue-light);
 }
 
 .header__right-side > *{

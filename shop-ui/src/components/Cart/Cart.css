@@ -3,7 +3,7 @@
     right: 0;
     height: 100vh;
     position: fixed;
-    background-color: var(--color-secondary-alfa-ligt);
+    background-color: var(--color-pink-light);
     width: 450px;
     box-shadow: -2px 0 7px 1px var(--color-background-dark);
     z-index: 200;
@@ -11,7 +11,7 @@
     transition: transform 0.4s ease-out;
 }
 
-.cart-bar *{
+.cart-bar * {
     user-select: none;
 }
 
@@ -19,19 +19,19 @@
     transform: translateX(0);
 }
 
-.cart-bar__close-btn{
+.cart-bar__close-btn {
     margin: 30px;
     float: right;
     color: var(--color-white);
 }
 
-.cart-bar__close-btn:hover{
+.cart-bar__close-btn:hover {
     cursor: pointer;
     color: var(--color-white);
 }
 
-.cart-bar__close-btn:active{
-    color: var(--color-secondary-alfa-ligt);
+.cart-bar__close-btn:active {
+    color: var(--color-pink-light);
 }
 
 .cart-bar__close-btn {
@@ -39,7 +39,7 @@
     margin: 2rem;
 }
 
-.cart-bar__header{
+.cart-bar__header {
     height: 8rem;
     background-size: inherit;
     background-image: url("../../assets/img/cart_background.PNG");
@@ -48,14 +48,82 @@
     animation: animatedBackground 20s linear infinite;
 }
 
-.cart-bar__header > h2{
+.cart-bar__header > h2 {
     color: var(--color-white);
     padding: 2rem;
 }
 
-.cart-bar > ul{
+.cart-bar > ul {
     list-style: none;
     padding: 2rem;
+    height: 78vh;
     font-weight: 600;
 }
+
+.cart-contents {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.cart-contents > div {
+    margin-right: 1rem;
+}
+
+.cart-contents__preview-img {
+    height: 100px;
+    width: 100px;
+    background-size: 100%;
+}
+
+.description__title {
+    font-size: 1.6rem;
+}
+
+.description__price,
+.description__qty {
+    font-size: 1.3rem;
+}
+
+.total-price {
+    font-weight: 600;
+    margin: 1rem 1rem 1rem 2rem;
+    font-size: 1.3rem;
+}
+
+.cart-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-bar  .checkout-btn{
+    text-decoration: none;
+    margin-right: 2rem;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1rem;
+    background-color: var(--color-pink);
+    padding: .6rem 1rem;
+    user-select: none;
+    border-radius: .2rem;
+}
+
+.cart-bar .checkout-btn:hover{
+    background-color: var(--color-blue);
+}
+
+.cart-contents__remove-product-btn{
+    margin-top: -14px;
+    margin-left: -10px;
+}
+
+.cart-contents__remove-product-btn:hover{
+    color: var(--color-pink);
+    cursor: pointer;
+}
+
 

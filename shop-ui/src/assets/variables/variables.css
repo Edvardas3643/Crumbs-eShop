@@ -6,13 +6,13 @@
     --color-background: rgba(175, 175, 175, 0.5);
     --color-background-dark: rgba(0, 0, 0, 0.5);
 
-    --color-main:#56BABC;
-    --color-main-light: #AFDDDB;
+    --color-blue:#56BABC;
+    --color-blue-light: #AFDDDB;
 
-    --color-secondary-alfa:#EE6881;
-    --color-secondary-alfa-ligt: #FEF8F8;
+    --color-pink:#EE6881;
+    --color-pink-light: #FEF8F8;
 
-    --color-secondary-bravo:#FCCF02;
-    --color-secondary-bravo-light: #f8d87d;
+    --color-yealow:#FCCF02;
+    --color-yealow-light: #f8d87d;
 }
 
