@@ -36,8 +36,7 @@ public class PaymentInfo {
     @Column(name = "card_number")
     private Long cardNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id", nullable = true)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
-
 }

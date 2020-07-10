@@ -52,6 +52,3 @@ INSERT INTO Users_Roles(user_id, role_id) VALUES(1, 1);
 INSERT INTO Users_Roles(user_id, role_id) VALUES(2, 2);
 INSERT INTO Users_Roles(user_id, role_id) VALUES(3, 3);
 
-INSERT INTO payment_info(id ,name, surname, address, card_number, post_code)
- VALUES (1, 'Edvardas', 'Lego', 'Taikos g. 10-73', 1231231215112, 125131);
-

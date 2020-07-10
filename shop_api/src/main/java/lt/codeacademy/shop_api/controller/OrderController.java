@@ -5,10 +5,7 @@ import lt.codeacademy.shop_api.dto.CartDTO;
 import lt.codeacademy.shop_api.dto.PaymentInfoDTO;
 import lt.codeacademy.shop_api.entities.*;
 import lt.codeacademy.shop_api.service.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -60,9 +57,9 @@ public class OrderController {
                 .address(infoDTO.getAddress())
                 .postCode(infoDTO.getPostCode())
                 .cardNumber(infoDTO.getCardNumber())
-                .user(user).build();
+                .user(user)
+                .build();
     }
-
 
     @PostMapping("/newOrder")
     public void newOrder(@RequestParam String info,
@@ -88,6 +85,5 @@ public class OrderController {
         System.out.println(orderHistory);
 
     }
-
 
 }

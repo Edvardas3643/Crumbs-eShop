@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import "./Payment.css"
 import {Field, Form, Formik} from "formik";
 import loginBg from "../../assets/img/login-bg.jpg";
@@ -7,11 +7,11 @@ import OrderApi from "../../api/OrderApi";
 
 export default () => {
 
-    const {userData} = useContext(UserContext)
+    const {userData, setPaymentInfo} = useContext(UserContext)
     const {cart} = useContext(AppContext)
 
     const initialValues = {
-        name:'',
+        name: '',
         surname: '',
         address: '',
         postCode: '',
@@ -19,6 +19,7 @@ export default () => {
     }
 
     const onSubmit = (values) => {
+        setPaymentInfo(values);
         OrderApi.newOrder(values, cart, userData).then(r => r.data)
     }
 
@@ -64,8 +65,6 @@ export default () => {
                         )}
                     </Formik>
                 </section>
-
-
             </section>
         </section>
     )
