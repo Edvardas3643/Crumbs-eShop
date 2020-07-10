@@ -22,4 +22,5 @@ public class UserController {
     public UserDTO getUser(@AuthenticationPrincipal User user){
         return new UserDTO(user);
     }
+
 }

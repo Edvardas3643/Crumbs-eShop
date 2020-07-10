@@ -30,6 +30,9 @@ public class PaymentInfo {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "post_code")
+    private Long postCode;
+
     @Column(name = "card_number")
     private Long cardNumber;
 

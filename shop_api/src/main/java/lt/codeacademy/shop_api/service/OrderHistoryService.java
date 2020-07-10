@@ -1,5 +1,6 @@
 package lt.codeacademy.shop_api.service;
 
+import lt.codeacademy.shop_api.entities.OrderHistory;
 import lt.codeacademy.shop_api.repository.OrderHistoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,5 +11,9 @@ public class OrderHistoryService {
 
     public OrderHistoryService(OrderHistoryRepository orderHistoryRepository) {
         this.orderHistoryRepository = orderHistoryRepository;
+    }
+
+    public void saveOrUpdateOrderHistory(OrderHistory orderHistory) {
+        orderHistoryRepository.save(orderHistory);
     }
 }

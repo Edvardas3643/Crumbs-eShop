@@ -46,6 +46,7 @@ export default () => {
         login: (user) => setUserData(user),
         logout: () => setUserData(null),
         userLoggedIn: () => !!userData,
+        setUserData: (user) => setUserData(user),
         userData
     }
 

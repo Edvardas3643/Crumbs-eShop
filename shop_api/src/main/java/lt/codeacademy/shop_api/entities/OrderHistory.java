@@ -34,13 +34,8 @@ public class OrderHistory {
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
-    @OneToMany(
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.LAZY,
-            mappedBy = "orderHistory")
-    private List<Order> orders;
-
-
-
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "payment_info_id")
+    private PaymentInfo paymentInfo;
 
 }

@@ -13,7 +13,7 @@ const initialValues = {
 }
 
 export default () => {
-    const {login} = useContext(UserContext)
+    const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
     const onSubmit = values => {
@@ -22,6 +22,7 @@ export default () => {
         userApi.getUser()
             .then(({data}) => {
                 login(data)
+                setUserData(data)
                 history.push("/")
             })
     }

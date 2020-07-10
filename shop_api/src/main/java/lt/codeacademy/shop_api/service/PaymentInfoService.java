@@ -1,5 +1,6 @@
 package lt.codeacademy.shop_api.service;
 
+import lt.codeacademy.shop_api.entities.PaymentInfo;
 import lt.codeacademy.shop_api.repository.PaymentInfoRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,5 +11,9 @@ public class PaymentInfoService {
 
     public PaymentInfoService(PaymentInfoRepository paymentInfoRepository) {
         this.paymentInfoRepository = paymentInfoRepository;
+    }
+
+    public void saveOrUpdatePaymentInfo(PaymentInfo paymentInfo) {
+        paymentInfoRepository.save(paymentInfo);
     }
 }

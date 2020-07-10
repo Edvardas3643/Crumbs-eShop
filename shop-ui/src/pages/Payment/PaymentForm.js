@@ -3,19 +3,23 @@ import "./Payment.css"
 import {Field, Form, Formik} from "formik";
 import loginBg from "../../assets/img/login-bg.jpg";
 import {AppContext, UserContext} from "../../App";
+import OrderApi from "../../api/OrderApi";
 
 export default () => {
 
-    const {} = useContext(UserContext)
-    const {} = useContext(AppContext)
+    const {userData} = useContext(UserContext)
+    const {cart} = useContext(AppContext)
 
     const initialValues = {
-        username: '',
-        password: ''
+        name:'',
+        surname: '',
+        address: '',
+        postCode: '',
+        cardNumber: '',
     }
 
-    const onSubmit = () => {
-
+    const onSubmit = (values) => {
+        OrderApi.newOrder(values, cart, userData).then(r => r.data)
     }
 
     return (
