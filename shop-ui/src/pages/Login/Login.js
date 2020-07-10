@@ -5,6 +5,7 @@ import {UserContext} from "../../App";
 import userApi from "../../api/UserApi"
 import {useHistory} from "react-router-dom"
 import "./Login.css"
+import loginBg from "../../../src/assets/img/login-bg.jpg"
 
 const initialValues = {
     username: '',
@@ -16,7 +17,6 @@ export default () => {
     const history = useHistory();
 
     const onSubmit = values => {
-        console.log(values)
         setCredentials(values)
 
         userApi.getUser()
@@ -27,27 +27,35 @@ export default () => {
     }
 
     return (
-        <section className="container-wide login-form-outer-container">
-            <section className="login-form-inner-container">
-                <Formik
-                    initialValues={initialValues}
-                    onSubmit={onSubmit}>
-                    {(props) => (
-                        <Form>
-                            <div>
-                                <label htmlFor="username">Username:</label>
-                                <Field name="username" type="text"/>
-                            </div>
-                            <div>
-                                <label htmlFor="password">Password:</label>
-                                <Field name="password" type="password"/>
-                            </div>
-                            <div>
-                                <button type="submit">Login</button>
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
+        <section className="container-wide">
+            <section className="login-form-outer-container" style={{backgroundImage: "url(" + loginBg + ")"}}>
+                <section className="login-form-inner-container">
+                    <div className="login-form-inner-container-bg-left"/>
+                    <div className="login-form-inner-container-bg-bottom"/>
+                    <Formik
+                        initialValues={initialValues}
+                        onSubmit={onSubmit}>
+                        {(props) => (
+                            <Form className="login-form">
+                                <p>SIGN IN</p>
+                                <div>
+                                    <Field className="form-field" name="username" type="text" placeholder="Email"/>
+                                </div>
+                                <div>
+                                    <Field className="form-field" name="password" type="password"
+                                           placeholder="Password"/>
+                                </div>
+                                <div>
+                                    <button className="form-btn" type="submit">Login</button>
+                                </div>
+                                <div>
+                                    <div className="form-btn">No Account ? Create An Account Here</div>
+                                </div>
+
+                            </Form>
+                        )}
+                    </Formik>
+                </section>
             </section>
         </section>
     )

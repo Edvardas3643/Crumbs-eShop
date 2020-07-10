@@ -18,7 +18,6 @@ export default () => {
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
-    const [userLoggedIn, setUserLoggedIn] = useState(false)
     const [userData, setUserData] = useState(null)
 
     const [cart, setCart] = useState([])
@@ -41,12 +40,11 @@ export default () => {
 
         cart,
         setCart,
-
     }
 
     const userContext = {
         login: (user) => setUserData(user),
-        logout: () => setUserLoggedIn(!userLoggedIn),
+        logout: () => setUserData(null),
         userLoggedIn: () => !!userData,
         userData
     }

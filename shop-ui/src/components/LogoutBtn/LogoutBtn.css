@@ -1,0 +1,8 @@
+.logout-btn{
+
+}
+
+.logout-btn:hover{
+    cursor: pointer;
+    color: var(--color-blue);
+}

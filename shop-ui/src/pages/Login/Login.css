@@ -1,15 +1,89 @@
 .login-form-outer-container{
-    margin-top: -80px;
-    min-height: calc(100vh);
+    margin-bottom: 40px;
+    min-height: calc(100vh - 180px);
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
+
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
 }
 
 .login-form-inner-container{
-    height: 70vh;
+    position: absolute;
+    height: 500px;
+    width: 400px;
+    background-color: var(--color-white);
+    border: solid 2px var(--color-teal);
+}
+
+.login-form-inner-container-bg-left{
+    height: 480px;
+    width: 30px;
+    position: absolute;
+    transform: translateY(40px) translateX(-32px);
+    background-color: var(--color-teal-light);
+}
+
+.login-form-inner-container-bg-bottom{
+    height: 30px;
+    width: 400px;
+    position: absolute;
+    transform: translateY(497px) translateX(-32px);
+    background-color: var(--color-teal-light);
+}
+
+.login-form{
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
 }
+
+.login-form > div,.login-form > p{
+    margin: 1rem;
+}
+
+.login-form > p{
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-teal);
+}
+
+.form-field{
+    text-align: center;
+    width: 301px;
+    height: 3rem;
+    border:none;
+    background-color: var(--color-teal-light);
+}
+.form-btn{
+    user-select: none;
+    font-weight: 500;
+    background-color: var(--color-teal);
+    color: var(--color-white);
+    line-height: 3rem;
+    align-items: center;
+    border: none;
+    width: 301px;
+    height: 3rem;
+    margin: 0;
+}
+
+.form-btn:active{
+    box-shadow: 1px 1px 5px 1px var(--color-background);
+}
+
+.form-btn:hover{
+    cursor: pointer;
+    background-color: var(--color-pink);
+}
+
+.login-form *:focus{
+    outline: none;
+}
+
+
+

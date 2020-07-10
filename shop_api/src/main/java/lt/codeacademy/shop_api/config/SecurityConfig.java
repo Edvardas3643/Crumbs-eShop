@@ -24,12 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .requestMatchers(new OrRequestMatcher(new AntPathRequestMatcher("/private/**"))).authenticated()
+                .authorizeRequests().requestMatchers(new OrRequestMatcher(new AntPathRequestMatcher("/private/**"))).authenticated()
 //                    .anyRequest().authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .headers().frameOptions().sameOrigin()
                 .and()
                 .httpBasic()
                 .and()

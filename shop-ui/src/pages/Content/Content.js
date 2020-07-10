@@ -6,11 +6,16 @@ import Product from "../Product/Product";
 import ProductForm from "../ProductForm/ProductForm";
 import Login from "../Login/Login";
 import Checkout from "../Checkout/Checkout";
+import PaymentForm from "../Payment/PaymentForm";
 
 export default () => (
     <Switch>
         <Route exact path="/home">
             <Home/>
+        </Route>
+
+        <Route exact path="/payment">
+            <PaymentForm/>
         </Route>
 
         <Route exact path="/login">

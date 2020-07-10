@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @Entity
 @Builder
-@Table(name = "Products")
+@Table(name = "products")
 public class Product {
 
     @Tolerate

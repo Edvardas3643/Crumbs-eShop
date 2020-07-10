@@ -1,4 +1,4 @@
-package lt.codeacademy.shop_api.service;
+package lt.codeacademy.shop_api.service.exeptions;
 
 
 public class FileStorageException extends RuntimeException {

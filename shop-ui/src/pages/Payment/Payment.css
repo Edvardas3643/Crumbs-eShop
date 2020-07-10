@@ -1,0 +1,36 @@
+.payment-container{
+    margin-bottom: 80px;
+    height: calc(100vh - 180px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.payment-form-inner-container{
+    position: absolute;
+    height: 700px;
+    width: 400px;
+    background-color: var(--color-white);
+    border: solid 2px var(--color-teal);
+}
+
+.payment-form-inner-container-bg-left{
+    height: 680px;
+    width: 30px;
+    position: absolute;
+    transform: translateY(40px) translateX(-32px);
+    background-color: var(--color-teal-light);
+}
+
+.payment-form-inner-container-bg-bottom{
+    height: 30px;
+    width: 400px;
+    position: absolute;
+    transform: translateY(697px) translateX(-32px);
+    background-color: var(--color-teal-light);
+}
+

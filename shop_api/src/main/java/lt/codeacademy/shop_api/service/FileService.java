@@ -1,5 +1,6 @@
 package lt.codeacademy.shop_api.service;
 
+import lt.codeacademy.shop_api.service.exeptions.FileStorageException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;

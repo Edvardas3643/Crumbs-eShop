@@ -4,6 +4,7 @@ import lt.codeacademy.shop_api.entities.Product;
 import lt.codeacademy.shop_api.entities.Tag;
 import lt.codeacademy.shop_api.repository.ProductRepository;
 import lt.codeacademy.shop_api.repository.TagRepository;
+import lt.codeacademy.shop_api.service.exeptions.ProductServiceException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

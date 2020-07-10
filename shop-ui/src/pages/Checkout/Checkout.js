@@ -1,13 +1,14 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {AppContext, UserContext} from "../../App";
 import "./Checkout.css"
+import {NavLink} from "react-router-dom";
 
 export default () => {
 
 
     const {cart, setCart} = useContext(AppContext)
 
-    const {loggedIn} = useContext(UserContext)
+    const {userLoggedIn} = useContext(UserContext)
 
     const removeProduct = (id) => {
         if (cart != null) {
@@ -28,18 +29,13 @@ export default () => {
         }
     }
 
-    const buy = () => {
-    }
-
     let total = 0
 
     return (
         <section className="container-wide main-container">
             {cart && cart.length > 0 ? (
                 <section className="checkout-container ">
-
                     <ul>
-
                         {
                             cart && Object.values(cart).map(contents => {
                                     total = (total + (contents.product.price * contents.qty))
@@ -83,12 +79,11 @@ export default () => {
 
                     <section className="checkout-controls">
                         {
-                            loggedIn ?
-                                <div className="checkout-btn buy" onClick={() => buy}>Buy</div>
+                            userLoggedIn() ?
+                                <NavLink to="/payment" className="checkout-btn buy">Buy</NavLink>
                                 :
-                                <div className="checkout-btn login" onClick={() => buy}>Login</div>
+                                <NavLink to="/login" className="checkout-btn login">Login</NavLink>
                         }
-                        <p>Subtotal: </p>
                     </section>
                 </section>
             ) : <>The Cart Is Currently Empty</>}

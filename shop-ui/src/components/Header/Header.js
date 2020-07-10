@@ -5,8 +5,13 @@ import NavigationToggleBtn from "../NavigationBtn/NavigationToggleBtn";
 import SearchBtn from "../Search/SearchBtn";
 import {NavLink} from "react-router-dom";
 import LoginBtn from "../LoginBtn/LoginBtn";
+import {UserContext} from "../../App";
+import LogoutBtn from "../LogoutBtn/LogoutBtn";
 
 export default () => {
+
+    const {userLoggedIn} = useContext(UserContext)
+
     return (
         <section className="background--main-light">
             <div className="header container-wide">
@@ -20,6 +25,10 @@ export default () => {
                 <div className="flex header__right-side">
                     <SearchBtn/>
                     <LoginBtn/>
+                    {
+                        userLoggedIn() ? <LogoutBtn/> : <></>
+                    }
+
                     <Cart/>
                 </div>
             </div>
