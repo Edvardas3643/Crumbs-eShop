@@ -6,7 +6,6 @@ import Backdrop from "./components/Backdrop/Backdrop"
 import Content from "./pages/Content/Content";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
-import history from './history'
 import {BrowserRouter} from "react-router-dom";
 
 
@@ -15,6 +14,7 @@ const UserContext = React.createContext(null)
 
 export default () => {
 
+    const [paymentInfo, setPaymentInfo] = useState(null);
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -47,7 +47,10 @@ export default () => {
         logout: () => setUserData(null),
         userLoggedIn: () => !!userData,
         setUserData: (user) => setUserData(user),
-        userData
+        userData,
+
+        paymentInfo,
+        setPaymentInfo: (val) => setPaymentInfo(val)
     }
 
     let backdrop;
@@ -59,7 +62,7 @@ export default () => {
     return (
         <AppContext.Provider value={appContext}>
             <UserContext.Provider value={userContext}>
-                <BrowserRouter history={history}>
+                <BrowserRouter>
                     <div className="App">
                         <Navigation/>
                         {backdrop}

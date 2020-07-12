@@ -3,7 +3,7 @@ import {Field, Form, Formik} from "formik";
 import {setCredentials} from "../../api";
 import {UserContext} from "../../App";
 import userApi from "../../api/UserApi"
-import {useHistory} from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import "./Login.css"
 import loginBg from "../../../src/assets/img/login-bg.jpg"
 
@@ -13,6 +13,12 @@ const initialValues = {
 }
 
 export default () => {
+
+
+    const location = useLocation()
+
+    const { from } = location.state || { from: { pathname: '/' } }
+
     const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
@@ -21,9 +27,10 @@ export default () => {
 
         userApi.getUser()
             .then(({data}) => {
+                console.log(data)
                 login(data)
                 setUserData(data)
-                history.push("/")
+                history.replace(from)
             })
     }
 

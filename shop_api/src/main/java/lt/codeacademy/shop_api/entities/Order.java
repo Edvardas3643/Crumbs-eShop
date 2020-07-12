@@ -33,7 +33,7 @@ public class Order {
     @Column(name = "quantity")
     private Long quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "order_history_id", nullable = true)
     private OrderHistory orderHistory;
 

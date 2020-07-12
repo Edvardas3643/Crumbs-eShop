@@ -1,0 +1,78 @@
+.profile-container{
+    min-height: calc(100vh - 120px);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    box-sizing: border-box;
+    padding-bottom: 80px;
+}
+
+.history-container{
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-background-dark);
+}
+
+.history-container > div{
+    margin-bottom: .4rem;
+}
+
+.order-container{
+    padding: 1rem 0;
+    display: flex;
+}
+
+.order-info-container{
+    margin-left: 1rem;
+}
+
+.order-info-container > div{
+    margin-bottom: .4rem;
+}
+
+.order-img{
+    height: 100px;
+    width: 100px;
+    background-size: 100%;
+}
+
+.profile-menu{
+    padding: 1rem;
+}
+
+.payment-info-btn {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    background-color: var(--color-yealow);
+    padding: 1rem 1rem;
+    margin: 1rem 0;
+    user-select: none;
+    border-radius: .2rem;
+}
+
+.payment-info-btn:hover{
+    cursor: pointer;
+    background-color: var(--color-pink);
+}
+
+.payment-info-btn:active{
+    box-shadow: 0 1px 1px 2px var(--color-background-light);
+    background-color: var(--color-pink)
+}
+
+.payment-info-details{
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+
+.payment-info-contents{
+    margin-left: 2rem;
+}
+
+.payment-info-contents > div,
+.payment-info-description > div{
+    margin-bottom: .4rem;
+}

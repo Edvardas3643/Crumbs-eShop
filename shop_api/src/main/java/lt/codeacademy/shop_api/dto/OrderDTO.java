@@ -17,4 +17,7 @@ public class OrderDTO {
         this.price = order.getPrice();
         this.quantity = order.getQuantity();
     }
+
+    public OrderDTO() {
+    }
 }

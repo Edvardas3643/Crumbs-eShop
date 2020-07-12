@@ -1,14 +1,16 @@
 import React, {useContext} from "react";
 import {AppContext, UserContext} from "../../App";
 import "./Checkout.css"
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
+import OrderApi from "../../api/OrderApi";
 
 export default () => {
 
+    const history = useHistory();
 
     const {cart, setCart} = useContext(AppContext)
 
-    const {userLoggedIn} = useContext(UserContext)
+    const {userLoggedIn, userData, paymentInfo} = useContext(UserContext)
 
     const removeProduct = (id) => {
         if (cart != null) {
@@ -27,6 +29,12 @@ export default () => {
             let filteredCart = cart.filter((item) => item.product.id !== contents.id)
             setCart(filteredCart, contents.qty = contents.qty - 1)
         }
+    }
+
+    const buy = () => {
+        OrderApi.newOrder(paymentInfo, cart, userData).then(r => r)
+        setCart(null)
+        history.push("/profile")
     }
 
     let total = 0
@@ -52,8 +60,6 @@ export default () => {
                                             </div>
                                             <div className="checkout-contents__description">
                                                 <p className="description__title">{contents.product.title}</p>
-                                                {/*<p className="description__qty">Quantity: {contents.qty}</p>*/}
-
                                                 <div className="product-qty-container">
                                                     <div>Qty</div>
                                                     <div className="qty-counter">
@@ -80,7 +86,32 @@ export default () => {
                     <section className="checkout-controls">
                         {
                             userLoggedIn() ?
-                                <NavLink to="/payment" className="checkout-btn buy">Buy</NavLink>
+                                <div>
+                                    {userData && userData.paymentInfo ?
+                                        <div className="payment-info-details">
+                                            <div className="payment-info-description">
+                                                <div>Name: </div>
+                                                <div>Surname: </div>
+                                                <div>Address: </div>
+                                                <div>Post Code: </div>
+                                                <div>Card Number: </div>
+                                            </div>
+                                            <div className="payment-info-contents">
+                                                <div>{userData.paymentInfo.name}</div>
+                                                <div>{userData.paymentInfo.surname}</div>
+                                                <div>{userData.paymentInfo.address}</div>
+                                                <div>{userData.paymentInfo.postCode}</div>
+                                                <div>{userData.paymentInfo.cardNumber}</div>
+                                            </div>
+                                        </div>
+                                        : <></>
+                                    }
+                                    <div className="flex-container">
+                                        <NavLink to="/paymentInfo" className="checkout-btn buy">Change Payment Info</NavLink>
+                                        {userData.paymentInfo ? <div onClick={buy} className="checkout-btn buy">Buy</div> : <></>}
+                                    </div>
+                                </div>
+
                                 :
                                 <NavLink to="/login" className="checkout-btn login">Login</NavLink>
                         }

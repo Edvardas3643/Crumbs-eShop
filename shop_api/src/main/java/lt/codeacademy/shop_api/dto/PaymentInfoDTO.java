@@ -12,7 +12,6 @@ public class PaymentInfoDTO {
     private String address;
     private Long postCode;
     private Long cardNumber;
-    private Long user;
 
     public PaymentInfoDTO(PaymentInfo p) {
         this.id = p.getId();
@@ -21,6 +20,8 @@ public class PaymentInfoDTO {
         this.address = p.getAddress();
         this.postCode = p.getPostCode();
         this.cardNumber = p.getCardNumber();
-        this.user = p.getUser().getId();
+    }
+
+    public PaymentInfoDTO() {
     }
 }

@@ -13,4 +13,7 @@ public class TagDTO {
         this.tagId = tag.getTagId();
         this.content = tag.getContent();
     }
+
+    public TagDTO() {
+    }
 }

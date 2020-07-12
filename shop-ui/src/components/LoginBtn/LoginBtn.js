@@ -9,8 +9,11 @@ export default () => {
     const {userLoggedIn} = useContext(UserContext)
 
     const userHandler = () => {
-        if (userLoggedIn){
+        if (!userLoggedIn()){
             history.push("/login");
+        }else{
+            console.log("profile")
+            history.push("/profile");
         }
     }
 

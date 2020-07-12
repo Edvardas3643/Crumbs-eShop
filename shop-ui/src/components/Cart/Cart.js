@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import './Cart.css';
 import {AppContext} from "../../App";
 import {NavLink} from "react-router-dom";
@@ -31,7 +31,6 @@ export default () => {
                 <h2>Recently Added</h2>
             </div>
             <ul>
-
                 {
                     cart && Object.values(cart).map(contents => {
                             total = (total + (contents.product.price * contents.qty))

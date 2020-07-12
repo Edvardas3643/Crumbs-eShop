@@ -38,4 +38,10 @@ public class OrderHistory {
     @JoinColumn(name = "payment_info_id")
     private PaymentInfo paymentInfo;
 
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            mappedBy = "orderHistory",
+            fetch = FetchType.EAGER)
+    private List<Order> orders;
+
 }

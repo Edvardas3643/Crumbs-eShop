@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import './Search.css'
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';

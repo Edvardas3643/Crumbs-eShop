@@ -1,26 +1,28 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import "./Payment.css"
 import {Field, Form, Formik} from "formik";
 import loginBg from "../../assets/img/login-bg.jpg";
-import {AppContext, UserContext} from "../../App";
-import OrderApi from "../../api/OrderApi";
+import {UserContext} from "../../App";
+import { useHistory, useLocation } from "react-router-dom"
 
 export default () => {
 
     const {userData, setPaymentInfo} = useContext(UserContext)
-    const {cart} = useContext(AppContext)
-
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: '/' } }
+    const history = useHistory();
     const initialValues = {
-        name: '',
-        surname: '',
-        address: '',
-        postCode: '',
-        cardNumber: '',
+        name: userData.paymentInfo.name || '',
+        surname: userData.paymentInfo.surname || '',
+        address: userData.paymentInfo.address || '',
+        postCode: userData.paymentInfo.postCode || '',
+        cardNumber: userData.paymentInfo.cardNumber || '',
     }
 
     const onSubmit = (values) => {
         setPaymentInfo(values);
-        OrderApi.newOrder(values, cart, userData).then(r => r.data)
+        // history.replace(from);
+        history.goBack();
     }
 
     return (
@@ -58,7 +60,7 @@ export default () => {
                                            placeholder="Card Number"/>
                                 </div>
                                 <div>
-                                    <button className="form-btn" type="submit">Buy</button>
+                                    <button className="form-btn" type="submit">Save</button>
                                 </div>
 
                             </Form>

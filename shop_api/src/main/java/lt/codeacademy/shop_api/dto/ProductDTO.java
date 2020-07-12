@@ -2,7 +2,6 @@ package lt.codeacademy.shop_api.dto;
 
 import lombok.Data;
 import lt.codeacademy.shop_api.entities.Product;
-import lt.codeacademy.shop_api.entities.Tag;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -38,5 +37,6 @@ public class ProductDTO {
                 .collect(Collectors.toSet());
     }
 
-
+    public ProductDTO() {
+    }
 }

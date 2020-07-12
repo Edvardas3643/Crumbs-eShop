@@ -2,12 +2,16 @@ package lt.codeacademy.shop_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.codeacademy.shop_api.dto.CartDTO;
+import lt.codeacademy.shop_api.dto.OrderDTO;
+import lt.codeacademy.shop_api.dto.OrderHistoryDTO;
 import lt.codeacademy.shop_api.dto.PaymentInfoDTO;
 import lt.codeacademy.shop_api.entities.*;
 import lt.codeacademy.shop_api.service.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -41,8 +45,8 @@ public class OrderController {
                     return Order.builder()
                             .product(product)
                             .price(price)
-                            .quantity(quantity)
                             .orderHistory(orderHistory)
+                            .quantity(quantity)
                             .build();
                 })
                 .collect(Collectors.toList());
@@ -78,12 +82,20 @@ public class OrderController {
 
         List<Order> orders = getOrders(cartDTO, orderHistory);
 
+        orderHistory.setOrders(orders);
+
         paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo);
         orderHistoryService.saveOrUpdateOrderHistory(orderHistory);
-        orderService.saveOrUpdateOrders(orders);
+    }
 
-        System.out.println(orderHistory);
+    @GetMapping("/getOrderHistory")
+    private List<OrderHistoryDTO> getOrderHistoryByUser(@AuthenticationPrincipal User user) {
+        User tempUser = userService.getUserByUsername(user.getUsername());
+        List<OrderHistory> orderHistory = orderHistoryService.getOrderHistoryByUser(tempUser);
 
+        return orderHistory.stream()
+                .map(OrderHistoryDTO::new)
+                .collect(Collectors.toList());
     }
 
 }

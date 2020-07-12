@@ -6,7 +6,8 @@ import Product from "../Product/Product";
 import ProductForm from "../ProductForm/ProductForm";
 import Login from "../Login/Login";
 import Checkout from "../Checkout/Checkout";
-import PaymentForm from "../Payment/PaymentForm";
+import PaymentForm from "../PaymentInfo/PaymentInfoForm";
+import UserProfile from "../UserProfile/UserProfile";
 
 export default () => (
     <Switch>
@@ -14,7 +15,7 @@ export default () => (
             <Home/>
         </Route>
 
-        <Route exact path="/payment">
+        <Route exact path="/paymentInfo">
             <PaymentForm/>
         </Route>
 
@@ -48,6 +49,10 @@ export default () => (
 
         <Route path="/productForm">
             <ProductForm/>
+        </Route>
+
+        <Route path="/profile">
+            <UserProfile/>
         </Route>
 
         <Redirect to="/home"/>

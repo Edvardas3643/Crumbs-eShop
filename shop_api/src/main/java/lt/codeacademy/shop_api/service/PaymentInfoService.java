@@ -23,4 +23,8 @@ public class PaymentInfoService {
     public List<PaymentInfo> findAllByUser(User user) {
       return paymentInfoRepository.findAllByUser(user);
     }
+
+    public PaymentInfo getNewestPaymentInfo(User user) {
+        return paymentInfoRepository.findTopByUserOrderById(user).orElse(new PaymentInfo());
+    }
 }
