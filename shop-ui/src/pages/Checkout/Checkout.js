@@ -1,16 +1,18 @@
 import React, {useContext} from "react";
 import {AppContext, UserContext} from "../../App";
 import "./Checkout.css"
-import {NavLink, useHistory} from "react-router-dom";
+import {NavLink, useHistory, useLocation} from "react-router-dom";
 import OrderApi from "../../api/OrderApi";
 
 export default () => {
 
     const history = useHistory();
 
-    const {cart, setCart} = useContext(AppContext)
+    const location = useLocation();
 
-    const {userLoggedIn, userData, paymentInfo} = useContext(UserContext)
+    const {cart, setCart} = useContext(AppContext);
+
+    const {userLoggedIn, userData, paymentInfo} = useContext(UserContext);
 
     const removeProduct = (id) => {
         if (cart != null) {
@@ -107,7 +109,7 @@ export default () => {
                                         : <></>
                                     }
                                     <div className="flex-container">
-                                        <NavLink to="/paymentInfo" className="checkout-btn buy">Change Payment Info</NavLink>
+                                        <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="checkout-btn buy">Change Payment Info</NavLink>
                                         {userData.paymentInfo ? <div onClick={buy} className="checkout-btn buy">Buy</div> : <></>}
                                     </div>
                                 </div>

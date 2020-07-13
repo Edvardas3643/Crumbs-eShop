@@ -8,6 +8,7 @@ import Login from "../Login/Login";
 import Checkout from "../Checkout/Checkout";
 import PaymentForm from "../PaymentInfo/PaymentInfoForm";
 import UserProfile from "../UserProfile/UserProfile";
+import Register from "../Register/Register";
 
 export default () => (
     <Switch>
@@ -53,6 +54,10 @@ export default () => (
 
         <Route path="/profile">
             <UserProfile/>
+        </Route>
+
+        <Route path="/register">
+            <Register/>
         </Route>
 
         <Redirect to="/home"/>

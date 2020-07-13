@@ -7,9 +7,9 @@ import { useHistory, useLocation } from "react-router-dom"
 
 export default () => {
 
-    const {userData, setPaymentInfo} = useContext(UserContext)
+    const {userData, setPaymentInfo, setUserData} = useContext(UserContext)
     const location = useLocation();
-    const { from } = location.state || { from: { pathname: '/' } }
+    const {prevPath}  = location.state || { from: { pathname: '/' } }
     const history = useHistory();
     const initialValues = {
         name: userData.paymentInfo.name || '',
@@ -21,8 +21,11 @@ export default () => {
 
     const onSubmit = (values) => {
         setPaymentInfo(values);
-        // history.replace(from);
-        history.goBack();
+
+        userData.paymentInfo =  values
+        setUserData(userData)
+        console.log(userData)
+        history.replace(prevPath);
     }
 
     return (

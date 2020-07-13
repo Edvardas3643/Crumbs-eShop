@@ -11,5 +11,9 @@ export default {
         data.append("cart", JSON.stringify(cart));
 
         return HTTP.post('/private/newOrder', data);
+    },
+
+    fetchOrderHistory() {
+        return HTTP.get('private/getOrderHistory')
     }
 }

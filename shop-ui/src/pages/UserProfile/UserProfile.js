@@ -1,20 +1,21 @@
 import React, {useContext, useEffect, useState} from "react";
 import "./UserProfile.css";
 import {UserContext} from "../../App";
-import UserApi from "../../api/UserApi";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
+import OrderApi from "../../api/OrderApi";
 
 export default () => {
 
-    const {userData, userLoggedIn, setOrderHistory, orderHistory} = useContext(UserContext)
+    const {userData, setOrderHistory, orderHistory} = useContext(UserContext)
 
+    const location = useLocation()
 
     useEffect(() => {
-        UserApi.fetchOrderHistory()
+        OrderApi.fetchOrderHistory()
             .then(response => {
                 setOrderHistory(response.data);
             })
-    }, [userData])
+    }, [userData, orderHistory])
 
     return (
         <section className="container-wide">
@@ -71,7 +72,7 @@ export default () => {
                         </div>
                         : <></>
                     }
-                    <NavLink to="/paymentInfo" className="payment-info-btn">Change Payment Info</NavLink>
+                    <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="payment-info-btn">Change Payment Info</NavLink>
                 </section>
             </section>
         </section>

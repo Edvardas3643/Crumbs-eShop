@@ -26,12 +26,6 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Users_Roles",
@@ -43,7 +37,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getValue()))
                 .collect(Collectors.toSet());
     }
 
@@ -67,7 +61,4 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getFullName() {
-        return name + " " + lastName;
-    }
 }

@@ -37,18 +37,16 @@ INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 12);
 INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 13);
 INSERT INTO PRODUCT_TAGS(tag_id, product_id) VALUES (5, 14);
 
-INSERT INTO Users(user_id, username, password, name, last_name)
-    VALUES(1, 'user', '{bcrypt}$2y$12$A7x.2lPxE6YdV8ed6OYbDucRiod32wqMF9JNerE.wq4glQWaIjRnO', 'Edvardas', 'Lego');
-INSERT INTO Users(user_id, username, password, name, last_name)
-    VALUES(2, 'admin', '{bcrypt}$2y$12$A7x.2lPxE6YdV8ed6OYbDucRiod32wqMF9JNerE.wq4glQWaIjRnO', 'Tomas', 'Tomaitis');
-INSERT INTO Users(user_id, username, password, name, last_name)
-    VALUES(3, 'anonymous', '{bcrypt}$2y$12$iwyoZW/83Ol3N7Hx.joa3uNlTq0gaqmA6vQwblp3VzMshZuUqCmiS', 'anonymous', 'anonymous');
+INSERT INTO Users(user_id, username, password)
+    VALUES(1, 'user', '{bcrypt}$2y$12$A7x.2lPxE6YdV8ed6OYbDucRiod32wqMF9JNerE.wq4glQWaIjRnO');
+INSERT INTO Users(user_id, username, password)
+    VALUES(2, 'admin', '{bcrypt}$2y$12$A7x.2lPxE6YdV8ed6OYbDucRiod32wqMF9JNerE.wq4glQWaIjRnO');
+INSERT INTO Users(user_id, username, password)
+    VALUES(3, 'anonymous', '{bcrypt}$2y$12$iwyoZW/83Ol3N7Hx.joa3uNlTq0gaqmA6vQwblp3VzMshZuUqCmiS');
 
-INSERT INTO Roles(role_id, role) VALUES(1, 'CUSTOMER');
-INSERT INTO Roles(role_id, role) VALUES(2, 'ADMIN');
-INSERT INTO Roles(role_id, role) VALUES(3, 'ANONYMOUS');
+INSERT INTO Roles(role_id, value) VALUES(1, 'CUSTOMER');
+INSERT INTO Roles(role_id, value) VALUES(2, 'ADMIN');
 
 INSERT INTO Users_Roles(user_id, role_id) VALUES(1, 1);
 INSERT INTO Users_Roles(user_id, role_id) VALUES(2, 2);
-INSERT INTO Users_Roles(user_id, role_id) VALUES(3, 3);
 

@@ -3,7 +3,7 @@ import {Field, Form, Formik} from "formik";
 import {setCredentials} from "../../api";
 import {UserContext} from "../../App";
 import userApi from "../../api/UserApi"
-import { useHistory, useLocation } from "react-router-dom"
+import {NavLink, useHistory, useLocation} from "react-router-dom"
 import "./Login.css"
 import loginBg from "../../../src/assets/img/login-bg.jpg"
 
@@ -47,7 +47,7 @@ export default () => {
                             <Form className="login-form">
                                 <p>SIGN IN</p>
                                 <div>
-                                    <Field className="form-field" name="username" type="text" placeholder="Email"/>
+                                    <Field className="form-field" name="username" type="text" placeholder="Username"/>
                                 </div>
                                 <div>
                                     <Field className="form-field" name="password" type="password"
@@ -57,7 +57,7 @@ export default () => {
                                     <button className="form-btn" type="submit">Login</button>
                                 </div>
                                 <div>
-                                    <div className="form-btn">No Account ? Create An Account Here</div>
+                                    <NavLink to="register" className="form-btn">No Account ? Create An Account Here</NavLink>
                                 </div>
 
                             </Form>
