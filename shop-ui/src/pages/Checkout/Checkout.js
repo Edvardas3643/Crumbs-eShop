@@ -3,12 +3,15 @@ import {AppContext, UserContext} from "../../App";
 import "./Checkout.css"
 import {NavLink, useHistory, useLocation} from "react-router-dom";
 import OrderApi from "../../api/OrderApi";
+import {useTranslation} from "react-i18next";
 
 export default () => {
 
     const history = useHistory();
 
     const location = useLocation();
+
+    const {t} = useTranslation("checkout")
 
     const {cart, setCart} = useContext(AppContext);
 
@@ -119,7 +122,7 @@ export default () => {
                         }
                     </section>
                 </section>
-            ) : <>The Cart Is Currently Empty</>}
+            ) : <div>{t("emptyCart")}</div>}
         </section>
 
     )

@@ -31,3 +31,18 @@
     margin-left: 1rem;
 }
 
+.header-lang-btn{
+    text-decoration: none;
+    color: var(--color-white);
+    padding: 2px;
+    margin-left: 1rem;
+    background-color: var(--color-blue);
+    border-radius: 3px;
+    font-size: 1rem;
+}
+
+.header__left-side{
+    display: flex;
+    align-items: center;
+}
+

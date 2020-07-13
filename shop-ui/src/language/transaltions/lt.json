@@ -1,3 +1,50 @@
 {
+  "navigation": {
+    "shopBy": "Apsipirkti Pagal",
+    "cakes": "Tortai",
+    "muffins": "Keksiukai",
+    "kits": "Kepimo Reikmenys",
+    "home": "Home",
+    "login/register": "Prisijungi/Registruotis",
+    "contacts": "Kontaktai",
+    "about": "Apie Mus"
+  },
 
+  "product": {
+    "description": "Aprasas",
+    "ingredients": "Sudetis",
+    "addToCart": "I Krepseli",
+    "checkout": "Atsiskaitymas",
+    "qty": "Kiekis"
+  },
+
+  "cart": {
+    "recentlyAdded": "Neseniai I krepseli idetos Prekes",
+    "emptyCart": "Krepselis yra tuscias",
+    "checkout": "Atsiskaitymas",
+    "totalPrice": "Suma:",
+    "description": "Aprasas:",
+    "ingredients": "Sudetis:",
+    "title": "Pavadinimas:",
+    "price": "Kaina:",
+    "qty": "Kiekis:"
+  },
+
+  "checkout": {
+    "description": "Aprasas:",
+    "ingredients": "Sudetis:",
+    "title": "Pavadinimas:",
+    "price": "Kaina:",
+    "qty": "Kiekis:",
+    "totalPrice": "Suma:",
+    "buy": "Pirkti",
+    "changeInfo": "Pakeisti Kontaktine Informacija",
+    "name": "Vardas",
+    "surname": "Pavarde",
+    "address": "Adresas",
+    "postCode": "Pasto Kodas",
+    "cardNumber": "Korteles Numeris",
+    "login": "Prisijungti",
+    "emptyCart": "Krepselis Yra Tuscias"
+  }
 }

@@ -2,12 +2,15 @@ import React, {useContext} from "react";
 import './Cart.css';
 import {AppContext} from "../../App";
 import {NavLink} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 
 export default () => {
 
 
     const {cart, setCart, cartBlock, cartBlockHandler} = useContext(AppContext)
+
+    const {t} = useTranslation("cart")
 
     let total = 0
 
@@ -28,7 +31,7 @@ export default () => {
         <div className={cartClasses}>
             <div className="cart-bar__header">
                 <div onClick={cartBlockHandler}><i className="cart-bar__close-btn fas fa-times fa-2x"/></div>
-                <h2>Recently Added</h2>
+                <h2>{t("recentlyAdded")}</h2>
             </div>
             <ul>
                 {
@@ -47,8 +50,8 @@ export default () => {
                                     </div>
                                     <div className="cart-contents__description">
                                         <p className="description__title">{contents.product.title}</p>
-                                        <p className="description__qty">Quantity: {contents.qty}</p>
-                                        <p className="description__price">Total: {contents.product.price * contents.qty} </p>
+                                        <p className="description__qty">{t("qty")} {contents.qty}</p>
+                                        <p className="description__price">{t("totalPrice")} {contents.product.price * contents.qty} </p>
                                     </div>
                                 </li>
                             )
@@ -60,8 +63,8 @@ export default () => {
             </ul>
 
             <div className="cart-footer">
-                <p className="total-price">Total Price: {total}</p>
-                <NavLink to="/checkout" onClick={cartBlockHandler} className="checkout-btn">Checkout</NavLink>
+                <p className="total-price">{t("totalPrice")} {total}</p>
+                <NavLink to="/checkout" onClick={cartBlockHandler} className="checkout-btn">{t("checkout")}</NavLink>
             </div>
         </div>
     )

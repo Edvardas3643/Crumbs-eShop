@@ -2,11 +2,14 @@ import React, {useContext, useEffect, useState} from "react";
 import {NavLink, useParams} from "react-router-dom";
 import productApi from "../../api/productsApi";
 import "./Product.css"
-import {AppContext, UserContext} from "../../App";
+import {AppContext} from "../../App";
+import {useTranslation} from "react-i18next";
 
 export default () => {
 
     const {cart, setCart} = useContext(AppContext)
+
+    const { t } = useTranslation("product");
 
     const {id} = useParams()
 
@@ -77,7 +80,7 @@ export default () => {
                         <div className="product-title">{product.title}</div>
                         <div className="product-price">{product.price}</div>
                         <div>
-                            <div onClick={changDisplayTypeForDescription} className="product-text-btn">Description</div>
+                            <div onClick={changDisplayTypeForDescription} className="product-text-btn">{t("description")}</div>
                             <div className={descriptionClass}>{product.description == null ?
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, dolor ut mattis sollicitudin, elit nulla finibus dui," +
                                 " ac posuere erat justo quis mi. Sed scelerisque finibus erat, eget condimentum nunc dignissim id. Nullam urna magna," +
@@ -88,7 +91,7 @@ export default () => {
                                 : product.description}</div>
                         </div>
                         <div className="product-qty-container">
-                            <div>Qty</div>
+                            <div>{t("qty")}</div>
                             <div className="qty-counter">
                                 <div onClick={minusFromQty} className="fas fa-minus-circle"/>
                                 <div>{qty}</div>
@@ -96,12 +99,12 @@ export default () => {
                             </div>
                         </div>
                         <div className="product-btn-container">
-                            <div onClick={addToCart} className="product-btn">Add to Cart</div>
-                            {cart != null ? <NavLink to="/checkout" className="product-btn">Checkout</NavLink> : <></>}
+                            <div onClick={addToCart} className="product-btn">{t("addToCart")}</div>
+                            {cart != null ? <NavLink to="/checkout" className="product-btn">{t("checkout")}</NavLink> : <></>}
                         </div>
 
                         <div>
-                            <div onClick={changDisplayTypeForIngredients} className="product-text-btn">Ingredients</div>
+                            <div onClick={changDisplayTypeForIngredients} className="product-text-btn">{t("ingredients")}</div>
                             <div className={ingredientsClass}>{product.ingredients == null ?
                                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, dolor ut mattis sollicitudin, elit nulla finibus dui," +
                                 " ac posuere erat justo quis mi. Sed scelerisque finibus erat, eget condimentum nunc dignissim id. Nullam urna magna," +

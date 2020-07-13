@@ -1,3 +1,51 @@
 {
+  "navigation": {
+    "shopBy": "Shop By",
+    "cakes": "Cakes",
+    "muffins": "Muffins",
+    "kits": "Baking Kits",
+    "home": "Home",
+    "login/register": "Login/Register",
+    "contacts": "Contact Us",
+    "about": "About Us"
+  },
 
+  "product": {
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "addToCart": "Add To Cart",
+    "checkout": "Checkout",
+    "qty": "Qty"
+  },
+
+  "cart": {
+    "recentlyAdded": "Recently Added",
+    "emptyCart": "The Cart is Curently Empty",
+    "checkout": "Checkout",
+    "totalPrice": "Total Sum:",
+    "description": "Description:",
+    "ingredients": "Ingredients:",
+    "title": "Title:",
+    "price": "Price:",
+    "qty": "Quantity:",
+    "buy": "Buy"
+  },
+
+  "checkout": {
+    "description": "Description:",
+    "ingredients": "Ingredients:",
+    "title": "Title:",
+    "price": "Price:",
+    "qty": "Quantity:",
+    "totalPrice": "Total Sum:",
+    "buy": "Buy",
+    "changeInfo": "Change Delivery Info",
+    "name": "Name",
+    "surname": "Surname",
+    "address": "Address",
+    "postCode": "Post Code",
+    "cardNumber": "Card Number",
+    "login": "Login",
+    "emptyCart": "The Cart Is Currently Empty"
+  }
 }

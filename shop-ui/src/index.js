@@ -4,6 +4,8 @@ import './index.css';
 import './assets/variables/variables.css'
 import App from './App';
 
+import './language/i18n'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -2,9 +2,13 @@ import React, {useContext} from "react";
 import './Navigation.css'
 import {NavLink} from "react-router-dom";
 import {AppContext} from "../../App";
+import {useTranslation} from "react-i18next";
 
 
 export default () => {
+
+    const {i18n} = useTranslation()
+    const {t} = useTranslation("navigation")
 
     const {navigationBlock, navigationBlockHandler} = useContext(AppContext)
 
@@ -26,10 +30,10 @@ export default () => {
                 </li>
             </ul>
             <div className="navigation-bar__secondary">
-                <NavLink to="/home">Home</NavLink>
-                <NavLink to="/login">Login/Register</NavLink>
-                <NavLink to="/contacts">Contact Us</NavLink>
-                <NavLink to="/about">About Us</NavLink>
+                <NavLink to="/home">{t("home")}</NavLink>
+                <NavLink to="/login">{t("login/register")}</NavLink>
+                <NavLink to="/contacts">{t("contacts")}</NavLink>
+                <NavLink to="/about">{t("about")}</NavLink>
             </div>
         </nav>
     )

@@ -7,15 +7,28 @@ import {NavLink} from "react-router-dom";
 import LoginBtn from "../LoginBtn/LoginBtn";
 import {UserContext} from "../../App";
 import LogoutBtn from "../LogoutBtn/LogoutBtn";
+import {useTranslation} from "react-i18next";
 
 export default () => {
 
+    const {i18n} = useTranslation()
+
     const {userLoggedIn} = useContext(UserContext)
+
+    const changeLanguage = lang => e => {
+        e.preventDefault()
+        i18n.changeLanguage(lang)
+    }
 
     return (
         <section className="background--main-light">
             <div className="header container-wide">
-                <NavigationToggleBtn/>
+                <div className="flex header__left-side">
+                    <NavigationToggleBtn/>
+                    <a href="#" className="header-lang-btn" onClick={changeLanguage('lt')}>LT</a>
+                    <a href="#" className="header-lang-btn" onClick={changeLanguage('en')}>EN</a>
+                </div>
+
                 <NavLink to="/home">
                     <img
                         srcSet="https://cdn.shopify.com/s/files/1/0015/1185/0042/t/10/assets/logo.svg?v=2033538501994009811"
