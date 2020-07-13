@@ -6,15 +6,15 @@ import {NavLink} from "react-router-dom";
 
 export default () => {
 
-    const {userData, userLoggedIn} = useContext(UserContext)
-    const [orderHistory, setOrderHistory] = useState(null)
+    const {userData, userLoggedIn, setOrderHistory, orderHistory} = useContext(UserContext)
+
 
     useEffect(() => {
         UserApi.fetchOrderHistory()
             .then(response => {
                 setOrderHistory(response.data);
             })
-    }, [])
+    }, [userData])
 
     return (
         <section className="container-wide">

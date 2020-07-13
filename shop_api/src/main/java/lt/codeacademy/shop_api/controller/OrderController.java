@@ -2,7 +2,6 @@ package lt.codeacademy.shop_api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.codeacademy.shop_api.dto.CartDTO;
-import lt.codeacademy.shop_api.dto.OrderDTO;
 import lt.codeacademy.shop_api.dto.OrderHistoryDTO;
 import lt.codeacademy.shop_api.dto.PaymentInfoDTO;
 import lt.codeacademy.shop_api.entities.*;
@@ -11,7 +10,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -22,14 +20,12 @@ import java.util.stream.Collectors;
 public class OrderController {
 
     private final static ObjectMapper mapper = new ObjectMapper();
-    private final OrderService orderService;
     private final UserService userService;
     private final ProductService productService;
     private final OrderHistoryService orderHistoryService;
     private final PaymentInfoService paymentInfoService;
 
-    public OrderController(OrderService orderService, UserService userService1, ProductService productService, OrderHistoryService orderHistoryService, PaymentInfoService paymentInfoService) {
-        this.orderService = orderService;
+    public OrderController(UserService userService1, ProductService productService, OrderHistoryService orderHistoryService, PaymentInfoService paymentInfoService) {
         this.userService = userService1;
         this.productService = productService;
         this.orderHistoryService = orderHistoryService;

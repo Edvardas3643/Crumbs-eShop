@@ -19,8 +19,9 @@ export default () => {
     const [navigationOpen, setNavigationOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [userData, setUserData] = useState(null)
+    const [orderHistory, setOrderHistory] = useState(null)
 
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(null)
 
     const backdropClickHandler = () => {
         setCartOpen(false);
@@ -49,6 +50,8 @@ export default () => {
         setUserData: (user) => setUserData(user),
         userData,
 
+        orderHistory,
+        setOrderHistory,
         paymentInfo,
         setPaymentInfo: (val) => setPaymentInfo(val)
     }
