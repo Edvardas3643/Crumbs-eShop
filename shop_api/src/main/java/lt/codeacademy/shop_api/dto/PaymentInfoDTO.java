@@ -2,6 +2,7 @@ package lt.codeacademy.shop_api.dto;
 
 import lombok.Data;
 import lt.codeacademy.shop_api.entities.PaymentInfo;
+import lt.codeacademy.shop_api.entities.User;
 
 @Data
 public class PaymentInfoDTO {

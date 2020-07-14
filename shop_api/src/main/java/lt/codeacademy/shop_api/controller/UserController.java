@@ -10,6 +10,8 @@ import lt.codeacademy.shop_api.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -57,14 +59,13 @@ public class UserController {
     }
 
     @PostMapping("/private/newPaymentInfo")
-    public PaymentInfo newPaymentInfo(@AuthenticationPrincipal User user,
-                               @RequestParam String name,
-                               @RequestParam String surname,
-                               @RequestParam String address,
-                               @RequestParam Long postCode,
-                               @RequestParam Long cardNumber
+    public PaymentInfoDTO newPaymentInfo(@AuthenticationPrincipal User user,
+                                         @RequestParam String name,
+                                         @RequestParam String surname,
+                                         @RequestParam String address,
+                                         @RequestParam Long postCode,
+                                         @RequestParam Long cardNumber
     ) {
-
         PaymentInfo paymentInfo = PaymentInfo.builder()
                 .user(user)
                 .name(name)
@@ -74,6 +75,8 @@ public class UserController {
                 .cardNumber(cardNumber)
                 .build();
 
-       return paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo);
+        paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo);
+
+        return new PaymentInfoDTO(paymentInfo);
     }
 }

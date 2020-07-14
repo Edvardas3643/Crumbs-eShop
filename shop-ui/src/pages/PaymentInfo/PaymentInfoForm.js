@@ -6,6 +6,7 @@ import {UserContext} from "../../App";
 import {useHistory, useLocation} from "react-router-dom"
 import {useTranslation} from "react-i18next";
 import UserApi from "../../api/UserApi";
+import * as Yup from "yup";
 
 export default () => {
 
@@ -29,6 +30,21 @@ export default () => {
         history.replace(prevPath);
     }
 
+    const validationSchema = Yup.object().shape({
+        name: Yup.string()
+            .required(),
+        surname: Yup.string()
+            .required(),
+        address: Yup.string()
+            .required(),
+        postCode: Yup.string()
+            .length(5)
+            .required(),
+        cardNumber: Yup.string()
+            .length(8)
+            .required(),
+    })
+
     return (
         <section className="container-wide">
             <section className="payment-container" style={{backgroundImage: "url(" + loginBg + ")"}}>
@@ -37,6 +53,7 @@ export default () => {
                     <div className="payment-form-inner-container-bg-bottom"/>
                     <Formik
                         initialValues={initialValues}
+                        validationSchema={validationSchema}
                         onSubmit={onSubmit}>
                         {(errors) => (
                             <Form className="login-form">

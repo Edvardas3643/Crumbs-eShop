@@ -7,6 +7,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,10 +31,12 @@ public class OrderHistory {
     @Column(name = "created_on")
     private LocalDateTime createdOn;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
+    @NotNull
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_info_id")
     private PaymentInfo paymentInfo;

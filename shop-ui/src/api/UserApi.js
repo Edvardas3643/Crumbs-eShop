@@ -6,7 +6,6 @@ export default {
         return HTTP.get('private/user')
     },
 
-
     newUser(values) {
         let data = new FormData();
         data.append("username", values.username)

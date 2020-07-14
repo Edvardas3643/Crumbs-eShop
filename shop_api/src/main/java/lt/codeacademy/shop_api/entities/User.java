@@ -1,5 +1,6 @@
 package lt.codeacademy.shop_api.entities;
 
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,9 +21,11 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private Long id;
 
+    @NotNull
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @NotNull
     @Column(name = "password", nullable = false)
     private String password;
 
