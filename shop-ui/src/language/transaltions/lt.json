@@ -9,7 +9,6 @@
     "contacts": "Kontaktai",
     "about": "Apie Mus"
   },
-
   "product": {
     "description": "Aprasas",
     "ingredients": "Sudetis",
@@ -17,7 +16,6 @@
     "checkout": "Atsiskaitymas",
     "qty": "Kiekis"
   },
-
   "cart": {
     "recentlyAdded": "Neseniai I krepseli idetos Prekes",
     "emptyCart": "Krepselis yra tuscias",
@@ -29,7 +27,6 @@
     "price": "Kaina:",
     "qty": "Kiekis:"
   },
-
   "checkout": {
     "description": "Aprasas:",
     "ingredients": "Sudetis:",
@@ -38,13 +35,51 @@
     "qty": "Kiekis:",
     "totalPrice": "Suma:",
     "buy": "Pirkti",
-    "changeInfo": "Pakeisti Kontaktine Informacija",
+    "changeInfo": "Pakeisti Informacija",
+    "name": "Vardas:",
+    "surname": "Pavarde:",
+    "address": "Adresas:",
+    "postCode": "Pasto Kodas:",
+    "cardNumber": "Korteles Numeris:",
+    "login": "Prisijungti",
+    "emptyCart": "Krepselis Yra Tuscias"
+  },
+  "register": {
+    "register": "Naujas Vartotojas",
+    "username": "Vartotojo Vardas",
+    "password": "Slaptazodis",
+    "singUp": "REGISTRUOKIS"
+  },
+  "login": {
+    "register": "Neturi Vartotojo ? Susikurk",
+    "login": "Prisijunk",
+    "username": "Vartotojo Vardas",
+    "password": "Slaptazodis",
+    "singIn": "Prisijunk"
+  },
+  "profile": {
+    "description": "Aprasas:",
+    "ingredients": "Sudetis:",
+    "title": "Pavadinimas:",
+    "price": "Kaina:",
+    "qty": "Kiekis:",
+    "totalPrice": "Suma:",
+    "buy": "Pirkti",
+    "changeInfo": "Pakeisti Informacija",
+    "name": "Vardas:",
+    "surname": "Pavarde:",
+    "address": "Adresas:",
+    "postCode": "Pasto Kodas:",
+    "cardNumber": "Korteles Numeris:",
+    "login": "Prisijungti"
+  },
+  "PaymentInfo": {
+    "contactInfo": "Kontaktine Info",
+    "save": "Issaugoti",
     "name": "Vardas",
     "surname": "Pavarde",
     "address": "Adresas",
     "postCode": "Pasto Kodas",
-    "cardNumber": "Korteles Numeris",
-    "login": "Prisijungti",
-    "emptyCart": "Krepselis Yra Tuscias"
+    "cardNumber": "Korteles Numeris"
   }
 }

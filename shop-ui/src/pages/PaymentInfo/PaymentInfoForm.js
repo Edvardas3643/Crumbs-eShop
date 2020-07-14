@@ -3,13 +3,16 @@ import "./Payment.css"
 import {Field, Form, Formik} from "formik";
 import loginBg from "../../assets/img/login-bg.jpg";
 import {UserContext} from "../../App";
-import { useHistory, useLocation } from "react-router-dom"
+import {useHistory, useLocation} from "react-router-dom"
+import {useTranslation} from "react-i18next";
+import UserApi from "../../api/UserApi";
 
 export default () => {
 
-    const {userData, setPaymentInfo, setUserData} = useContext(UserContext)
+    const {t} = useTranslation("PaymentInfo")
+    const {userData, setUserData} = useContext(UserContext)
     const location = useLocation();
-    const {prevPath}  = location.state || { from: { pathname: '/' } }
+    const {prevPath} = location.state || {from: {pathname: '/'}}
     const history = useHistory();
     const initialValues = {
         name: userData.paymentInfo.name || '',
@@ -20,11 +23,9 @@ export default () => {
     }
 
     const onSubmit = (values) => {
-        setPaymentInfo(values);
-
-        userData.paymentInfo =  values
+        UserApi.setUserPaymentInfo(values)
+            .then(value => userData.paymentInfo = value.data);
         setUserData(userData)
-        console.log(userData)
         history.replace(prevPath);
     }
 
@@ -37,33 +38,34 @@ export default () => {
                     <Formik
                         initialValues={initialValues}
                         onSubmit={onSubmit}>
-                        {(props) => (
+                        {(errors) => (
                             <Form className="login-form">
 
                                 <p>
-                                    Contact Info
+                                    {t("contactInfo")}
                                 </p>
 
                                 <div>
-                                    <Field className="form-field" name="name" type="text" placeholder="Name"/>
+                                    <Field className="form-field" name="name" type="text" placeholder={t("name")}/>
                                 </div>
                                 <div>
                                     <Field className="form-field" name="surname" type="text"
-                                           placeholder="Surname"/>
+                                           placeholder={t("surname")}/>
                                 </div>
                                 <div>
-                                    <Field className="form-field" name="address" type="text" placeholder="Address"/>
+                                    <Field className="form-field" name="address" type="text"
+                                           placeholder={t("address")}/>
                                 </div>
                                 <div>
                                     <Field className="form-field" name="postCode" type="text"
-                                           placeholder="Post Code"/>
+                                           placeholder={t("postCode")}/>
                                 </div>
                                 <div>
                                     <Field className="form-field" name="cardNumber" type="text"
-                                           placeholder="Card Number"/>
+                                           placeholder={t("cardNumber")}/>
                                 </div>
                                 <div>
-                                    <button className="form-btn" type="submit">Save</button>
+                                    <button className="form-btn" type="submit">{t("save")}</button>
                                 </div>
 
                             </Form>

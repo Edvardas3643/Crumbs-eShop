@@ -15,7 +15,7 @@ export default () => {
 
     const {cart, setCart} = useContext(AppContext);
 
-    const {userLoggedIn, userData, paymentInfo} = useContext(UserContext);
+    const {userLoggedIn, userData} = useContext(UserContext);
 
     const removeProduct = (id) => {
         if (cart != null) {
@@ -37,7 +37,7 @@ export default () => {
     }
 
     const buy = () => {
-        OrderApi.newOrder(paymentInfo, cart, userData).then(r => r)
+        OrderApi.newOrder(userData.paymentInfo, cart, userData).then(r => r)
         setCart(null)
         history.push("/profile")
     }
@@ -66,7 +66,7 @@ export default () => {
                                             <div className="checkout-contents__description">
                                                 <p className="description__title">{contents.product.title}</p>
                                                 <div className="product-qty-container">
-                                                    <div>Qty</div>
+                                                    <div>{t("qty")}</div>
                                                     <div className="qty-counter">
                                                         <div onClick={() => minusFromQty(contents)}
                                                              className="fas fa-minus-circle"/>
@@ -76,8 +76,8 @@ export default () => {
                                                     </div>
                                                 </div>
 
-                                                <p className="description__price">Price: {contents.product.price} </p>
-                                                <p className="description__price">Total: {contents.product.price * contents.qty}</p>
+                                                <p className="description__price">{t("price")} {contents.product.price} </p>
+                                                <p className="description__price">{t("totalPrice")} {contents.product.price * contents.qty}</p>
 
                                             </div>
                                         </li>
@@ -95,11 +95,11 @@ export default () => {
                                     {userData && userData.paymentInfo ?
                                         <div className="payment-info-details">
                                             <div className="payment-info-description">
-                                                <div>Name: </div>
-                                                <div>Surname: </div>
-                                                <div>Address: </div>
-                                                <div>Post Code: </div>
-                                                <div>Card Number: </div>
+                                                <div>{t("name")} </div>
+                                                <div>{t("surname")} </div>
+                                                <div>{t("address")} </div>
+                                                <div>{t("postCode")} </div>
+                                                <div>{t("cardNumber")} </div>
                                             </div>
                                             <div className="payment-info-contents">
                                                 <div>{userData.paymentInfo.name}</div>
@@ -112,13 +112,13 @@ export default () => {
                                         : <></>
                                     }
                                     <div className="flex-container">
-                                        <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="checkout-btn buy">Change Payment Info</NavLink>
-                                        {userData.paymentInfo ? <div onClick={buy} className="checkout-btn buy">Buy</div> : <></>}
+                                        <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="checkout-btn buy">{t("changeInfo")}</NavLink>
+                                        {userData.paymentInfo.cardNumber ? <div onClick={buy} className="checkout-btn buy">{t("buy")}</div> : <></>}
                                     </div>
                                 </div>
 
                                 :
-                                <NavLink to="/login" className="checkout-btn login">Login</NavLink>
+                                <NavLink to={{pathname: '/login', state: { prevPath: location.pathname }}} className="checkout-btn login">{t("login")}</NavLink>
                         }
                     </section>
                 </section>

@@ -1,11 +1,14 @@
 import React from "react";
 import "./Register.css"
 import loginBg from "../../assets/img/login-bg.jpg";
-import {Field, Form, Formik, validateYupSchema} from "formik";
+import {Field, Form, Formik} from "formik";
 import UserApi from "../../api/UserApi";
 import * as Yup from 'yup';
+import {useTranslation} from "react-i18next";
 
 export default () => {
+
+    const {t} = useTranslation("register")
 
     const initialValues = {
         username: '',
@@ -13,7 +16,7 @@ export default () => {
         passwordConfirmation: ''
     }
 
-   const validationSchema = Yup.object({
+    const validationSchema = Yup.object({
         password: Yup.string().required('Password is required'),
         passwordConfirmation: Yup.string()
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -37,20 +40,21 @@ export default () => {
                                 onSubmit={onSubmit}>
                                 {(props) => (
                                     <Form className="login-form">
-                                        <p>SIGN UP</p>
+                                        <p>{t("singUp")}</p>
                                         <div>
-                                            <Field className="form-field" name="username" type="text" placeholder="Username"/>
+                                            <Field className="form-field" name="username" type="text"
+                                                   placeholder={t("username")}/>
                                         </div>
                                         <div>
                                             <Field className="form-field" name="password" type="password"
-                                                   placeholder="Password"/>
+                                                   placeholder={t("password")}/>
                                         </div>
                                         <div>
                                             <Field className="form-field" name="passwordConfirmation" type="password"
-                                                   placeholder="Password"/>
+                                                   placeholder={t("password")}/>
                                         </div>
                                         <div>
-                                            <button className="form-btn" type="submit">New Account</button>
+                                            <button className="form-btn" type="submit">{t("register")}</button>
                                         </div>
                                     </Form>
                                 )}

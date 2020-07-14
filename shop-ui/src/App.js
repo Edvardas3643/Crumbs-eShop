@@ -7,6 +7,7 @@ import Content from "./pages/Content/Content";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
 import {BrowserRouter} from "react-router-dom";
+import Errors from "./components/Errors/Errors";
 
 
 const AppContext = React.createContext(null)
@@ -14,6 +15,7 @@ const UserContext = React.createContext(null)
 
 export default () => {
 
+    const [error, setError] = useState(null)
     const [paymentInfo, setPaymentInfo] = useState(null);
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
@@ -41,6 +43,16 @@ export default () => {
 
         cart,
         setCart,
+
+        error,
+        setErrorNotification: (boolean, content) => setError({
+                error: {
+                    active: boolean,
+                    content: content
+                }
+            }
+        )
+
     }
 
     const userContext = {
@@ -69,9 +81,11 @@ export default () => {
                     <div className="App">
                         <Navigation/>
                         {backdrop}
+
                         <div className="main">
                             <Header/>
                             <Search/>
+                            <Errors/>
                             <Content/>
                             <Footer/>
                         </div>

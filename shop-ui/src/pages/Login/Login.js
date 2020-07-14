@@ -6,6 +6,8 @@ import userApi from "../../api/UserApi"
 import {NavLink, useHistory, useLocation} from "react-router-dom"
 import "./Login.css"
 import loginBg from "../../../src/assets/img/login-bg.jpg"
+import {useTranslation} from "react-i18next";
+import * as Yup from 'yup';
 
 const initialValues = {
     username: '',
@@ -14,25 +16,31 @@ const initialValues = {
 
 export default () => {
 
+    const {t} = useTranslation("login")
 
     const location = useLocation()
-
-    const { from } = location.state || { from: { pathname: '/' } }
+    const {prevPath} = location.state || {prevPath: '/'}
 
     const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
-    const onSubmit = values => {
+    const onSubmit = (values) => {
         setCredentials(values)
-
         userApi.getUser()
             .then(({data}) => {
                 console.log(data)
                 login(data)
                 setUserData(data)
-                history.replace(from)
+                history.replace(prevPath)
             })
     }
+
+    const validationSchema = Yup.object().shape({
+        username: Yup.string()
+            .required(),
+        password: Yup.string()
+            .required()
+    })
 
     return (
         <section className="container-wide">
@@ -42,22 +50,25 @@ export default () => {
                     <div className="login-form-inner-container-bg-bottom"/>
                     <Formik
                         initialValues={initialValues}
+                        validationSchema={validationSchema}
                         onSubmit={onSubmit}>
                         {(props) => (
+
                             <Form className="login-form">
-                                <p>SIGN IN</p>
+                                <p>{t("singIn")}</p>
                                 <div>
-                                    <Field className="form-field" name="username" type="text" placeholder="Username"/>
+                                    <Field className="form-field" name="username" type="text"
+                                           placeholder={t("username")}/>
                                 </div>
                                 <div>
                                     <Field className="form-field" name="password" type="password"
-                                           placeholder="Password"/>
+                                           placeholder={t("password")}/>
                                 </div>
                                 <div>
-                                    <button className="form-btn" type="submit">Login</button>
+                                    <button className="form-btn" type="submit">{t("login")}</button>
                                 </div>
                                 <div>
-                                    <NavLink to="register" className="form-btn">No Account ? Create An Account Here</NavLink>
+                                    <NavLink to="register" className="form-btn">{t("register")}</NavLink>
                                 </div>
 
                             </Form>

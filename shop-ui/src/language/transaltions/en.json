@@ -9,7 +9,6 @@
     "contacts": "Contact Us",
     "about": "About Us"
   },
-
   "product": {
     "description": "Description",
     "ingredients": "Ingredients",
@@ -17,7 +16,6 @@
     "checkout": "Checkout",
     "qty": "Qty"
   },
-
   "cart": {
     "recentlyAdded": "Recently Added",
     "emptyCart": "The Cart is Curently Empty",
@@ -30,7 +28,6 @@
     "qty": "Quantity:",
     "buy": "Buy"
   },
-
   "checkout": {
     "description": "Description:",
     "ingredients": "Ingredients:",
@@ -40,12 +37,52 @@
     "totalPrice": "Total Sum:",
     "buy": "Buy",
     "changeInfo": "Change Delivery Info",
+    "name": "Name:",
+    "surname": "Surname:",
+    "address": "Address:",
+    "postCode": "Post Code:",
+    "cardNumber": "Card Number:",
+    "login": "Login",
+    "emptyCart": "The Cart Is Currently Empty"
+  },
+  "register": {
+    "register": "Register",
+    "username": "Username",
+    "password": "Password",
+    "singUp": "SIGN UP"
+  },
+
+  "login": {
+    "register": "No Account ? Create An Account Here",
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "singIn": "LOGIN"
+  },
+  "profile": {
+    "description": "Description:",
+    "ingredients": "Ingredients:",
+    "title": "Title:",
+    "price": "Price:",
+    "qty": "Quantity:",
+    "totalPrice": "Total Sum:",
+    "buy": "Buy",
+    "changeInfo": "Change Delivery Info",
+    "name": "Name:",
+    "surname": "Surname:",
+    "address": "Address:",
+    "postCode": "Post Code:",
+    "cardNumber": "Card Number:",
+    "login": "Login"
+  },
+
+  "PaymentInfo": {
+    "contactInfo": "Contact Info",
+    "save": "Save",
     "name": "Name",
     "surname": "Surname",
     "address": "Address",
     "postCode": "Post Code",
-    "cardNumber": "Card Number",
-    "login": "Login",
-    "emptyCart": "The Cart Is Currently Empty"
+    "cardNumber": "Card Number"
   }
 }

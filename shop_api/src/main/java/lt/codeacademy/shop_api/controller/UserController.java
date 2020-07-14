@@ -49,9 +49,31 @@ public class UserController {
         UserDTO userDTO = UserDTO.builder()
                 .username(username)
                 .password(password)
+                .paymentInfo(null)
                 .roles(new HashSet<>(Collections.singletonList("USER")))
                 .build();
 
         userService.newUser(userDTO);
+    }
+
+    @PostMapping("/private/newPaymentInfo")
+    public PaymentInfo newPaymentInfo(@AuthenticationPrincipal User user,
+                               @RequestParam String name,
+                               @RequestParam String surname,
+                               @RequestParam String address,
+                               @RequestParam Long postCode,
+                               @RequestParam Long cardNumber
+    ) {
+
+        PaymentInfo paymentInfo = PaymentInfo.builder()
+                .user(user)
+                .name(name)
+                .surname(surname)
+                .address(address)
+                .postCode(postCode)
+                .cardNumber(cardNumber)
+                .build();
+
+       return paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo);
     }
 }

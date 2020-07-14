@@ -44,7 +44,7 @@ INSERT INTO Users(user_id, username, password)
 INSERT INTO Users(user_id, username, password)
     VALUES(3, 'anonymous', '{bcrypt}$2y$12$iwyoZW/83Ol3N7Hx.joa3uNlTq0gaqmA6vQwblp3VzMshZuUqCmiS');
 
-INSERT INTO Roles(role_id, value) VALUES(1, 'CUSTOMER');
+INSERT INTO Roles(role_id, value) VALUES(1, 'USER');
 INSERT INTO Roles(role_id, value) VALUES(2, 'ADMIN');
 
 INSERT INTO Users_Roles(user_id, role_id) VALUES(1, 1);

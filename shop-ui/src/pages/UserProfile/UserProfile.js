@@ -3,8 +3,11 @@ import "./UserProfile.css";
 import {UserContext} from "../../App";
 import {NavLink, useLocation} from "react-router-dom";
 import OrderApi from "../../api/OrderApi";
+import {useTranslation} from "react-i18next";
 
 export default () => {
+
+    const {t} = useTranslation("profile")
 
     const {userData, setOrderHistory, orderHistory} = useContext(UserContext)
 
@@ -56,11 +59,11 @@ export default () => {
                     {userData && userData.paymentInfo ?
                         <div className="payment-info-details">
                             <div className="payment-info-description">
-                                <div>Name: </div>
-                                <div>Surname: </div>
-                                <div>Address: </div>
-                                <div>Post Code: </div>
-                                <div>Card Number: </div>
+                                <div>{t("name")} </div>
+                                <div>{t("surname")} </div>
+                                <div>{t("address")} </div>
+                                <div>{t("postCode")} </div>
+                                <div>{t("cardNumber")} </div>
                             </div>
                             <div className="payment-info-contents">
                                 <div>{userData.paymentInfo.name}</div>
@@ -72,7 +75,7 @@ export default () => {
                         </div>
                         : <></>
                     }
-                    <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="payment-info-btn">Change Payment Info</NavLink>
+                    <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="payment-info-btn">{t("changeInfo")}</NavLink>
                 </section>
             </section>
         </section>
