@@ -29,6 +29,11 @@ export default () => {
                     <a href="#" className="header-lang-btn" onClick={changeLanguage('en')}>EN</a>
                 </div>
 
+                <select onChange={e => {changeLanguage(e.target.value)}}>
+                    <option value="lt">Lt</option>
+                    <option value="en">En</option>
+                </select>
+
                 <NavLink to="/home">
                     <img
                         srcSet="https://cdn.shopify.com/s/files/1/0015/1185/0042/t/10/assets/logo.svg?v=2033538501994009811"

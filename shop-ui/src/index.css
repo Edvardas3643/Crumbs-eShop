@@ -63,3 +63,8 @@ code {
     justify-content: center;
     align-items: center;
 }
+
+.field-error{
+    background: var(--color-red) !important;
+    color: var(--color-white) !important;
+}

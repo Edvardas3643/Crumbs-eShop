@@ -1,12 +1,13 @@
 import React, {useContext} from "react";
 import "./Payment.css"
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik, yupToFormErrors} from "formik";
 import loginBg from "../../assets/img/login-bg.jpg";
 import {UserContext} from "../../App";
 import {useHistory, useLocation} from "react-router-dom"
 import {useTranslation} from "react-i18next";
 import UserApi from "../../api/UserApi";
 import * as Yup from "yup";
+import {collectErrors} from "yup/lib/util/runValidations";
 
 export default () => {
 
@@ -24,8 +25,11 @@ export default () => {
     }
 
     const onSubmit = (values) => {
+        console.log("submit")
         UserApi.setUserPaymentInfo(values)
-            .then(value => userData.paymentInfo = value.data);
+            .then(value => {
+                userData.paymentInfo = value.data
+            });
         setUserData(userData)
         history.replace(prevPath);
     }
@@ -38,7 +42,7 @@ export default () => {
         address: Yup.string()
             .required(),
         postCode: Yup.string()
-            .length(5)
+            .length(4)
             .required(),
         cardNumber: Yup.string()
             .length(8)
@@ -55,36 +59,37 @@ export default () => {
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit={onSubmit}>
-                        {(errors) => (
-                            <Form className="login-form">
+                        {({errors}) => (
 
+                            <Form className="login-form">
                                 <p>
                                     {t("contactInfo")}
                                 </p>
 
                                 <div>
-                                    <Field className="form-field" name="name" type="text" placeholder={t("name")}/>
+                                    <Field className={errors.name ? "form-field field-error" : "form-field"} name="name" type="text"
+                                           placeholder={t("name")} errorClass="field-has-error"/>
                                 </div>
                                 <div>
-                                    <Field className="form-field" name="surname" type="text"
-                                           placeholder={t("surname")}/>
+                                    <Field className={errors.surname ? "form-field field-error" : "form-field"} name="surname" type="text"
+                                           placeholder={t("surname")} errorClass="field-has-error"/>
                                 </div>
                                 <div>
-                                    <Field className="form-field" name="address" type="text"
-                                           placeholder={t("address")}/>
+                                    <Field className={errors.address ? "form-field field-error" : "form-field"} name="address" type="text"
+                                           placeholder={t("address")} errorClass="field-has-error"/>
                                 </div>
                                 <div>
-                                    <Field className="form-field" name="postCode" type="text"
+                                    <Field className={errors.postCode ? "form-field field-error" : "form-field"} name="postCode" type="text"
                                            placeholder={t("postCode")}/>
                                 </div>
                                 <div>
-                                    <Field className="form-field" name="cardNumber" type="text"
-                                           placeholder={t("cardNumber")}/>
+                                    <Field className={errors.cardNumber ? "form-field field-error" : "form-field"} name="cardNumber" type="text"
+                                           placeholder={t("cardNumber")} />
+                                    {console.log(errors)}
                                 </div>
                                 <div>
                                     <button className="form-btn" type="submit">{t("save")}</button>
                                 </div>
-
                             </Form>
                         )}
                     </Formik>

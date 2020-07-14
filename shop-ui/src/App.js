@@ -16,7 +16,6 @@ const UserContext = React.createContext(null)
 export default () => {
 
     const [error, setError] = useState(null)
-    const [paymentInfo, setPaymentInfo] = useState(null);
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -64,8 +63,6 @@ export default () => {
 
         orderHistory,
         setOrderHistory,
-        paymentInfo,
-        setPaymentInfo: (val) => setPaymentInfo(val)
     }
 
     let backdrop;
