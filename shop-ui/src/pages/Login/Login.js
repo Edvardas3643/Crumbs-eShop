@@ -32,7 +32,7 @@ export default () => {
                 setUserData(data)
                 clearErrorNotification()
                 history.replace(prevPath)
-            }).catch(e => setErrorNotification({error: "Wrong login information"}))
+            }).catch(e => {setErrorNotification({error: "Wrong login information"})})
     }
 
     const validationSchema = Yup.object().shape({
@@ -55,9 +55,9 @@ export default () => {
                         validateOnBlur={false}
                         validateOnChange={false}
                         onSubmit={onSubmit}>
-                        {({errors}) => (
+                        {({validateForm, errors}) => (
                             <Form className="login-form">
-                                {setErrorNotification(errors)}
+
                                 <p>{t("singIn")}</p>
                                 <div>
                                     <Field className={errors.username ? "form-field field-error" : "form-field"} name="username" type="text"
@@ -68,7 +68,7 @@ export default () => {
                                            placeholder={t("password")}/>
                                 </div>
                                 <div>
-                                    <button className="form-btn" type="submit">{t("login")}</button>
+                                    <button className="form-btn" onClick={() => {validateForm().then(p => setErrorNotification(p))}} type="submit">{t("login")}</button>
                                 </div>
                                 <div>
                                     <NavLink to="register" className="form-btn">{t("register")}</NavLink>

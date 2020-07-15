@@ -21,10 +21,8 @@ export default () => {
     }
 
     const removeProduct = (id) => {
-        if (cart != null) {
-            let filteredCart = cart.filter((item) => item.product.id !== id)
+            let filteredCart = cart?.filter((item) => item.product.id !== id)
             setCart(filteredCart)
-        }
     }
 
     return (

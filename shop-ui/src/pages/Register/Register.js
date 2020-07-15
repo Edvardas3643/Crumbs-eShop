@@ -53,9 +53,8 @@ export default () => {
                                 validateOnChange={false}
                                 initialValues={initialValues}
                                 onSubmit={onSubmit}>
-                                {({errors}) => (
+                                {({errors, validateForm}) => (
                                     <Form className="login-form">
-                                        {setErrorNotification(errors)}
                                         <p>{t("singUp")}</p>
                                         <div>
                                             <Field className={errors.username ? "form-field field-error" : "form-field"} name="username" type="text"
@@ -70,7 +69,7 @@ export default () => {
                                                    placeholder={t("password")}/>
                                         </div>
                                         <div>
-                                            <button className="form-btn" type="submit">{t("register")}</button>
+                                            <button className="form-btn" onClick={() => {validateForm().then(p => setErrorNotification(p))}} type="submit">{t("register")}</button>
                                         </div>
                                     </Form>
                                 )}

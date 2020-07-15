@@ -8,12 +8,10 @@ export default () => {
 
     return (
         <>
-            {console.log(errorNotification != null)}
-            {errorNotification != null ?
+            {errorNotification ?
                 <section className="error-container">
                     <ul className="error-list">
-                        {console.log(errorNotification)}
-                        {Object.values(errorNotification).map(row => (<li className="error-message">{row}</li>))}
+                        {Object.values(errorNotification).map(row => (<li className="error-message" key={row}>{row}</li>))}
                     </ul>
                 </section> : <></>
             }

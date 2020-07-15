@@ -37,9 +37,10 @@ export default () => {
     }
 
     const buy = () => {
-        OrderApi.newOrder(userData.paymentInfo, cart, userData).then(r => r)
-        setCart(null)
-        history.push("/profile")
+        OrderApi.newOrder(userData.paymentInfo, cart, userData).then(r => {
+            setCart(null)
+            history.push("/profile")
+        })
     }
 
     let total = 0

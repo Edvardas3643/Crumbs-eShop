@@ -6,7 +6,7 @@ export default {
 
         let data = new FormData();
         data.append("username", userData.username);
-        console.log(values)
+
         data.append("info", JSON.stringify(values));
 
         data.append("cart", JSON.stringify(cart));

@@ -18,7 +18,7 @@ export default () => {
             .then(response => {
                 setOrderHistory(response.data);
             })
-    }, [userData, orderHistory])
+    }, [])
 
     return (
         <section className="container-wide">

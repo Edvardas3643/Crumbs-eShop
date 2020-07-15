@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import * as Yup from 'yup';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import productsApi from '../../api/productsApi';
 import ErrorMessageTranslated from "../../components/ErrorMessageTranslated/ErrorMessageTranslated";
 import "./ProductForm.css"
 import {useHistory} from "react-router-dom";
+import {AppContext} from "../../App";
 
 let product = {};
 
@@ -31,6 +32,9 @@ const validationSchema = Yup.object().shape({
 })
 
 export default () => {
+
+    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
+
     const history = useHistory();
     const [previewImg, setPreviewImg] = useState()
     const [file, setFile] = useState({});
@@ -55,7 +59,7 @@ export default () => {
                     history.push(`/product/${product.id}`);
                 }}
             >
-                {(props) => (
+                {({errors, validateForm}) => (
 
 
                     <Form>
@@ -108,7 +112,9 @@ export default () => {
                             <Field name="files" type="file" onChange={handleFileChange}/>
                         </div>
                         <div>
-                            <input type="submit" value="Create"/>
+                            <input type="submit" onClick={() => {
+                                validateForm().then(p => setErrorNotification(p))
+                            }}  value="Create"/>
                         </div>
                     </Form>
                 )

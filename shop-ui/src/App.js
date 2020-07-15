@@ -44,8 +44,8 @@ export default () => {
         setCart,
 
         errorNotification: error,
-        setErrorNotification: (content) => setError(content),
-        clearErrorNotification: () => setError(null)
+        setErrorNotification: (content) => {setError(content)},
+        clearErrorNotification: () => {setError(null)}
 
     }
 

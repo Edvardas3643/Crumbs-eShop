@@ -61,9 +61,8 @@ export default () => {
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                         onSubmit={onSubmit}>
-                        {({errors}) => (
+                        {({errors, validateForm}) => (
                             <Form className="login-form">
-                                {setErrorNotification(errors)}
                                 <p>
                                     {t("contactInfo")}
                                 </p>
@@ -71,17 +70,17 @@ export default () => {
                                 <div>
                                     <Field className={errors.name ? "form-field field-error" : "form-field"} name="name"
                                            type="text"
-                                           placeholder={t("name")} errorClass="field-has-error"/>
+                                           placeholder={t("name")}/>
                                 </div>
                                 <div>
                                     <Field className={errors.surname ? "form-field field-error" : "form-field"}
                                            name="surname" type="text"
-                                           placeholder={t("surname")} errorClass="field-has-error"/>
+                                           placeholder={t("surname")}/>
                                 </div>
                                 <div>
                                     <Field className={errors.address ? "form-field field-error" : "form-field"}
                                            name="address" type="text"
-                                           placeholder={t("address")} errorClass="field-has-error"/>
+                                           placeholder={t("address")}/>
                                 </div>
                                 <div>
                                     <Field className={errors.postCode ? "form-field field-error" : "form-field"}
@@ -94,7 +93,9 @@ export default () => {
                                            placeholder={t("cardNumber")}/>
                                 </div>
                                 <div>
-                                    <button className="form-btn" type="submit">{t("save")}</button>
+                                    <button className="form-btn" onClick={() => {
+                                        validateForm().then(p => setErrorNotification(p))
+                                    }} type="submit">{t("save")}</button>
                                 </div>
                             </Form>
                         )}
