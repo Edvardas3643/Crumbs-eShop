@@ -40,7 +40,7 @@ public class ProductController {
             @RequestParam(name = "file", required = false) MultipartFile file,
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description", required = false) String description,
-            @RequestParam(name = "price") BigDecimal price,
+            @RequestParam(name = "price") String price,
             @RequestParam(name = "tags") String[] tags
     ) {
 
@@ -50,7 +50,7 @@ public class ProductController {
                 .title(title)
                 .description(description)
                 .img(file.getOriginalFilename())
-                .price(price)
+                .price(new BigDecimal(price))
                 .tag(tagSet)
                 .build();
 
