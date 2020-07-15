@@ -1,0 +1,13 @@
+.error-container{
+    transform: translateY(-50px);
+    position: absolute;
+    width: 100%;
+}
+
+.error-message{
+    background: var(--color-red);
+    color: var(--color-white);
+    font-size: 1.4rem;
+    border: none;
+    padding: 1rem 25vw;
+}

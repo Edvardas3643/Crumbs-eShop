@@ -46,3 +46,8 @@
     align-items: center;
 }
 
+.language-selector{
+    margin-left: 1rem;
+    padding: 4px;
+}
+

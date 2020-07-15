@@ -1,14 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./Register.css"
 import loginBg from "../../assets/img/login-bg.jpg";
 import {Field, Form, Formik} from "formik";
 import UserApi from "../../api/UserApi";
 import * as Yup from 'yup';
 import {useTranslation} from "react-i18next";
+import {AppContext} from "../../App";
+import {useHistory} from "react-router-dom";
 
 export default () => {
 
     const {t} = useTranslation("register")
+
+    const history = useHistory();
+
+    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
 
     const initialValues = {
         username: '',
@@ -18,7 +24,7 @@ export default () => {
 
     const validationSchema = Yup.object({
         username: Yup.string()
-            .required(),
+            .required("Username is required"),
         password: Yup.string()
             .required('Password is required'),
         passwordConfirmation: Yup.string()
@@ -26,7 +32,10 @@ export default () => {
     });
 
     const onSubmit = values => {
-        UserApi.newUser(values)
+        UserApi.newUser(values).then(({data}) => {
+            clearErrorNotification();
+            history.push("/")
+        }).catch(e => setErrorNotification({error: "Server Error"}));
     }
 
     return (
@@ -39,21 +48,25 @@ export default () => {
                             <div className="login-form-inner-container-bg-bottom"/>
                             <Formik
                                 validationSchema={validationSchema}
+                                validateOnMount={false}
+                                validateOnBlur={false}
+                                validateOnChange={false}
                                 initialValues={initialValues}
                                 onSubmit={onSubmit}>
-                                {(props) => (
+                                {({errors}) => (
                                     <Form className="login-form">
+                                        {setErrorNotification(errors)}
                                         <p>{t("singUp")}</p>
                                         <div>
-                                            <Field className="form-field" name="username" type="text"
+                                            <Field className={errors.username ? "form-field field-error" : "form-field"} name="username" type="text"
                                                    placeholder={t("username")}/>
                                         </div>
                                         <div>
-                                            <Field className="form-field" name="password" type="password"
+                                            <Field className={errors.password ? "form-field field-error" : "form-field"} name="password" type="password"
                                                    placeholder={t("password")}/>
                                         </div>
                                         <div>
-                                            <Field className="form-field" name="passwordConfirmation" type="password"
+                                            <Field className={errors.passwordConfirmation ? "form-field field-error" : "form-field"} name="passwordConfirmation" type="password"
                                                    placeholder={t("password")}/>
                                         </div>
                                         <div>

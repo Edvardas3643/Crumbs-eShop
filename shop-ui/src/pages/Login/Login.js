@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import {Field, Form, Formik} from "formik";
 import {setCredentials} from "../../api";
-import {UserContext} from "../../App";
+import {AppContext, UserContext} from "../../App";
 import userApi from "../../api/UserApi"
 import {NavLink, useHistory, useLocation} from "react-router-dom"
 import "./Login.css"
@@ -20,7 +20,7 @@ export default () => {
 
     const location = useLocation()
     const {prevPath} = location.state || {prevPath: '/'}
-
+    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
     const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
@@ -28,11 +28,11 @@ export default () => {
         setCredentials(values)
         userApi.getUser()
             .then(({data}) => {
-                console.log(data)
                 login(data)
                 setUserData(data)
+                clearErrorNotification()
                 history.replace(prevPath)
-            })
+            }).catch(e => setErrorNotification({error: "Wrong login information"}))
     }
 
     const validationSchema = Yup.object().shape({
@@ -51,17 +51,20 @@ export default () => {
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
+                        validateOnMount={false}
+                        validateOnBlur={false}
+                        validateOnChange={false}
                         onSubmit={onSubmit}>
-                        {(props) => (
-
+                        {({errors}) => (
                             <Form className="login-form">
+                                {setErrorNotification(errors)}
                                 <p>{t("singIn")}</p>
                                 <div>
-                                    <Field className="form-field" name="username" type="text"
+                                    <Field className={errors.username ? "form-field field-error" : "form-field"} name="username" type="text"
                                            placeholder={t("username")}/>
                                 </div>
                                 <div>
-                                    <Field className="form-field" name="password" type="password"
+                                    <Field className={errors.password ? "form-field field-error" : "form-field"} name="password" type="password"
                                            placeholder={t("password")}/>
                                 </div>
                                 <div>

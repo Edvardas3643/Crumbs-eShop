@@ -4,16 +4,16 @@ import {AppContext} from "../../App";
 
 export default () => {
 
-    const {error, setErrorNotification} = useContext(AppContext);
-
-
+    const {errorNotification} = useContext(AppContext);
 
     return (
         <>
-            {error && error.active ?
+            {console.log(errorNotification != null)}
+            {errorNotification != null ?
                 <section className="error-container">
                     <ul className="error-list">
-                        {error.content.map(row => (<li className="error-message">{row}</li>))}
+                        {console.log(errorNotification)}
+                        {Object.values(errorNotification).map(row => (<li className="error-message">{row}</li>))}
                     </ul>
                 </section> : <></>
             }

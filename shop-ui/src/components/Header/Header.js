@@ -15,9 +15,9 @@ export default () => {
 
     const {userLoggedIn} = useContext(UserContext)
 
-    const changeLanguage = lang => e => {
+    const changeLanguage = () => e => {
         e.preventDefault()
-        i18n.changeLanguage(lang)
+        i18n.changeLanguage(e.target.value)
     }
 
     return (
@@ -25,14 +25,11 @@ export default () => {
             <div className="header container-wide">
                 <div className="flex header__left-side">
                     <NavigationToggleBtn/>
-                    <a href="#" className="header-lang-btn" onClick={changeLanguage('lt')}>LT</a>
-                    <a href="#" className="header-lang-btn" onClick={changeLanguage('en')}>EN</a>
+                    <select className="language-selector" onChange={changeLanguage()}>
+                        <option value="lt">LT</option>
+                        <option value="en">EN</option>
+                    </select>
                 </div>
-
-                <select onChange={e => {changeLanguage(e.target.value)}}>
-                    <option value="lt">Lt</option>
-                    <option value="en">En</option>
-                </select>
 
                 <NavLink to="/home">
                     <img

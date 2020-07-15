@@ -43,14 +43,9 @@ export default () => {
         cart,
         setCart,
 
-        error,
-        setErrorNotification: (boolean, content) => setError({
-                error: {
-                    active: boolean,
-                    content: content
-                }
-            }
-        )
+        errorNotification: error,
+        setErrorNotification: (content) => setError(content),
+        clearErrorNotification: () => setError(null)
 
     }
 
