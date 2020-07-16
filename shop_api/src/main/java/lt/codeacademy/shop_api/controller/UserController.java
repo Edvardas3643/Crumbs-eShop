@@ -8,16 +8,19 @@ import lt.codeacademy.shop_api.entities.User;
 import lt.codeacademy.shop_api.service.PaymentInfoService;
 import lt.codeacademy.shop_api.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping()
+@RequestMapping
+@Validated
 public class UserController {
 
     private final PaymentInfoService paymentInfoService;
@@ -29,8 +32,9 @@ public class UserController {
     }
 
     @GetMapping("/private/user")
-    public UserDTO getUser(@AuthenticationPrincipal User user) {
-
+    public UserDTO getUser(
+            @AuthenticationPrincipal User user
+    ) {
         PaymentInfo paymentInfo = paymentInfoService.getNewestPaymentInfo(user);
 
         return UserDTO.builder()
@@ -45,8 +49,9 @@ public class UserController {
     }
 
     @PostMapping("/newUser")
-    public void newUSer(@RequestParam String username,
-                        @RequestParam String password
+    public void newUSer(
+            @RequestParam @Size(min = 6, max = 20) String username,
+            @RequestParam @Size(min = 4, max = 20) String password
     ) {
         UserDTO userDTO = UserDTO.builder()
                 .username(username)
@@ -59,12 +64,13 @@ public class UserController {
     }
 
     @PostMapping("/private/newPaymentInfo")
-    public PaymentInfoDTO newPaymentInfo(@AuthenticationPrincipal User user,
-                                         @RequestParam String name,
-                                         @RequestParam String surname,
-                                         @RequestParam String address,
-                                         @RequestParam Long postCode,
-                                         @RequestParam Long cardNumber
+    public PaymentInfoDTO newPaymentInfo(
+            @AuthenticationPrincipal User user,
+            @RequestParam @Size(max = 40) String name,
+            @RequestParam @Size(max = 40) String surname,
+            @RequestParam @Size(max = 40) String address,
+            @RequestParam @Min(5) @Max(5) Long postCode,
+            @RequestParam @Min(8) @Max(8) Long cardNumber
     ) {
         PaymentInfo paymentInfo = PaymentInfo.builder()
                 .user(user)
@@ -75,8 +81,6 @@ public class UserController {
                 .cardNumber(cardNumber)
                 .build();
 
-        paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo);
-
-        return new PaymentInfoDTO(paymentInfo);
+        return new PaymentInfoDTO(paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo));
     }
 }

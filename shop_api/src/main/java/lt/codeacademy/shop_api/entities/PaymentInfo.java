@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
+import lt.codeacademy.shop_api.dto.PaymentInfoDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

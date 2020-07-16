@@ -4,9 +4,13 @@ import lt.codeacademy.shop_api.entities.Product;
 import lt.codeacademy.shop_api.entities.Tag;
 import lt.codeacademy.shop_api.service.ProductService;
 import lt.codeacademy.shop_api.service.TagService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
@@ -15,6 +19,7 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping
+@Validated
 public class ProductController {
 
     private final ProductService productService;
@@ -35,13 +40,19 @@ public class ProductController {
         return productService.findAll();
     }
 
-    @PostMapping("/private/saveProduct")
+    private Set<Tag> getTags(String[] tags) {
+        return Stream.of(tags)
+                .map(tagService::getByTagName)
+                .collect(Collectors.toSet());
+    }
+
+    @PostMapping("/saveProduct")
     private Product saveOrUpdateProduct(
-            @RequestParam(name = "file", required = false) MultipartFile file,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "description", required = false) String description,
-            @RequestParam(name = "price") String price,
-            @RequestParam(name = "tags") String[] tags
+            @RequestParam(name = "file", required = false) @NotEmpty MultipartFile file,
+            @RequestParam(name = "title") @NotEmpty String title,
+            @RequestParam(name = "description", required = false) @NotEmpty String description,
+            @RequestParam(name = "price") @NotEmpty String price,
+            @RequestParam(name = "tags") @Size(min = 1) String[] tags
     ) {
 
         Set<Tag> tagSet = getTags(tags);
@@ -58,14 +69,8 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    private Product getProduct(@PathVariable Long id) {
+    private Product getProduct(@PathVariable @NotEmpty @NotNull Long id) {
         return productService.getProduct(id);
-    }
-
-    private Set<Tag> getTags(String[] tags) {
-        return Stream.of(tags)
-                .map(tagService::getByTagName)
-                .collect(Collectors.toSet());
     }
 
 }

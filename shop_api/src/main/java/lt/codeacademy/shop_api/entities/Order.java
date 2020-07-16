@@ -3,6 +3,7 @@ package lt.codeacademy.shop_api.entities;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
+import lt.codeacademy.shop_api.dto.OrderDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -42,5 +43,7 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "order_history_id", nullable = true)
     private OrderHistory orderHistory;
+
+
 
 }

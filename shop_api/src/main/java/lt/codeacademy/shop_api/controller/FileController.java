@@ -5,13 +5,16 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotEmpty;
 import java.net.URLConnection;
 
 @Controller
 @RequestMapping("/files")
+@Validated
 public class FileController {
 
     private final FileService fileService;
@@ -26,7 +29,7 @@ public class FileController {
     }
 
     @GetMapping("/{fileName}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable("fileName") String fileName) {
+    public ResponseEntity<Resource> downloadFile(@PathVariable("fileName") @NotEmpty String fileName) {
         Resource resource = fileService.getFile(fileName);
 
         String contentType = URLConnection.guessContentTypeFromName(resource.getFilename());

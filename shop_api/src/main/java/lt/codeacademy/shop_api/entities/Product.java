@@ -38,11 +38,11 @@ public class Product {
     private String ingredients;
 
     @NotNull
+    @Min(value = 1, message = "Price Must be Bigger than 1")
     @Column(name = "price")
     private BigDecimal price;
 
     @NotNull
-    @Min(value = 1, message = "Price Must be Bigger than 1")
     @Column(name = "img")
     private String img;
 

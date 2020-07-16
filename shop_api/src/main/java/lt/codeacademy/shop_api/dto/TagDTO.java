@@ -3,10 +3,13 @@ package lt.codeacademy.shop_api.dto;
 import lombok.Data;
 import lt.codeacademy.shop_api.entities.Tag;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 public class TagDTO {
 
     private Long tagId;
+    @NotEmpty
     private String content;
 
     public TagDTO(Tag tag) {

@@ -2,17 +2,23 @@ package lt.codeacademy.shop_api.dto;
 
 import lombok.Data;
 import lt.codeacademy.shop_api.entities.PaymentInfo;
-import lt.codeacademy.shop_api.entities.User;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class PaymentInfoDTO {
 
-    private Long id;
-    private String name;
-    private String surname;
-    private String address;
-    private Long postCode;
-    private Long cardNumber;
+    public Long id;
+    @NotNull
+    public String name;
+    @NotNull
+    public String surname;
+    @NotNull
+    public String address;
+    @NotNull
+    public Long postCode;
+    @NotNull
+    public Long cardNumber;
 
     public PaymentInfoDTO(PaymentInfo p) {
         this.id = p.getId();
