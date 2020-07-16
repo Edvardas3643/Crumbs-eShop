@@ -1,5 +1,4 @@
 import HTTP from '.'
-import {Form} from "formik";
 
 export default {
     getUser() {

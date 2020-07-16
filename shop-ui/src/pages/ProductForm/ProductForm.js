@@ -38,6 +38,7 @@ export default () => {
     const history = useHistory();
     const [previewImg, setPreviewImg] = useState()
     const [file, setFile] = useState({});
+
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
         const currentFile = e.target.files[0];
@@ -45,8 +46,13 @@ export default () => {
         reader.addEventListener("load", () => {
             setPreviewImg(reader.result);
         }, false)
-
         reader.readAsDataURL(currentFile)
+    }
+
+    const onSubmit = (values) => {
+        product = productsApi.createProduct(values, file);
+        history.push(`/product/${product.id}`);
+        clearErrorNotification();
     }
 
     return (
@@ -54,14 +60,9 @@ export default () => {
             <Formik
                 initialValues={initialState}
                 validationSchema={validationSchema}
-                onSubmit={values => {
-                    product = productsApi.createProduct(values, file);
-                    history.push(`/product/${product.id}`);
-                }}
+                onSubmit={onSubmit}
             >
                 {({errors, validateForm}) => (
-
-
                     <Form>
                         <div>
                             <label htmlFor="title">Title:</label>

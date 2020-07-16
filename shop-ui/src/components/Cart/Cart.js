@@ -36,7 +36,7 @@ export default () => {
                     cart && Object.values(cart).map(contents => {
                             total = (total + (contents.product.price * contents.qty))
                             return (
-                                <li className="cart-contents">
+                                <li key={contents.product.id} className="cart-contents">
                                     <div
                                         className="cart-contents__preview-img"
                                         style={{backgroundImage: `url(http://localhost:8080/files/${contents.product.img})`}}

@@ -7,7 +7,6 @@ import {useTranslation} from "react-i18next";
 
 export default () => {
 
-    const {i18n} = useTranslation()
     const {t} = useTranslation("navigation")
 
     const {navigationBlock, navigationBlockHandler} = useContext(AppContext)

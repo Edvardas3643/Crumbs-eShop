@@ -6,7 +6,6 @@ import {NavLink, useParams} from "react-router-dom";
 
 export default () => {
 
-
     const {tag} = useParams()
 
     const [products, setProducts] = useState([])
@@ -20,12 +19,10 @@ export default () => {
     useEffect(() => {
         if (sessionProducts != null) {
             setProducts(JSON.parse(sessionProducts));
-            console.log(JSON.parse(sessionProducts));
         } else {
             productApi.fetchProducts(tag)
                 .then(response => {
                     setProducts(response.data);
-                    console.log(response.data)
                     setLocaleProducts(JSON.stringify(response.data));
                 })
         }

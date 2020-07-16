@@ -12,7 +12,6 @@ export default () => {
         if (!userLoggedIn()){
             history.push("/login");
         }else{
-            console.log("profile")
             history.push("/profile");
         }
     }

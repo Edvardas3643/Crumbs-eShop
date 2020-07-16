@@ -1,9 +1,10 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import "./UserProfile.css";
 import {UserContext} from "../../App";
 import {NavLink, useLocation} from "react-router-dom";
 import OrderApi from "../../api/OrderApi";
 import {useTranslation} from "react-i18next";
+import PaymentInfo from "../../components/PaymentInfo/PaymentInfo";
 
 export default () => {
 
@@ -18,7 +19,7 @@ export default () => {
             .then(response => {
                 setOrderHistory(response.data);
             })
-    }, [])
+    }, userData)
 
     return (
         <section className="container-wide">
@@ -31,10 +32,10 @@ export default () => {
                                 <div className="history-container">
                                     <div className="history-timestamp">Ordered on: {or.timestamp}</div>
                                     <div className="history-timestamp">Ordered
-                                        By: {or.paymentInfo.name} {or.paymentInfo.surname}</div>
-                                    <div className="history-timestamp">Delivering to: {or.paymentInfo.address}</div>
-                                    {or.orders.map(order => {
-                                        sum += order.price * order.quantity
+                                        By: {or.paymentInfoDTO.name} {or.paymentInfoDTO.surname}</div>
+                                    <div className="history-timestamp">Delivering to: {or.paymentInfoDTO.address}</div>
+                                    {or.ordersDTO.map(order => {
+                                        sum += Number(order.price) * Number(order.qty)
                                         return (
                                             <section className="order-container">
                                                 <div className="order-img"
@@ -42,7 +43,7 @@ export default () => {
                                                 <div className="order-info-container">
                                                     <div className="order-title">Title: {order.product.title}</div>
                                                     <div className="order-price">Price: {order.price}</div>
-                                                    <div className="order-quantity">Quantity: {order.quantity}</div>
+                                                    <div className="order-quantity">Quantity: {order.qty}</div>
                                                 </div>
                                             </section>
                                         )
@@ -55,26 +56,7 @@ export default () => {
                     }
                 </section>
                 <section className="profile-menu">
-
-                    {userData && userData.paymentInfo ?
-                        <div className="payment-info-details">
-                            <div className="payment-info-description">
-                                <div>{t("name")} </div>
-                                <div>{t("surname")} </div>
-                                <div>{t("address")} </div>
-                                <div>{t("postCode")} </div>
-                                <div>{t("cardNumber")} </div>
-                            </div>
-                            <div className="payment-info-contents">
-                                <div>{userData.paymentInfo.name}</div>
-                                <div>{userData.paymentInfo.surname}</div>
-                                <div>{userData.paymentInfo.address}</div>
-                                <div>{userData.paymentInfo.postCode}</div>
-                                <div>{userData.paymentInfo.cardNumber}</div>
-                            </div>
-                        </div>
-                        : <></>
-                    }
+                    <PaymentInfo />
                     <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="payment-info-btn">{t("changeInfo")}</NavLink>
                 </section>
             </section>

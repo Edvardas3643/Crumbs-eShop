@@ -7,7 +7,6 @@ export default {
 
     createProduct(values, file) {
         let data = new FormData();
-        console.log(values)
         data.append("file", file);
         data.append("title", values.title);
         data.append("price", values.price);

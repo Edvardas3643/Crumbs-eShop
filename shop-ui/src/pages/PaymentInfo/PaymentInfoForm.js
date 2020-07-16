@@ -1,6 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import "./Payment.css"
-import {Field, Form, Formik, yupToFormErrors} from "formik";
+import {Field, Form, Formik} from "formik";
 import loginBg from "../../assets/img/login-bg.jpg";
 import {AppContext, UserContext} from "../../App";
 import {useHistory, useLocation} from "react-router-dom"
@@ -25,7 +25,6 @@ export default () => {
     }
 
     const onSubmit = (values) => {
-        console.log("submit")
         UserApi.setUserPaymentInfo(values)
             .then(value => {
                 userData.paymentInfo = value.data

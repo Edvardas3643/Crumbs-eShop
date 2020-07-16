@@ -4,6 +4,7 @@ import "./Checkout.css"
 import {NavLink, useHistory, useLocation} from "react-router-dom";
 import OrderApi from "../../api/OrderApi";
 import {useTranslation} from "react-i18next";
+import PaymentInfo from "../../components/PaymentInfo/PaymentInfo";
 
 export default () => {
 
@@ -37,7 +38,12 @@ export default () => {
     }
 
     const buy = () => {
-        OrderApi.newOrder(userData.paymentInfo, cart, userData).then(r => {
+        let order = {
+                paymentInfoDTO: userData.paymentInfo,
+                ordersDTO: cart
+            }
+
+        OrderApi.newOrder(order).then(r => {
             setCart(null)
             history.push("/profile")
         })
@@ -54,7 +60,7 @@ export default () => {
                             cart && Object.values(cart).map(contents => {
                                     total = (total + (contents.product.price * contents.qty))
                                     return (
-                                        <li className="checkout-contents">
+                                        <li key={contents.product.id} className="checkout-contents">
                                             <div
                                                 className="checkout-contents__preview-img"
                                                 style={{backgroundImage: `url(http://localhost:8080/files/${contents.product.img})`}}
@@ -93,33 +99,18 @@ export default () => {
                         {
                             userLoggedIn() ?
                                 <div>
-                                    {userData && userData.paymentInfo ?
-                                        <div className="payment-info-details">
-                                            <div className="payment-info-description">
-                                                <div>{t("name")} </div>
-                                                <div>{t("surname")} </div>
-                                                <div>{t("address")} </div>
-                                                <div>{t("postCode")} </div>
-                                                <div>{t("cardNumber")} </div>
-                                            </div>
-                                            <div className="payment-info-contents">
-                                                <div>{userData.paymentInfo.name}</div>
-                                                <div>{userData.paymentInfo.surname}</div>
-                                                <div>{userData.paymentInfo.address}</div>
-                                                <div>{userData.paymentInfo.postCode}</div>
-                                                <div>{userData.paymentInfo.cardNumber}</div>
-                                            </div>
-                                        </div>
-                                        : <></>
-                                    }
+                                    <PaymentInfo />
                                     <div className="flex-container">
-                                        <NavLink to={{pathname: '/paymentInfo', state: { prevPath: location.pathname }}} className="checkout-btn buy">{t("changeInfo")}</NavLink>
-                                        {userData.paymentInfo.cardNumber ? <div onClick={buy} className="checkout-btn buy">{t("buy")}</div> : <></>}
+                                        <NavLink to={{pathname: '/paymentInfo', state: {prevPath: location.pathname}}}
+                                                 className="checkout-btn buy">{t("changeInfo")}</NavLink>
+                                        {userData.paymentInfo.cardNumber ?
+                                            <div onClick={buy} className="checkout-btn buy">{t("buy")}</div> : <></>}
                                     </div>
                                 </div>
 
                                 :
-                                <NavLink to={{pathname: '/login', state: { prevPath: location.pathname }}} className="checkout-btn login">{t("login")}</NavLink>
+                                <NavLink to={{pathname: '/login', state: {prevPath: location.pathname}}}
+                                         className="checkout-btn login">{t("login")}</NavLink>
                         }
                     </section>
                 </section>
