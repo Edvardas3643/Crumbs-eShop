@@ -7,7 +7,8 @@
     "home": "Home",
     "login/register": "Prisijungi/Registruotis",
     "contacts": "Kontaktai",
-    "about": "Apie Mus"
+    "about": "Apie Mus",
+    "newProduct": "Naujas Produktas"
   },
   "product": {
     "description": "Aprasas",
@@ -56,6 +57,7 @@
     "username": "Vartotojo Vardas",
     "password": "Slaptazodis",
     "singIn": "Prisijunk"
+
   },
   "profile": {
     "description": "Aprasas:",

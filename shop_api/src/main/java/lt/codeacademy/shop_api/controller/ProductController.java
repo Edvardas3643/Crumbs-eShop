@@ -1,15 +1,14 @@
 package lt.codeacademy.shop_api.controller;
 
+import lt.codeacademy.shop_api.dto.ProductDTO;
 import lt.codeacademy.shop_api.entities.Product;
 import lt.codeacademy.shop_api.entities.Tag;
 import lt.codeacademy.shop_api.service.ProductService;
 import lt.codeacademy.shop_api.service.TagService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
@@ -68,8 +67,13 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    private Product getProduct(@PathVariable @NotEmpty @NotNull Long id) {
+    private Product getProduct(@PathVariable Long id) {
         return productService.getProduct(id);
+    }
+
+    @GetMapping("/private/removeProduct")
+    private void removeProduct(@RequestParam Long id){
+        productService.removeById(id);
     }
 
 }

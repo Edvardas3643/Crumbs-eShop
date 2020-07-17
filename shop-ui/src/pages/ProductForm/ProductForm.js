@@ -48,7 +48,6 @@ export default () => {
 
     const onSubmit = (values) => {
         productsApi.createProduct(values, file).then(({data}) => {
-            console.log(data)
             history.push(`/product/${data.id}`)
             clearErrorNotification();
         }).catch(() => setErrorNotification({error: "Server Error"}))

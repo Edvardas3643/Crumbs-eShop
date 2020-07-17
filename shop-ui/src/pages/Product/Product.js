@@ -4,20 +4,21 @@ import productApi from "../../api/productsApi";
 import "./Product.css"
 import {AppContext} from "../../App";
 import {useTranslation} from "react-i18next";
+import DeleteProductBtn from "../../components/DeleteProductBtn/DeleteProductBtn";
 
 export default () => {
 
-    const {cart, setCart} = useContext(AppContext)
+    const {cart, setCart, setErrorNotification, clearErrorNotification} = useContext(AppContext)
 
-    const { t } = useTranslation("product");
+    const {t} = useTranslation("product");
 
     const {id} = useParams()
 
     const [product, setProduct] = useState(null)
 
-    const [descriptionClass, setDescriptionClass] = useState("product__description-text active")
+    const [descriptionClass, setDescriptionClass] = useState(true)
 
-    const [ingredientsClass, setIngredientsClass] = useState("product__ingredients-text")
+    const [ingredientsClass, setIngredientsClass] = useState(false)
 
     const [qty, setQty] = useState(1)
 
@@ -25,24 +26,9 @@ export default () => {
         productApi.getProduct(id)
             .then(response => {
                 setProduct(response.data);
-            })
+                clearErrorNotification();
+            }).catch(e => setErrorNotification({error: "Server Error"}))
     }, [id])
-
-    const changDisplayTypeForDescription = () => {
-        if (descriptionClass.includes("active")) {
-            setDescriptionClass("product__description-text")
-        } else {
-            setDescriptionClass("product__description-text active")
-        }
-    }
-
-    const changDisplayTypeForIngredients = () => {
-        if (ingredientsClass.includes("active")) {
-            setIngredientsClass("product__ingredients-text")
-        } else {
-            setIngredientsClass("product__ingredients-text active")
-        }
-    }
 
     const addToQty = () => {
         setQty(qty + 1)
@@ -55,7 +41,6 @@ export default () => {
     }
 
     const addToCart = () => {
-
         let newProduct = {
             product: product,
             qty: qty
@@ -64,7 +49,7 @@ export default () => {
         if (cart != null) {
             let filteredCart = cart.filter((item) => item.product.id !== product.id)
             setCart([...filteredCart, newProduct])
-        }else{
+        } else {
             setCart([newProduct])
         }
     }
@@ -80,15 +65,10 @@ export default () => {
                         <div className="product-title">{product.title}</div>
                         <div className="product-price">{product.price}</div>
                         <div>
-                            <div onClick={changDisplayTypeForDescription} className="product-text-btn">{t("description")}</div>
-                            <div className={descriptionClass}>{product.description == null ?
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, dolor ut mattis sollicitudin, elit nulla finibus dui," +
-                                " ac posuere erat justo quis mi. Sed scelerisque finibus erat, eget condimentum nunc dignissim id. Nullam urna magna," +
-                                " lobortis viverra ante quis, fermentum feugiat est. Mauris posuere, eros sit amet mattis efficitur, arcu mi rutrum justo," +
-                                " non efficitur lacus orci ac tortor. Aliquam sollicitudin, diam nec auctor cursus, massa turpis cursus lectus, id lacinia odio quam nec nunc." +
-                                " Morbi accumsan erat turpis, sagittis commodo urna rhoncus ullamcorper. Nulla non efficitur sem. Donec dignissim velit nec purus hendrerit maximus." +
-                                " Morbi molestie mauris sed imperdiet ornare. Suspendisse elementum tellus eu laoreet bibendum."
-                                : product.description}</div>
+                            <div onClick={() => setDescriptionClass(!descriptionClass)}
+                                 className="product-text-btn">{t("description")}</div>
+                            <div
+                                className={descriptionClass ? "product__description-text active" : "product__description-text"}>{product.description}</div>
                         </div>
                         <div className="product-qty-container">
                             <div>{t("qty")}</div>
@@ -100,19 +80,15 @@ export default () => {
                         </div>
                         <div className="product-btn-container">
                             <div onClick={addToCart} className="product-btn">{t("addToCart")}</div>
-                            {cart != null ? <NavLink to="/checkout" className="product-btn">{t("checkout")}</NavLink> : <></>}
+                            {cart != null ?
+                                <NavLink to="/checkout" className="product-btn">{t("checkout")}</NavLink> : <></>}
                         </div>
-
+                        <DeleteProductBtn id={product.id}/>
                         <div>
-                            <div onClick={changDisplayTypeForIngredients} className="product-text-btn">{t("ingredients")}</div>
-                            <div className={ingredientsClass}>{product.ingredients == null ?
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper, dolor ut mattis sollicitudin, elit nulla finibus dui," +
-                                " ac posuere erat justo quis mi. Sed scelerisque finibus erat, eget condimentum nunc dignissim id. Nullam urna magna," +
-                                " lobortis viverra ante quis, fermentum feugiat est. Mauris posuere, eros sit amet mattis efficitur, arcu mi rutrum justo," +
-                                " non efficitur lacus orci ac tortor. Aliquam sollicitudin, diam nec auctor cursus, massa turpis cursus lectus, id lacinia odio quam nec nunc." +
-                                " Morbi accumsan erat turpis, sagittis commodo urna rhoncus ullamcorper. Nulla non efficitur sem. Donec dignissim velit nec purus hendrerit maximus." +
-                                " Morbi molestie mauris sed imperdiet ornare. Suspendisse elementum tellus eu laoreet bibendum."
-                                : product.ingredients}</div>
+                            <div onClick={() => setIngredientsClass(!ingredientsClass)}
+                                 className="product-text-btn">{t("ingredients")}</div>
+                            <div
+                                className={ingredientsClass ? "product__ingredients-text active" : "product__ingredients-text"}>{product.ingredients}</div>
                         </div>
                     </div>
                 </> : <></>

@@ -3,6 +3,7 @@ import './Navigation.css'
 import {NavLink} from "react-router-dom";
 import {AppContext} from "../../App";
 import {useTranslation} from "react-i18next";
+import IsUserAdminRender from "../Security/IsUserAdminRender";
 
 
 export default () => {
@@ -33,6 +34,9 @@ export default () => {
                 <NavLink to="/login">{t("login/register")}</NavLink>
                 <NavLink to="/contacts">{t("contacts")}</NavLink>
                 <NavLink to="/about">{t("about")}</NavLink>
+                <IsUserAdminRender>
+                    <NavLink to="/newProduct">{t("newProduct")}</NavLink>
+                </IsUserAdminRender>
             </div>
         </nav>
     )

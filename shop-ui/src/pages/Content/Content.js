@@ -9,7 +9,8 @@ import Checkout from "../Checkout/Checkout";
 import PaymentForm from "../PaymentInfo/PaymentInfoForm";
 import UserProfile from "../UserProfile/UserProfile";
 import Register from "../Register/Register";
-import IsUserLoggedInReroute from "../../components/Security/isUserLoggedInReroute"
+import IsUserLoggedInReroute from "../../components/Security/IsUserLoggedInReroute"
+import IsAdmin from "../../components/Security/IsAdminRerouter"
 
 export default () => (
     <Switch>
@@ -28,7 +29,7 @@ export default () => (
         </Route>
 
         <Route exact path="/checkout">
-                <Checkout/>
+            <Checkout/>
         </Route>
 
         <Route exact path="/login">
@@ -51,8 +52,10 @@ export default () => (
             <Product/>
         </Route>
 
-        <Route path="/productForm">
-            <ProductForm/>
+        <Route path="/newProduct">
+            <IsAdmin>
+                <ProductForm/>
+            </IsAdmin>
         </Route>
 
         <Route path="/profile">

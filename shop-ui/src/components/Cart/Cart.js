@@ -21,8 +21,8 @@ export default () => {
     }
 
     const removeProduct = (id) => {
-            let filteredCart = cart?.filter((item) => item.product.id !== id)
-            setCart(filteredCart)
+        let filteredCart = cart?.filter((item) => item.product.id !== id)
+        setCart(filteredCart)
     }
 
     return (
@@ -33,17 +33,18 @@ export default () => {
             </div>
             <ul>
                 {
-                    cart && Object.values(cart).map(contents => {
+                    cart && Object.values(cart).map((contents, index) => {
                             total = (total + (contents.product.price * contents.qty))
-                            return (
-                                <li key={contents.product.id} className="cart-contents">
+                            let length = Object.values(cart).length
+                            return length >= index  && length - 5 <= index?
+                                <li key={index} className="cart-contents">
                                     <div
                                         className="cart-contents__preview-img"
                                         style={{backgroundImage: `url(http://localhost:8080/files/${contents.product.img})`}}
                                     >
                                         <i
-                                        onClick={() => removeProduct(contents.product.id)}
-                                        className="cart-contents__remove-product-btn fas fa-times fa-2x"
+                                            onClick={() => removeProduct(contents.product.id)}
+                                            className="cart-contents__remove-product-btn fas fa-times fa-2x"
                                         />
                                     </div>
                                     <div className="cart-contents__description">
@@ -52,7 +53,7 @@ export default () => {
                                         <p className="description__price">{t("totalPrice")} {contents.product.price * contents.qty} </p>
                                     </div>
                                 </li>
-                            )
+                                : <></>
                         }
                     )
                 }

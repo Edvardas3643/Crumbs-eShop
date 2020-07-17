@@ -7,7 +7,6 @@ export default {
 
     createProduct(values, file) {
         let data = new FormData();
-        console.log(values)
         data.append("file", file);
         data.append("title", values.title);
         data.append("price", values.price);
@@ -19,4 +18,7 @@ export default {
     getProduct(id) {
         return HTTP.get(`/product/` + id)
     },
+    removeProduct(id) {
+        return HTTP.get("/private/removeProduct?id=" + id)
+    }
 }
