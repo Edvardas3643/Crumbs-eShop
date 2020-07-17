@@ -24,6 +24,8 @@ export default () => {
 
     const [cart, setCart] = useState(null)
 
+    console.log(userData)
+
     const backdropClickHandler = () => {
         setCartOpen(false);
         setNavigationOpen(false);
@@ -46,8 +48,9 @@ export default () => {
         errorNotification: error,
         setErrorNotification: (content) => {setError(content)},
         clearErrorNotification: () => {setError(null)}
-
     }
+
+
 
     const userContext = {
         login: (user) => setUserData(user),

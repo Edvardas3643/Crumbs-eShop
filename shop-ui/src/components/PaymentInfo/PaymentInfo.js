@@ -8,6 +8,8 @@ export default () => {
 
     const {t} = useTranslation("checkout")
 
+    console.log(userData)
+
     return (
         <>
             {userData && userData.paymentInfo ?
@@ -20,11 +22,11 @@ export default () => {
                         <div>{t("cardNumber")} </div>
                     </div>
                     <div className="payment-info-contents">
-                        <div>{userData.paymentInfo.name}</div>
-                        <div>{userData.paymentInfo.surname}</div>
-                        <div>{userData.paymentInfo.address}</div>
-                        <div>{userData.paymentInfo.postCode}</div>
-                        <div>{userData.paymentInfo.cardNumber}</div>
+                        <div>{userData.paymentInfo.name ? userData.paymentInfo.name : " "}</div>
+                        <div>{userData.paymentInfo.surname ? userData.paymentInfo.surname : " "}</div>
+                        <div>{userData.paymentInfo.address ? userData.paymentInfo.address : " "}</div>
+                        <div>{userData.paymentInfo.postCode ? userData.paymentInfo.postCode : " "}</div>
+                        <div>{userData.paymentInfo.cardNumber ? userData.paymentInfo.cardNumber : " "}</div>
                     </div>
                 </div>
                 : <></>
