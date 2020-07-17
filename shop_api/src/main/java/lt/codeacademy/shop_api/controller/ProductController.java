@@ -49,6 +49,7 @@ public class ProductController {
             @RequestParam(name = "file", required = false) @NotEmpty MultipartFile file,
             @RequestParam(name = "title") @NotEmpty String title,
             @RequestParam(name = "description", required = false) @NotEmpty String description,
+            @RequestParam(name = "ingredients", required = false) @NotEmpty String ingredients,
             @RequestParam(name = "price") @NotEmpty String price,
             @RequestParam(name = "tags") @Size(min = 1) String[] tags
     ) {
@@ -58,6 +59,7 @@ public class ProductController {
         Product product = Product.builder()
                 .title(title)
                 .description(description)
+                .ingredients(ingredients)
                 .img(file.getOriginalFilename())
                 .price(new BigDecimal(price))
                 .tag(tagSet)

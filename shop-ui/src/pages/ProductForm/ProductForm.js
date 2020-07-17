@@ -10,6 +10,7 @@ import {AppContext} from "../../App";
 const initialState = {
     title: '',
     description: '',
+    ingredients: '',
     price: '',
     tags: []
 }
@@ -25,7 +26,9 @@ const validationSchema = Yup.object().shape({
         .label("common:price")
         .typeError()
         .min(0.01)
-        .required()
+        .required(),
+    ingredients: Yup.string()
+        .required(),
 })
 
 export default () => {
@@ -57,71 +60,74 @@ export default () => {
 
     return (
         <section className="container-wide flex-center product-form-container">
-            <Formik
-                initialValues={initialState}
-                validationSchema={validationSchema}
-                onSubmit={onSubmit}
-            >
-                {({errors, validateForm}) => (
-                    <Form>
-                        <div>
-                            <label htmlFor="title">Title:</label>
-                            <Field name="title" type="text"/>
-                            <ErrorMessageTranslated className="error" name="title"/>
-                        </div>
-                        <div className="form__description">
-                            <label htmlFor="description">Description:</label>
-                            <Field name="description" type="text"/>
-                            <ErrorMessageTranslated className="error" name="description"/>
-                        </div>
-                        <div>
-                            <label htmlFor="price">Price:</label>
-                            <Field name="price" type="text"/>
-                            <ErrorMessageTranslated className="error" name="price"/>
-                        </div>
+            <div className="form-container">
+                <Formik
+                    initialValues={initialState}
+                    validationSchema={validationSchema}
+                    onSubmit={onSubmit}
+                >
+                    {({errors, validateForm}) => (
+                        <Form>
+                            <div>
+                                <Field className={errors.title ? "form-field field-error" : "form-field"} name="title"
+                                       type="text" placeholder="title"/>
+                            </div>
+                            <div>
+                                <Field className={errors.description ? "form-field field-error" : "form-field"}
+                                       name="description" type="text" placeholder="description"/>
+                            </div>
+                            <div>
+                                <Field className={errors.ingredients ? "form-field field-error" : "form-field"}
+                                       name="ingredients" type="text"
+                                       placeholder="ingredients"/>
+                            </div>
+                            <div>
+                                <Field className={errors.price ? "form-field field-error" : "form-field"} name="price"
+                                       type="text" placeholder="price"/>
+                            </div>
 
-                        <div className="checkbox-container">
-                            <div className="checkbox-container__content">
-                                <label htmlFor="cakeTag">Cake: </label>
-                                <Field type="checkbox" name="tags" value="cake"/>
-                                <ErrorMessage name="cakeTag"/>
+                            <div className="checkbox-container">
+                                <div className="checkbox-container__content">
+                                    <label htmlFor="cakeTag">Cake: </label>
+                                    <Field type="checkbox" name="tags" value="cake"/>
+                                    <ErrorMessage name="cakeTag"/>
+                                </div>
+                                <div className="checkbox-container__content">
+                                    <label htmlFor="kitTag">Kits: </label>
+                                    <Field type="checkbox" name="tags" value="kit"/>
+                                    <ErrorMessage name="kitTag"/>
+                                </div>
+                                <div className="checkbox-container__content">
+                                    <label htmlFor="muffinTag">Muffins: </label>
+                                    <Field type="checkbox" name="tags" value="muffin"/>
+                                    <ErrorMessage name="muffinTag"/>
+                                </div>
+                                <div className="checkbox-container__content">
+                                    <label htmlFor="cookiesTag">Cookies: </label>
+                                    <Field type="checkbox" name="tags" value="cookie"/>
+                                    <ErrorMessage name="cookiesTag"/>
+                                </div>
+                                <div className="checkbox-container__content">
+                                    <label htmlFor="browniesTag">Brownies: </label>
+                                    <Field type="checkbox" name="tags" value="brownie"/>
+                                    <ErrorMessage name="browniesTag"/>
+                                </div>
                             </div>
-                            <div className="checkbox-container__content">
-                                <label htmlFor="kitTag">Kits: </label>
-                                <Field type="checkbox" name="tags" value="kit"/>
-                                <ErrorMessage name="kitTag"/>
-                            </div>
-                            <div className="checkbox-container__content">
-                                <label htmlFor="muffinTag">Muffins: </label>
-                                <Field type="checkbox" name="tags" value="muffin"/>
-                                <ErrorMessage name="muffinTag"/>
-                            </div>
-                            <div className="checkbox-container__content">
-                                <label htmlFor="cookiesTag">Cookies: </label>
-                                <Field type="checkbox" name="tags" value="cookie"/>
-                                <ErrorMessage name="cookiesTag"/>
-                            </div>
-                            <div className="checkbox-container__content">
-                                <label htmlFor="browniesTag">Brownies: </label>
-                                <Field type="checkbox" name="tags" value="brownie"/>
-                                <ErrorMessage name="browniesTag"/>
-                            </div>
-                        </div>
 
-                        <div>
-                            <label htmlFor="file">File:</label>
-                            <Field name="files" type="file" onChange={handleFileChange}/>
-                        </div>
-                        <div>
-                            <input type="submit" onClick={() => {
-                                validateForm().then(p => setErrorNotification(p))
-                            }} value="Create"/>
-                        </div>
-                    </Form>
-                )
-                }
-            </Formik>
-            <div className="image-preview" style={{backgroundImage: "url(" + previewImg + ")"}}/>
+                            <div>
+                                <Field name="files" type="file" onChange={handleFileChange}/>
+                            </div>
+                            <div>
+                                <input type="submit" className="form-btn" onClick={() => {
+                                    validateForm().then(p => setErrorNotification(p))
+                                }} value="Create"/>
+                            </div>
+                        </Form>
+                    )
+                    }
+                </Formik>
+                <div className="image-preview" style={{backgroundImage: "url(" + previewImg + ")"}}/>
+            </div>
         </section>
     )
 }
