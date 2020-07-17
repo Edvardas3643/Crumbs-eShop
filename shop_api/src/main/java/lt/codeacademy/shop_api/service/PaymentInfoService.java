@@ -19,6 +19,6 @@ public class PaymentInfoService {
     }
 
     public PaymentInfo getNewestPaymentInfo(User user) {
-        return paymentInfoRepository.findTopByUserOrderById(user).orElse(new PaymentInfo());
+        return paymentInfoRepository.findTopByUserOrderByIdDesc(user).orElse(new PaymentInfo());
     }
 }

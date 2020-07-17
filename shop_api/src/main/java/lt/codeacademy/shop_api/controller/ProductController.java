@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,12 +39,6 @@ public class ProductController {
         return productService.findAll();
     }
 
-    private Set<Tag> getTags(String[] tags) {
-        return Stream.of(tags)
-                .map(tagService::getByTagName)
-                .collect(Collectors.toSet());
-    }
-
     @PostMapping("/saveProduct")
     private Product saveOrUpdateProduct(
             @RequestParam(name = "file", required = false) @NotEmpty MultipartFile file,
@@ -54,7 +49,11 @@ public class ProductController {
             @RequestParam(name = "tags") @Size(min = 1) String[] tags
     ) {
 
-        Set<Tag> tagSet = getTags(tags);
+        Set<Tag> tagSet = Stream.of(tags)
+                .map(tagService::getByTagName)
+                .collect(Collectors.toSet());
+
+        System.out.println(tagSet);
 
         Product product = Product.builder()
                 .title(title)
@@ -65,6 +64,9 @@ public class ProductController {
                 .tag(tagSet)
                 .build();
 
+        System.out.println(tagSet);
+        System.out.println(product);
+
         return productService.saveOrUpdateProduct(product, file);
     }
 
@@ -74,7 +76,7 @@ public class ProductController {
     }
 
     @GetMapping("/private/removeProduct")
-    private void removeProduct(@RequestParam Long id){
+    private void removeProduct(@RequestParam Long id) {
         productService.removeById(id);
     }
 

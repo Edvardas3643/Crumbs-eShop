@@ -15,6 +15,6 @@ public class TagService {
     }
 
     public Tag getByTagName(String name){
-       return tagRepository.findByContent(name);
+       return tagRepository.findTagByContentIsContaining(name);
     }
 }

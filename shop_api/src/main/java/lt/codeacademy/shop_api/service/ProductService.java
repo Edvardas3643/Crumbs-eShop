@@ -33,11 +33,10 @@ public class ProductService {
     }
 
     public Product saveOrUpdateProduct(Product product, MultipartFile file) {
-        if (file != null){
+        if (file != null) {
             fileService.saveOrUpdateFile(file);
         }
-      return productRepository.save(product);
-
+        return productRepository.save(product);
     }
 
     public Product getProduct(Long id) {

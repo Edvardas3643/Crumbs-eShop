@@ -22,12 +22,23 @@ public class PaymentInfoDTO {
     public String cardNumber;
 
     public PaymentInfoDTO(PaymentInfo p) {
+
+        String postCode = "";
+        if (p.getPostCode() != null) {
+            postCode = String.valueOf(p.getPostCode());
+        }
+
+        String cardNumber = "";
+        if (p.getCardNumber() != null) {
+            cardNumber = String.valueOf(p.getCardNumber());
+        }
+
         this.id = p.getId();
         this.name = p.getName();
         this.surname = p.getSurname();
         this.address = p.getAddress();
-        this.postCode = String.valueOf(p.getPostCode());
-        this.cardNumber = String.valueOf(p.getCardNumber());
+        this.postCode = postCode;
+        this.cardNumber = cardNumber;
     }
 
     public PaymentInfoDTO() {

@@ -12,5 +12,5 @@ import java.util.Optional;
 public interface PaymentInfoRepository extends JpaRepository<PaymentInfo, Long> {
     List<PaymentInfo> findAllByUser(User user);
 
-    Optional<PaymentInfo> findTopByUserOrderById(User user);
+    Optional<PaymentInfo> findTopByUserOrderByIdDesc(User user);
 }
