@@ -31,13 +31,13 @@ public class OrderHistoryService {
         return orderHistoryRepository.findAllByUser(user);
     }
 
-    public boolean addNewOrderHistory(OrderHistoryDTO orderHistoryDTO, User user) {
+    public OrderHistory addNewOrderHistory(OrderHistoryDTO orderHistoryDTO, User user) {
 
         PaymentInfo paymentInfo = PaymentInfo.builder()
                 .name(orderHistoryDTO.getPaymentInfoDTO().getName())
                 .address(orderHistoryDTO.getPaymentInfoDTO().getAddress())
-                .cardNumber(orderHistoryDTO.getPaymentInfoDTO().getCardNumber())
-                .postCode(orderHistoryDTO.getPaymentInfoDTO().getPostCode())
+                .cardNumber(Long.valueOf(orderHistoryDTO.getPaymentInfoDTO().getCardNumber()))
+                .postCode(Long.valueOf(orderHistoryDTO.getPaymentInfoDTO().getPostCode()))
                 .surname(orderHistoryDTO.getPaymentInfoDTO().getSurname())
                 .user(user)
                 .build();
@@ -58,7 +58,6 @@ public class OrderHistoryService {
 
         orderHistory.setOrders(orders);
 
-        orderHistoryRepository.save(orderHistory);
-        return true;
+        return  orderHistoryRepository.save(orderHistory);
     }
 }

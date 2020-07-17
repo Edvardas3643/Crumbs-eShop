@@ -4,10 +4,8 @@ import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
-import lt.codeacademy.shop_api.dto.PaymentInfoDTO;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -38,11 +36,11 @@ public class PaymentInfo {
 
 
     @Column(name = "post_code")
-    @Size(min=5, max=5)
+    @NotNull
     private Long postCode;
 
     @Column(name = "card_number")
-    @Size(min=8, max=8)
+    @NotNull
     private Long cardNumber;
 
     @OneToOne(fetch = FetchType.EAGER)

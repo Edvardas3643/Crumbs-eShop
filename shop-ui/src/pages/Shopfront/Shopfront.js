@@ -7,25 +7,11 @@ import {NavLink, useParams} from "react-router-dom";
 export default () => {
 
     const {tag} = useParams()
-
     const [products, setProducts] = useState([])
 
-    const sessionProducts = sessionStorage.getItem(tag);
-
-    const setLocaleProducts = (value) => {
-        sessionStorage.setItem(tag, value)
-    }
-
     useEffect(() => {
-        if (sessionProducts != null) {
-            setProducts(JSON.parse(sessionProducts));
-        } else {
             productApi.fetchProducts(tag)
-                .then(response => {
-                    setProducts(response.data);
-                    setLocaleProducts(JSON.stringify(response.data));
-                })
-        }
+                .then(response => {setProducts(response.data);})
     }, [tag])
 
     return (

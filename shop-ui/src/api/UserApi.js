@@ -6,19 +6,22 @@ export default {
     },
 
     newUser(values) {
-        let data = new FormData();
-        data.append("username", values.username)
-        data.append("password", values.password)
-        return HTTP.post('/newUser', data)
+        let userDTO = {
+            username: values.username,
+            password: values.password
+        }
+
+        return HTTP.post('/newUser', userDTO)
     },
     setUserPaymentInfo(values) {
-        let data = new FormData();
-        data.append("name", values.name)
-        data.append("surname", values.surname)
-        data.append("address", values.address)
-        data.append("postCode", values.postCode)
-        data.append("cardNumber", values.cardNumber)
+        let paymentInfo = {
+            name: values.name,
+            surname: values.surname,
+            address: values.address,
+            postCode: values.postCode,
+            cardNumber: values.cardNumber
+        }
 
-        return HTTP.post('private/newPaymentInfo', data)
+        return HTTP.post('private/newPaymentInfo', paymentInfo)
     }
 }

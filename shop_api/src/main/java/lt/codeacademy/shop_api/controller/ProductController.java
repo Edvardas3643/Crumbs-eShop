@@ -19,7 +19,6 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping
-@Validated
 public class ProductController {
 
     private final ProductService productService;

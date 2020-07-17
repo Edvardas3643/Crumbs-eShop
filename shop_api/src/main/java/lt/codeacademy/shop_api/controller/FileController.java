@@ -14,7 +14,6 @@ import java.net.URLConnection;
 
 @Controller
 @RequestMapping("/files")
-@Validated
 public class FileController {
 
     private final FileService fileService;

@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -20,7 +21,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping
-@Validated
 public class UserController {
 
     private final PaymentInfoService paymentInfoService;
@@ -50,12 +50,11 @@ public class UserController {
 
     @PostMapping("/newUser")
     public void newUSer(
-            @RequestParam @Size(min = 6, max = 20) String username,
-            @RequestParam @Size(min = 4, max = 20) String password
+           @RequestBody @Valid UserDTO u
     ) {
         UserDTO userDTO = UserDTO.builder()
-                .username(username)
-                .password(password)
+                .username(u.getUsername())
+                .password(u.getPassword())
                 .paymentInfo(null)
                 .roles(new HashSet<>(Collections.singletonList("USER")))
                 .build();
@@ -66,19 +65,16 @@ public class UserController {
     @PostMapping("/private/newPaymentInfo")
     public PaymentInfoDTO newPaymentInfo(
             @AuthenticationPrincipal User user,
-            @RequestParam @Size(max = 40) String name,
-            @RequestParam @Size(max = 40) String surname,
-            @RequestParam @Size(max = 40) String address,
-            @RequestParam @Min(5) @Max(5) Long postCode,
-            @RequestParam @Min(8) @Max(8) Long cardNumber
+            @RequestBody @Valid PaymentInfoDTO p
+
     ) {
         PaymentInfo paymentInfo = PaymentInfo.builder()
                 .user(user)
-                .name(name)
-                .surname(surname)
-                .address(address)
-                .postCode(postCode)
-                .cardNumber(cardNumber)
+                .name(p.getName())
+                .surname(p.getSurname())
+                .address(p.getAddress())
+                .postCode(Long.valueOf(p.getPostCode()))
+                .cardNumber(Long.valueOf(p.getCardNumber()))
                 .build();
 
         return new PaymentInfoDTO(paymentInfoService.saveOrUpdatePaymentInfo(paymentInfo));

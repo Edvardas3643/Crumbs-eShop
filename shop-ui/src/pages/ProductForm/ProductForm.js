@@ -7,9 +7,6 @@ import "./ProductForm.css"
 import {useHistory} from "react-router-dom";
 import {AppContext} from "../../App";
 
-let product = {};
-
-
 const initialState = {
     title: '',
     description: '',
@@ -50,9 +47,13 @@ export default () => {
     }
 
     const onSubmit = (values) => {
-        product = productsApi.createProduct(values, file);
-        history.push(`/product/${product.id}`);
-        clearErrorNotification();
+        productsApi.createProduct(values, file).then(({data}) => {
+            console.log(data)
+            history.push(`/product/${data.id}`)
+            clearErrorNotification();
+        }).catch(() => setErrorNotification({error: "Server Error"}))
+        ;
+
     }
 
     return (
@@ -83,27 +84,27 @@ export default () => {
                         <div className="checkbox-container">
                             <div className="checkbox-container__content">
                                 <label htmlFor="cakeTag">Cake: </label>
-                                <Field type="checkbox" name="tags" value="cakes"/>
+                                <Field type="checkbox" name="tags" value="cake"/>
                                 <ErrorMessage name="cakeTag"/>
                             </div>
                             <div className="checkbox-container__content">
                                 <label htmlFor="kitTag">Kits: </label>
-                                <Field type="checkbox" name="tags" value="kits"/>
+                                <Field type="checkbox" name="tags" value="kit"/>
                                 <ErrorMessage name="kitTag"/>
                             </div>
                             <div className="checkbox-container__content">
                                 <label htmlFor="muffinTag">Muffins: </label>
-                                <Field type="checkbox" name="tags" value="muffins"/>
+                                <Field type="checkbox" name="tags" value="muffin"/>
                                 <ErrorMessage name="muffinTag"/>
                             </div>
                             <div className="checkbox-container__content">
                                 <label htmlFor="cookiesTag">Cookies: </label>
-                                <Field type="checkbox" name="tags" value="cookies"/>
+                                <Field type="checkbox" name="tags" value="cookie"/>
                                 <ErrorMessage name="cookiesTag"/>
                             </div>
                             <div className="checkbox-container__content">
                                 <label htmlFor="browniesTag">Brownies: </label>
-                                <Field type="checkbox" name="tags" value="brownies"/>
+                                <Field type="checkbox" name="tags" value="brownie"/>
                                 <ErrorMessage name="browniesTag"/>
                             </div>
                         </div>
@@ -115,13 +116,13 @@ export default () => {
                         <div>
                             <input type="submit" onClick={() => {
                                 validateForm().then(p => setErrorNotification(p))
-                            }}  value="Create"/>
+                            }} value="Create"/>
                         </div>
                     </Form>
                 )
                 }
             </Formik>
-           <div className="image-preview" style={{backgroundImage: "url(" + previewImg + ")"}} />
+            <div className="image-preview" style={{backgroundImage: "url(" + previewImg + ")"}}/>
         </section>
     )
 }

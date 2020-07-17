@@ -5,7 +5,6 @@ import lt.codeacademy.shop_api.entities.OrderHistory;
 import lt.codeacademy.shop_api.entities.User;
 import lt.codeacademy.shop_api.service.OrderHistoryService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/private")
-@Validated
 public class OrderController {
 
     private final OrderHistoryService orderHistoryService;
@@ -24,11 +22,11 @@ public class OrderController {
     }
 
     @PostMapping("/newOrder")
-    public boolean newOrder(
+    public void newOrder(
             @RequestBody @Valid OrderHistoryDTO orderHistoryDTO,
             @AuthenticationPrincipal User user
     ) {
-        return orderHistoryService.addNewOrderHistory(orderHistoryDTO, user);
+        orderHistoryService.addNewOrderHistory(orderHistoryDTO, user);
     }
 
     @GetMapping("/getOrderHistory")

@@ -4,6 +4,7 @@ import lombok.Data;
 import lt.codeacademy.shop_api.entities.PaymentInfo;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 public class PaymentInfoDTO {
@@ -15,18 +16,18 @@ public class PaymentInfoDTO {
     public String surname;
     @NotNull
     public String address;
-    @NotNull
-    public Long postCode;
-    @NotNull
-    public Long cardNumber;
+    @Size(min = 5, max = 5)
+    public String postCode;
+    @Size(min = 8, max = 8)
+    public String cardNumber;
 
     public PaymentInfoDTO(PaymentInfo p) {
         this.id = p.getId();
         this.name = p.getName();
         this.surname = p.getSurname();
         this.address = p.getAddress();
-        this.postCode = p.getPostCode();
-        this.cardNumber = p.getCardNumber();
+        this.postCode = String.valueOf(p.getPostCode());
+        this.cardNumber = String.valueOf(p.getCardNumber());
     }
 
     public PaymentInfoDTO() {

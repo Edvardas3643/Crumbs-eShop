@@ -24,8 +24,12 @@ export default () => {
 
     const validationSchema = Yup.object({
         username: Yup.string()
+            .min(6)
+            .max(24)
             .required("Username is required"),
         password: Yup.string()
+            .min(6)
+            .max(24)
             .required('Password is required'),
         passwordConfirmation: Yup.string()
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
