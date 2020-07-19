@@ -17,13 +17,10 @@ const initialState = {
 
 const validationSchema = Yup.object().shape({
     title: Yup.string()
-        .label("common:title")
         .required(),
     description: Yup.string()
-        .label("common:description")
         .required(),
     price: Yup.number()
-        .label("common:price")
         .typeError()
         .min(0.01)
         .required(),
@@ -118,9 +115,7 @@ export default () => {
                                 <Field name="files" type="file" onChange={handleFileChange}/>
                             </div>
                             <div>
-                                <input type="submit" className="form-btn" onClick={() => {
-                                    validateForm().then(p => setErrorNotification(p))
-                                }} value="Create"/>
+                                <input type="submit" className="form-btn" onClick={() => {validateForm().then(p => setErrorNotification(p))}} value="Create"/>
                             </div>
                         </Form>
                     )

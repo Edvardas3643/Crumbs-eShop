@@ -8,7 +8,6 @@ export default () => {
 
     const {t} = useTranslation("checkout")
 
-    console.log(userData)
 
     return (
         <>

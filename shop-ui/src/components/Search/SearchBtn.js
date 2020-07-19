@@ -6,7 +6,8 @@ export default () => {
 
     const {searchBlockHandler} = useContext(AppContext)
 
-    return (<div>
+    return (
+        <div>
             <i onClick={searchBlockHandler} className="fas fa-search fa-lg"/>
         </div>
     )

@@ -8,7 +8,8 @@ export default {
     newUser(values) {
         let userDTO = {
             username: values.username,
-            password: values.password
+            password: values.password,
+            passwordConfirmation: values.passwordConfirmation,
         }
 
         return HTTP.post('/newUser', userDTO)

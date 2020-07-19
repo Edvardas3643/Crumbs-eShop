@@ -20,7 +20,7 @@ export default () => {
 
     const location = useLocation()
     const {prevPath} = location.state || {prevPath: '/'}
-    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
+    const {setErrorNotification, clearErrorNotification, setApiErrorNotification} = useContext(AppContext)
     const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
@@ -32,15 +32,15 @@ export default () => {
                 setUserData(data)
                 clearErrorNotification()
                 history.replace(prevPath)
-            }).catch(e => {setErrorNotification({error: "Wrong login information"})})
+            }).catch(e => {setApiErrorNotification(e)})
     }
 
-    const validationSchema = Yup.object().shape({
-        username: Yup.string()
-            .required(),
-        password: Yup.string()
-            .required()
-    })
+    // const validationSchema = Yup.object().shape({
+    //     username: Yup.string()
+    //         .required(),
+    //     password: Yup.string()
+    //         .required()
+    // })
 
     return (
         <section className="container-wide">
@@ -50,7 +50,7 @@ export default () => {
                     <div className="login-form-inner-container-bg-bottom"/>
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={validationSchema}
+                        // validationSchema={validationSchema}
                         validateOnMount={false}
                         validateOnBlur={false}
                         validateOnChange={false}

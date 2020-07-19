@@ -14,7 +14,7 @@ export default () => {
 
     const history = useHistory();
 
-    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
+    const {setErrorNotification, clearErrorNotification, setApiErrorNotification} = useContext(AppContext)
 
     const initialValues = {
         username: '',
@@ -22,24 +22,26 @@ export default () => {
         passwordConfirmation: ''
     }
 
-    const validationSchema = Yup.object({
-        username: Yup.string()
-            .min(6)
-            .max(24)
-            .required("Username is required"),
-        password: Yup.string()
-            .min(6)
-            .max(24)
-            .required('Password is required'),
-        passwordConfirmation: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    });
+    // const validationSchema = Yup.object({
+    //     username: Yup.string()
+    //         .min(6)
+    //         .max(24)
+    //         .required("Username is required"),
+    //     password: Yup.string()
+    //         .min(6)
+    //         .max(24)
+    //         .required('Password is required'),
+    //     passwordConfirmation: Yup.string()
+    //         .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    // });
 
     const onSubmit = values => {
         UserApi.newUser(values).then(({data}) => {
             clearErrorNotification();
             history.push("/")
-        }).catch(e => setErrorNotification({error: "Server Error"}));
+        }).catch(e => {
+            setApiErrorNotification(e.response)
+        });
     }
 
     return (
@@ -51,7 +53,7 @@ export default () => {
                             <div className="login-form-inner-container-bg-left"/>
                             <div className="login-form-inner-container-bg-bottom"/>
                             <Formik
-                                validationSchema={validationSchema}
+                                // validationSchema={validationSchema}
                                 validateOnMount={false}
                                 validateOnBlur={false}
                                 validateOnChange={false}

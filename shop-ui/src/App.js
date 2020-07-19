@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
 import {BrowserRouter} from "react-router-dom";
 import Errors from "./components/Errors/Errors";
+import ApiError from "./components/Errors/ApiError";
 
 
 const AppContext = React.createContext(null)
@@ -15,6 +16,7 @@ const UserContext = React.createContext(null)
 
 export default () => {
 
+    const [apiError, setApiError] = useState(null)
     const [error, setError] = useState(null)
     const [cartOpen, setCartOpen] = useState(false);
     const [navigationOpen, setNavigationOpen] = useState(false);
@@ -24,7 +26,6 @@ export default () => {
 
     const [cart, setCart] = useState(null)
 
-    console.log(userData)
 
     const backdropClickHandler = () => {
         setCartOpen(false);
@@ -45,11 +46,19 @@ export default () => {
         cart,
         setCart,
 
+        apiErrorNotification: apiError,
+        setApiErrorNotification: (content) => {
+            setApiError(content)
+        },
         errorNotification: error,
-        setErrorNotification: (content) => {setError(content)},
-        clearErrorNotification: () => {setError(null)}
+        setErrorNotification: (content) => {
+            setError(content)
+        },
+        clearErrorNotification: () => {
+            setError(null)
+            setApiError(null)
+        }
     }
-
 
 
     const userContext = {
@@ -80,6 +89,7 @@ export default () => {
                         <div className="main">
                             <Header/>
                             <Search/>
+                            <ApiError/>
                             <Errors/>
                             <Content/>
                             <Footer/>
