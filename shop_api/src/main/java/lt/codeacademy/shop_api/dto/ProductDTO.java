@@ -3,6 +3,8 @@ package lt.codeacademy.shop_api.dto;
 import lombok.Data;
 import lt.codeacademy.shop_api.entities.Product;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -13,17 +15,18 @@ import java.util.stream.Collectors;
 public class ProductDTO {
 
     private Long id;
-    @NotNull
+    @NotNull(message = "Title cant be empty")
     private String title;
-    @NotNull
+    @NotNull(message = "Description cant be empty")
     private String description;
-    @NotNull
+    @NotNull(message = "Ingredients cant be empty")
     private String ingredients;
-    @NotNull
+    @NotNull(message = "Price cant be empty")
+    @DecimalMin(value = "0.01", message = "Price cant be lower than 0.01")
     private BigDecimal price;
-    @NotNull
+    @NotNull(message = "Tag cant be empty")
     private String img;
-    @NotEmpty
+    @NotEmpty(message = "Tag cant be empty")
     private Set<TagDTO> tag;
 
     public ProductDTO(Product product) {

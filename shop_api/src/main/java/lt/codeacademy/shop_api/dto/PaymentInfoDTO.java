@@ -3,22 +3,22 @@ package lt.codeacademy.shop_api.dto;
 import lombok.Data;
 import lt.codeacademy.shop_api.entities.PaymentInfo;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Data
 public class PaymentInfoDTO {
 
     public Long id;
-    @NotNull
+    @NotEmpty(message = "Name cant be empty")
     public String name;
-    @NotNull
+    @NotEmpty(message = "Surname cant be empty")
     public String surname;
-    @NotNull
+    @NotEmpty(message = "Address cant be empty")
     public String address;
-    @Size(min = 5, max = 5)
+    @Size(min = 5, max = 5, message = "Post Code should be between 6 to 24 characters long")
     public String postCode;
-    @Size(min = 8, max = 8)
+    @Size(min = 8, max = 8, message = "Card Number should be between 6 to 24 characters long")
     public String cardNumber;
 
     public PaymentInfoDTO(PaymentInfo p) {

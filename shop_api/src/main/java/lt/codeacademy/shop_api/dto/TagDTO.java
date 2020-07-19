@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 public class TagDTO {
 
     private Long tagId;
-    @NotEmpty
+    @NotEmpty(message = "Tag cant be empty")
     private String content;
 
     public TagDTO(Tag tag) {
