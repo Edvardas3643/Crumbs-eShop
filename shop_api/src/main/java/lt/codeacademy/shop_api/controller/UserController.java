@@ -6,8 +6,10 @@ import lt.codeacademy.shop_api.entities.PaymentInfo;
 import lt.codeacademy.shop_api.entities.Role;
 import lt.codeacademy.shop_api.entities.User;
 import lt.codeacademy.shop_api.service.PaymentInfoService;
+import lt.codeacademy.shop_api.service.UserDetailsServiceImpl;
 import lt.codeacademy.shop_api.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,18 +23,22 @@ public class UserController {
 
     private final PaymentInfoService paymentInfoService;
     private final UserService userService;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    public UserController(PaymentInfoService paymentInfoService, UserService userService) {
+    public UserController(PaymentInfoService paymentInfoService, UserService userService, UserDetailsServiceImpl userDetailsService) {
         this.paymentInfoService = paymentInfoService;
         this.userService = userService;
+        this.userDetailsService = userDetailsService;
     }
- 
-    @GetMapping("/private/user")
-    public UserDTO getUser(
-            @AuthenticationPrincipal User user
-    ) {
-        PaymentInfo paymentInfo = paymentInfoService.getNewestPaymentInfo(user);
 
+    @PostMapping("/user")
+    public UserDTO getUser(
+            @RequestBody UserDTO userDTO
+    ) {
+
+        User user = userService.getAuthenticatedUser(userDTO);
+
+        PaymentInfo paymentInfo = paymentInfoService.getNewestPaymentInfo(user);
         return UserDTO.builder()
                 .username(user.getUsername())
                 .paymentInfo(new PaymentInfoDTO(paymentInfo))

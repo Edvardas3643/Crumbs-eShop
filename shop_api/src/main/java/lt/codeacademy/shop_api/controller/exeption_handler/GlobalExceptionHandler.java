@@ -1,7 +1,8 @@
 package lt.codeacademy.shop_api.controller.exeption_handler;
 
-import lt.codeacademy.shop_api.service.exeptions.UserNotFoundException;
+import lt.codeacademy.shop_api.exeptions.UserCredentialsException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,27 +11,34 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({
-            UserNotFoundException.class,
+            UserCredentialsException.class,
+            UsernameNotFoundException.class,
             MethodArgumentNotValidException.class,
             RuntimeException.class
     })
     public ResponseEntity<ErrorContext> handleErrors(Exception ex) {
-        if (ex instanceof UserNotFoundException) {
+        if (ex instanceof UsernameNotFoundException) {
             return ResponseEntity.badRequest().body(
                     new ErrorContext.ErrorContextBuilder()
                             .code("404")
-                            .error(ex.getMessage())
+                            .error("Username not found")
                             .build());
         } else if (ex instanceof MethodArgumentNotValidException) {
             return ResponseEntity.badRequest().body(
                     new ErrorContext.ErrorContextBuilder()
-                            .code("502")
+                            .code("501")
                             .error("Not Valid Arguments Exception")
+                            .build());
+        } else if (ex instanceof UserCredentialsException) {
+            return ResponseEntity.badRequest().body(
+                    new ErrorContext.ErrorContextBuilder()
+                            .code("503")
+                            .error("Wrong User Credentials")
                             .build());
         } else {
             return ResponseEntity.badRequest().body(
                     new ErrorContext.ErrorContextBuilder()
-                            .code("502")
+                            .code("505")
                             .error("Internal Server Error")
                             .build());
         }

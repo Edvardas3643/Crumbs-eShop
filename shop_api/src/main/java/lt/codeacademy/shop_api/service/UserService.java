@@ -3,8 +3,8 @@ package lt.codeacademy.shop_api.service;
 import lt.codeacademy.shop_api.dto.UserDTO;
 import lt.codeacademy.shop_api.entities.Role;
 import lt.codeacademy.shop_api.entities.User;
+import lt.codeacademy.shop_api.exeptions.UserCredentialsException;
 import lt.codeacademy.shop_api.repository.UserRepository;
-import lt.codeacademy.shop_api.service.exeptions.UserNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,15 @@ import java.util.Set;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserDetailsServiceImpl userDetailsService;
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService) {
+    public UserService(UserRepository userRepository, UserDetailsServiceImpl userDetailsService, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userRepository = userRepository;
+        this.userDetailsService = userDetailsService;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
-    }
-
-    public User getUserByUsername(String username){
-            return userRepository.findUserByUsername(username).orElseThrow(() ->new UserNotFoundException("No user found by name: " + username));
     }
 
     public void newUser(UserDTO userDTO) {
@@ -35,5 +33,14 @@ public class UserService {
         user.setRoles(role);
 
         userRepository.save(user);
+    }
+
+    public User getAuthenticatedUser(UserDTO userDTO) {
+        User user = (User) userDetailsService.loadUserByUsername(userDTO.getUsername());
+        if (user.getPassword().equals(passwordEncoder.encode(userDTO.getPassword()))) {
+            return user;
+        } else {
+            throw new UserCredentialsException("Wrong password");
+        }
     }
 }
