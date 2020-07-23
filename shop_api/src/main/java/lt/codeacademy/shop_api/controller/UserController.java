@@ -8,13 +8,9 @@ import lt.codeacademy.shop_api.entities.User;
 import lt.codeacademy.shop_api.service.PaymentInfoService;
 import lt.codeacademy.shop_api.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -30,7 +26,7 @@ public class UserController {
         this.paymentInfoService = paymentInfoService;
         this.userService = userService;
     }
-
+ 
     @GetMapping("/private/user")
     public UserDTO getUser(
             @AuthenticationPrincipal User user
@@ -50,7 +46,7 @@ public class UserController {
 
     @PostMapping("/newUser")
     public void newUSer(
-           @RequestBody @Valid UserDTO u
+            @RequestBody @Valid UserDTO u
     ) {
         UserDTO userDTO = UserDTO.builder()
                 .username(u.getUsername())

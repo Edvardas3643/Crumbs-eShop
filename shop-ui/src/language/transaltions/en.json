@@ -44,7 +44,11 @@
     "postCode": "Post Code:",
     "cardNumber": "Card Number:",
     "login": "Login",
-    "emptyCart": "The Cart Is Currently Empty"
+    "emptyCart": "The Cart Is Currently Empty",
+    "orderedOn": "Ordered On:",
+    "orderedBy": "Ordered By:",
+    "deliveringTo": "Delivering To:"
+
   },
   "register": {
     "register": "Register",
@@ -74,7 +78,10 @@
     "address": "Address:",
     "postCode": "Post Code:",
     "cardNumber": "Card Number:",
-    "login": "Login"
+    "login": "Login",
+    "orderedOn": "Ordered On:",
+    "orderedBy": "Ordered By:",
+    "deliveringTo": "Delivering To:"
   },
 
   "PaymentInfo": {

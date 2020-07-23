@@ -73,7 +73,11 @@
     "address": "Adresas:",
     "postCode": "Pasto Kodas:",
     "cardNumber": "Korteles Numeris:",
-    "login": "Prisijungti"
+    "emptyCart": "Krepselis yra tuscias",
+    "login": "Prisijungti",
+    "orderedOn": "Uzsakymo Data:",
+    "orderedBy": "Uzsakyta:",
+    "deliveringTo": "Pristatoma:"
   },
   "PaymentInfo": {
     "contactInfo": "Kontaktine Info",

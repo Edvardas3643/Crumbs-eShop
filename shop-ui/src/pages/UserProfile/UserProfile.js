@@ -19,7 +19,8 @@ export default () => {
             .then(response => {
                 setOrderHistory(response.data);
             })
-    }, userData)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userData])
 
     return (
         <section className="container-wide">
@@ -29,28 +30,27 @@ export default () => {
                         orderHistory && orderHistory.map(or => {
                             let sum = 0
                             return (
-                                <div className="history-container">
-                                    <div className="history-timestamp">Ordered on: {or.timestamp}</div>
-                                    <div className="history-timestamp">Ordered
-                                        By: {or.paymentInfoDTO.name} {or.paymentInfoDTO.surname}</div>
-                                    <div className="history-timestamp">Delivering to: {or.paymentInfoDTO.address}</div>
+                                <section key={or.paymentInfoDTO.id} className="history-container">
+                                    <div className="history-timestamp">{t("orderedOn")} {or.timestamp}</div>
+                                    <div className="history-timestamp">{t("orderedBy")} {or.paymentInfoDTO.name} {or.paymentInfoDTO.surname}</div>
+                                    <div className="history-timestamp">{t("deliveringTo")} {or.paymentInfoDTO.address}</div>
                                     {or.ordersDTO.map(order => {
                                         sum += Number(order.price) * Number(order.qty)
                                         return (
-                                            <section className="order-container">
+                                            <section key={order.id} className="order-container">
                                                 <div className="order-img"
                                                      style={{backgroundImage: `url(http://localhost:8080/files/${order.product.img})`}}/>
                                                 <div className="order-info-container">
-                                                    <div className="order-title">Title: {order.product.title}</div>
-                                                    <div className="order-price">Price: {order.price}</div>
-                                                    <div className="order-quantity">Quantity: {order.qty}</div>
+                                                    <div className="order-title">{t("title")} {order.product.title}</div>
+                                                    <div className="order-price">{t("price")} {order.price}</div>
+                                                    <div className="order-quantity">{t("qty")} {order.qty}</div>
                                                 </div>
                                             </section>
                                         )
 
                                     })}
                                     <div>Total Price: {sum}</div>
-                                </div>
+                                </section>
                             )
                         })
                     }

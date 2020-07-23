@@ -26,8 +26,8 @@ export default () => {
                 <div className="flex header__left-side">
                     <NavigationToggleBtn/>
                     <select className="language-selector" onChange={changeLanguage()}>
-                        <option value="lt">LT</option>
                         <option value="en">EN</option>
+                        <option value="lt">LT</option>
                     </select>
                 </div>
 

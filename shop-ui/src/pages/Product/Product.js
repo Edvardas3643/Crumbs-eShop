@@ -28,6 +28,7 @@ export default () => {
                 setProduct(response.data);
                 clearErrorNotification();
             }).catch(e => setErrorNotification({error: "Server Error"}))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
     const addToQty = () => {

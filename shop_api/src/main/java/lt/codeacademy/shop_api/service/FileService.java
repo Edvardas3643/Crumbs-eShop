@@ -21,7 +21,7 @@ public class FileService {
     private final Path storageLocation;
 
     public FileService() {
-        this.storageLocation = Paths.get("./storage/resources/img").toAbsolutePath().normalize();
+        this.storageLocation = Paths.get("./src/main/resources/image").toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.storageLocation);
         } catch (IOException e) {
@@ -30,6 +30,7 @@ public class FileService {
     }
 
     public void saveOrUpdateFile(MultipartFile file) {
+        System.out.println(storageLocation);
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path targetLocation = this.storageLocation.resolve(fileName);
         try {

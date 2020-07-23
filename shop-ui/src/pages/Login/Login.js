@@ -20,7 +20,7 @@ export default () => {
 
     const location = useLocation()
     const {prevPath} = location.state || {prevPath: '/'}
-    const {setErrorNotification, clearErrorNotification, setApiErrorNotification} = useContext(AppContext)
+    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
     const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
@@ -32,15 +32,17 @@ export default () => {
                 setUserData(data)
                 clearErrorNotification()
                 history.replace(prevPath)
-            }).catch(e => {setApiErrorNotification(e)})
+            }).catch(e => {
+            setErrorNotification({error: "Login Error"})
+        })
     }
 
-    // const validationSchema = Yup.object().shape({
-    //     username: Yup.string()
-    //         .required(),
-    //     password: Yup.string()
-    //         .required()
-    // })
+    const validationSchema = Yup.object().shape({
+        username: Yup.string()
+            .required("Username field cant be empty"),
+        password: Yup.string()
+            .required("Password field cant be empty")
+    })
 
     return (
         <section className="container-wide">
@@ -50,7 +52,7 @@ export default () => {
                     <div className="login-form-inner-container-bg-bottom"/>
                     <Formik
                         initialValues={initialValues}
-                        // validationSchema={validationSchema}
+                        validationSchema={validationSchema}
                         validateOnMount={false}
                         validateOnBlur={false}
                         validateOnChange={false}
@@ -60,15 +62,19 @@ export default () => {
 
                                 <p>{t("singIn")}</p>
                                 <div>
-                                    <Field className={errors.username ? "form-field field-error" : "form-field"} name="username" type="text"
+                                    <Field className={errors.username ? "form-field field-error" : "form-field"}
+                                           name="username" type="text"
                                            placeholder={t("username")}/>
                                 </div>
                                 <div>
-                                    <Field className={errors.password ? "form-field field-error" : "form-field"} name="password" type="password"
+                                    <Field className={errors.password ? "form-field field-error" : "form-field"}
+                                           name="password" type="password"
                                            placeholder={t("password")}/>
                                 </div>
                                 <div>
-                                    <button className="form-btn" onClick={() => {validateForm().then(p => setErrorNotification(p))}} type="submit">{t("login")}</button>
+                                    <button className="form-btn" onClick={() => {
+                                        validateForm().then(p => setErrorNotification(p))
+                                    }} type="submit">{t("login")}</button>
                                 </div>
                                 <div>
                                     <NavLink to="register" className="form-btn">{t("register")}</NavLink>

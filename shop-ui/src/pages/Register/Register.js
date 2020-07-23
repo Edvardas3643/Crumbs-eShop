@@ -14,7 +14,7 @@ export default () => {
 
     const history = useHistory();
 
-    const {setErrorNotification, clearErrorNotification, setApiErrorNotification} = useContext(AppContext)
+    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
 
     const initialValues = {
         username: '',
@@ -22,25 +22,25 @@ export default () => {
         passwordConfirmation: ''
     }
 
-    // const validationSchema = Yup.object({
-    //     username: Yup.string()
-    //         .min(6)
-    //         .max(24)
-    //         .required("Username is required"),
-    //     password: Yup.string()
-    //         .min(6)
-    //         .max(24)
-    //         .required('Password is required'),
-    //     passwordConfirmation: Yup.string()
-    //         .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    // });
+    const validationSchema = Yup.object({
+        username: Yup.string()
+            .min(6)
+            .max(24)
+            .required("Username is required"),
+        password: Yup.string()
+            .min(6)
+            .max(24)
+            .required('Password is required'),
+        passwordConfirmation: Yup.string()
+            .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    });
 
     const onSubmit = values => {
         UserApi.newUser(values).then(({data}) => {
             clearErrorNotification();
             history.push("/")
         }).catch(e => {
-            setApiErrorNotification(e.response)
+            setErrorNotification({error: "Internal Server Error"})
         });
     }
 
@@ -53,10 +53,7 @@ export default () => {
                             <div className="login-form-inner-container-bg-left"/>
                             <div className="login-form-inner-container-bg-bottom"/>
                             <Formik
-                                // validationSchema={validationSchema}
-                                validateOnMount={false}
-                                validateOnBlur={false}
-                                validateOnChange={false}
+                                validationSchema={validationSchema}
                                 initialValues={initialValues}
                                 onSubmit={onSubmit}>
                                 {({errors, validateForm}) => (

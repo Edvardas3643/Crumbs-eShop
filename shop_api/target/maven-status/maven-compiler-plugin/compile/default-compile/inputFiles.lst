@@ -27,6 +27,7 @@ C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt
 C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\controller\UserController.java
 C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\service\UserService.java
 C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\entities\OrderHistory.java
+C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\service\exeptions\UserNotFoundException.java
 C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\dto\PaymentInfoDTO.java
 C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\dto\UserDTO.java
 C:\Users\Edvar\Desktop\Baigiamasis Darbas\restful_shop\shop_api\src\main\java\lt\codeacademy\shop_api\entities\Order.java

@@ -2,7 +2,6 @@ import React, {useContext, useState} from "react";
 import * as Yup from 'yup';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import productsApi from '../../api/productsApi';
-import ErrorMessageTranslated from "../../components/ErrorMessageTranslated/ErrorMessageTranslated";
 import "./ProductForm.css"
 import {useHistory} from "react-router-dom";
 import {AppContext} from "../../App";
@@ -50,7 +49,7 @@ export default () => {
         productsApi.createProduct(values, file).then(({data}) => {
             history.push(`/product/${data.id}`)
             clearErrorNotification();
-        }).catch(() => setErrorNotification({error: "Server Error"}))
+        }).catch(() => setErrorNotification({error: "Internal Server Error"}))
         ;
 
     }

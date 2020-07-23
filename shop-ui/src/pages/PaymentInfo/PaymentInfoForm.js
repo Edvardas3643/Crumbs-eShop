@@ -37,20 +37,20 @@ export default () => {
 
     }
 
-    // const validationSchema = Yup.object().shape({
-    //     name: Yup.string()
-    //         .required(),
-    //     surname: Yup.string()
-    //         .required(),
-    //     address: Yup.string()
-    //         .required(),
-    //     postCode: Yup.string()
-    //         .length(5)
-    //         .required(),
-    //     cardNumber: Yup.string()
-    //         .length(8)
-    //         .required(),
-    // })
+    const validationSchema = Yup.object().shape({
+        name: Yup.string()
+            .required(),
+        surname: Yup.string()
+            .required(),
+        address: Yup.string()
+            .required(),
+        postCode: Yup.string()
+            .length(5)
+            .required(),
+        cardNumber: Yup.string()
+            .length(8)
+            .required(),
+    })
 
     return (
         <section className="container-wide">
@@ -60,7 +60,7 @@ export default () => {
                     <div className="payment-form-inner-container-bg-bottom"/>
                     <Formik
                         initialValues={initialValues}
-                        // validationSchema={validationSchema}
+                        validationSchema={validationSchema}
                         onSubmit={onSubmit}>
                         {({errors, validateForm}) => (
                             <Form className="login-form">

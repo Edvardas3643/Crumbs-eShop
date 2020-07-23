@@ -11,8 +11,8 @@ export default () => {
             {apiErrorNotification ?
                 <section className="error-container">
                     <ul className="error-list">
-                        <li className="error-message">{apiErrorNotification.data.error}</li>
-                        <li className="error-message">{apiErrorNotification.data.code}</li>
+                        <li className="error-message">{apiErrorNotification?.response.error}</li>
+                        <li className="error-message">{apiErrorNotification?.response.code}</li>
                     </ul>
                 </section> : <></>
             }

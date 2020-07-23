@@ -4,7 +4,7 @@ import lt.codeacademy.shop_api.dto.UserDTO;
 import lt.codeacademy.shop_api.entities.Role;
 import lt.codeacademy.shop_api.entities.User;
 import lt.codeacademy.shop_api.repository.UserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import lt.codeacademy.shop_api.service.exeptions.UserNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public User getUserByUsername(String username){
-            return userRepository.findUserByUsername(username).orElseThrow(() ->new UsernameNotFoundException("No user found by name: " + username));
+            return userRepository.findUserByUsername(username).orElseThrow(() ->new UserNotFoundException("No user found by name: " + username));
     }
 
     public void newUser(UserDTO userDTO) {
