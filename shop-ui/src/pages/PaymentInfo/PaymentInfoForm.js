@@ -32,24 +32,24 @@ export default () => {
                 clearErrorNotification()
                 history.replace(prevPath);
             }).catch(e => {
-            setErrorNotification({error: "Server Error"})
+            setErrorNotification({error: "Internal Server Error"})
         });
 
     }
 
     const validationSchema = Yup.object().shape({
         name: Yup.string()
-            .required(),
+            .required("Name is Required"),
         surname: Yup.string()
-            .required(),
+            .required("Surname is Required"),
         address: Yup.string()
-            .required(),
+            .required("Address is Required"),
         postCode: Yup.string()
-            .length(5)
-            .required(),
+            .length(5, "Post Code length must be 5")
+            .required("Post Code is Required"),
         cardNumber: Yup.string()
-            .length(8)
-            .required(),
+            .length(8, "Post Code length must be 8")
+            .required("Card Number is Required"),
     })
 
     return (

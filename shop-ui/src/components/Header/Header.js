@@ -15,6 +15,8 @@ export default () => {
 
     const {userLoggedIn} = useContext(UserContext)
 
+    console.log(i18n.language)
+
     const changeLanguage = () => e => {
         e.preventDefault()
         i18n.changeLanguage(e.target.value)
@@ -25,9 +27,9 @@ export default () => {
             <div className="header container-wide">
                 <div className="flex header__left-side">
                     <NavigationToggleBtn/>
-                    <select className="language-selector" onChange={changeLanguage()}>
-                        <option value="en">EN</option>
-                        <option value="lt">LT</option>
+                    <select defaultValue={i18n.language} className="language-selector" onChange={changeLanguage()}>
+                        <option  value="en">EN</option>
+                        <option  value="lt">LT</option>
                     </select>
                 </div>
 

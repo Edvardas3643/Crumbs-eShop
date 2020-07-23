@@ -20,21 +20,19 @@ export default () => {
 
     const location = useLocation()
     const {prevPath} = location.state || {prevPath: '/'}
-    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
+    const {setErrorNotification, setApiErrorNotification, clearErrorNotification} = useContext(AppContext)
     const {login, setUserData} = useContext(UserContext)
     const history = useHistory();
 
     const onSubmit = (values) => {
-        setCredentials(values)
-        userApi.getUser()
+        userApi.getUser(values)
             .then(({data}) => {
+                setCredentials(values)
                 login(data)
                 setUserData(data)
                 clearErrorNotification()
                 history.replace(prevPath)
-            }).catch(e => {
-            setErrorNotification({error: "Login Error"})
-        })
+            }).catch(e => {setApiErrorNotification(e)})
     }
 
     const validationSchema = Yup.object().shape({

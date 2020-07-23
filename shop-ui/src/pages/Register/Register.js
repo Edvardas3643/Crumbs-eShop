@@ -14,7 +14,7 @@ export default () => {
 
     const history = useHistory();
 
-    const {setErrorNotification, clearErrorNotification} = useContext(AppContext)
+    const {setErrorNotification, clearErrorNotification, setApiErrorNotification} = useContext(AppContext)
 
     const initialValues = {
         username: '',
@@ -24,23 +24,23 @@ export default () => {
 
     const validationSchema = Yup.object({
         username: Yup.string()
-            .min(6)
-            .max(24)
+            .min(6, "Minimal Username length 6")
+            .max(24, "Maximum Username length 24")
             .required("Username is required"),
         password: Yup.string()
-            .min(6)
-            .max(24)
+            .min(6, "Minimal Password length 6")
+            .max(24, "Maximum Password length 24")
             .required('Password is required'),
         passwordConfirmation: Yup.string()
             .oneOf([Yup.ref('password'), null], 'Passwords must match')
     });
 
     const onSubmit = values => {
-        UserApi.newUser(values).then(({data}) => {
+        UserApi.newUser(values).then(() => {
             clearErrorNotification();
             history.push("/")
         }).catch(e => {
-            setErrorNotification({error: "Internal Server Error"})
+            setApiErrorNotification(e)
         });
     }
 

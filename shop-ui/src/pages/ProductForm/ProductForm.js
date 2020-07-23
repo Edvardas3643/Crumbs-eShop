@@ -16,15 +16,15 @@ const initialState = {
 
 const validationSchema = Yup.object().shape({
     title: Yup.string()
-        .required(),
+        .required("Title is Required"),
     description: Yup.string()
-        .required(),
+        .required("Description is Required"),
     price: Yup.number()
         .typeError()
-        .min(0.01)
-        .required(),
+        .min(0.01, "Min value 0.01")
+        .required("Price is Required"),
     ingredients: Yup.string()
-        .required(),
+        .required("Ingredients is Required"),
 })
 
 export default () => {

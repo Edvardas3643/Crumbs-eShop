@@ -1,8 +1,12 @@
 import HTTP from '.'
 
 export default {
-    getUser() {
-        return HTTP.get('private/user')
+    getUser(values) {
+        let userDTO = {
+            username: values.username,
+            password: values.password,
+        }
+        return HTTP.post('user', userDTO)
     },
 
     newUser(values) {
