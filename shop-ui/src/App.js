@@ -10,7 +10,6 @@ import {BrowserRouter} from "react-router-dom";
 import Errors from "./components/Errors/Errors";
 import ApiError from "./components/Errors/ApiError";
 
-
 const AppContext = React.createContext(null)
 const UserContext = React.createContext(null)
 
@@ -78,24 +77,24 @@ export default () => {
         backdrop = <Backdrop click={backdropClickHandler}/>
     }
 
+
     return (
         <AppContext.Provider value={appContext}>
             <UserContext.Provider value={userContext}>
                 <BrowserRouter>
-                    <div className="App">
-                        <Navigation/>
-                        {backdrop}
-
-                        <div className="main">
-                            <Header/>
-                            <Search/>
-                            <ApiError/>
-                            <Errors/>
-                            <Content/>
-                            <Footer/>
+                        <div className="App">
+                            <Navigation/>
+                            {backdrop}
+                            <div className="main">
+                                <Header/>
+                                <Search/>
+                                <ApiError/>
+                                <Errors/>
+                                <Content/>
+                                <Footer/>
+                            </div>
+                            <Cart/>
                         </div>
-                        <Cart/>
-                    </div>
                 </BrowserRouter>
             </UserContext.Provider>
         </AppContext.Provider>

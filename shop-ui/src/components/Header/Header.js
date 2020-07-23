@@ -15,8 +15,6 @@ export default () => {
 
     const {userLoggedIn} = useContext(UserContext)
 
-    console.log(i18n.language)
-
     const changeLanguage = () => e => {
         e.preventDefault()
         i18n.changeLanguage(e.target.value)

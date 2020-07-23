@@ -1,5 +1,6 @@
 package lt.codeacademy.shop_api.controller.exeption_handler;
 
+import lt.codeacademy.shop_api.exeptions.SuchUserAlreadyExistException;
 import lt.codeacademy.shop_api.exeptions.UserCredentialsException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({
+            SuchUserAlreadyExistException.class,
             UserCredentialsException.class,
             UsernameNotFoundException.class,
             MethodArgumentNotValidException.class,
@@ -28,6 +30,12 @@ public class GlobalExceptionHandler {
                     new ErrorContext.ErrorContextBuilder()
                             .code("501")
                             .error("Not Valid Arguments Exception")
+                            .build());
+        } else if (ex instanceof SuchUserAlreadyExistException) {
+            return ResponseEntity.badRequest().body(
+                    new ErrorContext.ErrorContextBuilder()
+                            .code("504")
+                            .error("Such a User Already Exists")
                             .build());
         } else if (ex instanceof UserCredentialsException) {
             return ResponseEntity.badRequest().body(
