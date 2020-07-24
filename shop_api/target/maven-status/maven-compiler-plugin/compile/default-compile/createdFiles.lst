@@ -1,4 +1,3 @@
-lt\codeacademy\shop_api\service\exeptions\UserNotFoundException.class
 lt\codeacademy\shop_api\dto\OrderDTO.class
 lt\codeacademy\shop_api\config\SecurityConfig.class
 lt\codeacademy\shop_api\entities\PaymentInfo$PaymentInfoBuilder.class
@@ -16,7 +15,6 @@ lt\codeacademy\shop_api\dto\UserDTO.class
 lt\codeacademy\shop_api\repository\UserRepository.class
 lt\codeacademy\shop_api\entities\User.class
 lt\codeacademy\shop_api\entities\OrderHistory.class
-lt\codeacademy\shop_api\service\exeptions\ProductServiceException.class
 lt\codeacademy\shop_api\entities\Role.class
 lt\codeacademy\shop_api\service\UserService.class
 lt\codeacademy\shop_api\repository\RoleRepository.class
@@ -36,7 +34,6 @@ lt\codeacademy\shop_api\config\WebConfig.class
 lt\codeacademy\shop_api\controller\UserController.class
 lt\codeacademy\shop_api\repository\OrderRepository.class
 lt\codeacademy\shop_api\repository\TagRepository.class
-lt\codeacademy\shop_api\service\exeptions\FileStorageException.class
 lt\codeacademy\shop_api\ShopApiApplication.class
 lt\codeacademy\shop_api\controller\exeption_handler\ErrorContext$ErrorContextBuilder.class
 lt\codeacademy\shop_api\service\RoleService.class
