@@ -49,7 +49,7 @@ export default () => {
                                         )
 
                                     })}
-                                    <div>Total Price: {sum}</div>
+                                    <div>{t("totalPrice")} {Number((sum).toFixed(2))}</div>
                                 </section>
                             )
                         })

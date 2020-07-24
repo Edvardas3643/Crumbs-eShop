@@ -48,7 +48,7 @@ export default () => {
             .length(5, "Post Code length must be 5")
             .required("Post Code is Required"),
         cardNumber: Yup.string()
-            .length(8, "Post Code length must be 8")
+            .length(8, "Card Number length must be 8")
             .required("Card Number is Required"),
     })
 

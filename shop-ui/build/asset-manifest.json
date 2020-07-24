@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9b41a08a.chunk.css",
+    "main.js": "/static/js/main.18295ccc.chunk.js",
+    "main.js.map": "/static/js/main.18295ccc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6af34da3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6af34da3.js.map",
+    "static/js/2.685b7cee.chunk.js": "/static/js/2.685b7cee.chunk.js",
+    "static/js/2.685b7cee.chunk.js.map": "/static/js/2.685b7cee.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b15862e5cd025ad5d841873243173ef7.js": "/precache-manifest.b15862e5cd025ad5d841873243173ef7.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.9b41a08a.chunk.css.map": "/static/css/main.9b41a08a.chunk.css.map",
+    "static/js/2.685b7cee.chunk.js.LICENSE.txt": "/static/js/2.685b7cee.chunk.js.LICENSE.txt",
+    "static/media/CakesHero.PNG": "/static/media/CakesHero.ea0bfe98.PNG",
+    "static/media/Cakes_banner.jpg": "/static/media/Cakes_banner.af0ace80.jpg",
+    "static/media/CoockiesHero.PNG": "/static/media/CoockiesHero.8ec6b210.PNG",
+    "static/media/CupcakesHero.PNG": "/static/media/CupcakesHero.c556a61a.PNG",
+    "static/media/banner-search.jpg": "/static/media/banner-search.eb4f3bab.jpg",
+    "static/media/Cart.css": "/static/media/cart_background.8a7a9cd2.PNG",
+    "static/media/cupcakes-banner.jpg": "/static/media/cupcakes-banner.ded7db6b.jpg",
+    "static/media/kits-banner.jpg": "/static/media/kits-banner.45e18e42.jpg",
+    "static/media/login-bg.jpg": "/static/media/login-bg.138ccd46.jpg",
+    "static/media/Navigation.css": "/static/media/navigation_background.aa8a2cef.PNG",
+    "static/media/search-noresults.jpg": "/static/media/search-noresults.30e49064.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6af34da3.js",
+    "static/js/2.685b7cee.chunk.js",
+    "static/css/main.9b41a08a.chunk.css",
+    "static/js/main.18295ccc.chunk.js"
+  ]
+}

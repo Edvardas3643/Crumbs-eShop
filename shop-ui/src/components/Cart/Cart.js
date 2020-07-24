@@ -50,7 +50,7 @@ export default () => {
                                     <div className="cart-contents__description">
                                         <p className="description__title">{contents.product.title}</p>
                                         <p className="description__qty">{t("qty")} {contents.qty}</p>
-                                        <p className="description__price">{t("totalPrice")} {contents.product.price * contents.qty} </p>
+                                        <p className="description__price">{t("totalPrice")} {Number((contents.product.price * contents.qty).toFixed(2))} </p>
                                     </div>
                                 </li>
                                 : <></>
