@@ -3,6 +3,7 @@ A Single page web aplication, for small bakery buisneses to display and sell the
 
 Rest eShop WebApp:
 Using React for shop-ui. SPA(Single page aplication).
+
 Using Spring Boot Rest with postgres and docker for shop-api 
 
 For installing and running the program, you need to have on your computer the following software:
