@@ -10,8 +10,11 @@ JRE (Java Runtime Environment)
 Node.js
 
 Starting the project
+
 eShop_api
+
 1. package the project:
+
 in the project directory use command:
 
 mvn package
@@ -21,9 +24,13 @@ mvn package
 java -jar -Dspring.profiles.active=h2 [jar file here]
 
 Go to the folder shop-ui, to start run the following commands:
+
 1.Istall the missing modules
+
 npm install
+
 2.Deploy the Developmental server
+
 npm start
 
 To wisit the web app go to the http link:
