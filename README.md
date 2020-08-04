@@ -5,34 +5,36 @@ Rest eShop WebApp:
 Using React for shop-ui. SPA(Single page aplication).
 
 Using Spring Boot Rest with postgres and docker for shop-api 
-
+```
 For installing and running the program, you need to have on your computer the following software:
 JRE (Java Runtime Environment)
 Node.js
-
+```
 Starting the project
 
-eShop_api
+#### eShop_api
 
-1. package the project:
+1.Package the project:
 
 in the project directory use command:
 
-mvn package
+`mvn package`
 
-2.lounch the api from a jar file:
+2.Lounch the api from a jar file:
 
-java -jar -Dspring.profiles.active=h2 [jar file here]
+`java -jar -Dspring.profiles.active=h2 [jar file here]`
+
+#### eShop_ui
 
 Go to the folder shop-ui, to start run the following commands:
 
 1.Istall the missing modules
 
-npm install
+`npm install`
 
 2.Deploy the Developmental server
 
-npm start
+`npm start`
 
 To wisit the web app go to the http link:
 http://localhost:3000/
